@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+	<bean class="com.desafio.ponto.service.impl.PontoDiaLocalServiceImpl" id="com.desafio.ponto.service.PontoDiaLocalService" />
+	<bean class="com.desafio.ponto.service.impl.PontoDiaServiceImpl" id="com.desafio.ponto.service.PontoDiaService" />
+	<bean class="com.desafio.ponto.service.persistence.impl.PontoDiaPersistenceImpl" id="com.desafio.ponto.service.persistence.PontoDiaPersistence" parent="basePersistence" />
+	<bean class="com.desafio.ponto.service.impl.PontoEletronicoLocalServiceImpl" id="com.desafio.ponto.service.PontoEletronicoLocalService" />
+	<bean class="com.desafio.ponto.service.impl.PontoEletronicoServiceImpl" id="com.desafio.ponto.service.PontoEletronicoService" />
+	<bean class="com.desafio.ponto.service.impl.PontoMarcacoesLocalServiceImpl" id="com.desafio.ponto.service.PontoMarcacoesLocalService" />
+	<bean class="com.desafio.ponto.service.impl.PontoMarcacoesServiceImpl" id="com.desafio.ponto.service.PontoMarcacoesService" />
+	<bean class="com.desafio.ponto.service.persistence.impl.PontoMarcacoesPersistenceImpl" id="com.desafio.ponto.service.persistence.PontoMarcacoesPersistence" parent="basePersistence" />
+</beans>

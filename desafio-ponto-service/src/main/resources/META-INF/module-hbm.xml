@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="false" default-lazy="false">
+	<import class="com.desafio.ponto.model.PontoDia" />
+	<import class="com.desafio.ponto.model.PontoMarcacoes" />
+	<class name="com.desafio.ponto.model.impl.PontoDiaImpl" table="ponto_dia">
+		<composite-id class="com.desafio.ponto.service.persistence.PontoDiaPK" name="primaryKey">
+			<key-property name="Pis" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="Data" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="Competencia" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="Horas_Trabalhadas" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="Horas_Extras" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="Horas_Negativas" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.desafio.ponto.model.impl.PontoMarcacoesImpl" table="ponto_marcacao">
+		<composite-id class="com.desafio.ponto.service.persistence.PontoMarcacoesPK" name="primaryKey">
+			<key-property name="Pis" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="DataHora" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="Marcacao_valida" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+</hibernate-mapping>
