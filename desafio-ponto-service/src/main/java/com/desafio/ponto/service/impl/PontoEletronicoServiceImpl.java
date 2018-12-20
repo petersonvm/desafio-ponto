@@ -14,7 +14,15 @@
 
 package com.desafio.ponto.service.impl;
 
+import com.desafio.ponto.exception.MarcacaoExistenteException;
+import com.desafio.ponto.exception.PontoDiaExistenteException;
+import com.desafio.ponto.service.PontoDiaLocalServiceUtil;
+import com.desafio.ponto.service.PontoMarcacoesLocalServiceUtil;
 import com.desafio.ponto.service.base.PontoEletronicoServiceBaseImpl;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * The implementation of the ponto eletronico remote service.
@@ -36,4 +44,29 @@ public class PontoEletronicoServiceImpl extends PontoEletronicoServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use {@link com.desafio.ponto.service.PontoEletronicoServiceUtil} to access the ponto eletronico remote service.
 	 */
+	
+	public String gravarMarcacao() {
+		
+		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm");    
+
+			Date data;
+			try {
+				data = fmt.parse("20/12/2018 09:00");
+				//PontoMarcacoesLocalServiceUtil.gravarMarcacao(1234567890, data);
+				PontoDiaLocalServiceUtil.gravarPonto(1234567890, data);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				return "ParseException";
+//			} catch (MarcacaoExistenteException e) {
+//				// TODO Auto-generated catch block
+//				return "MarcacaoExistenteException";
+			} catch (PontoDiaExistenteException e) {
+				// TODO Auto-generated catch block
+				return "PontoDiaExistenteException";
+			}
+			
+		return "Ok";
+		
+	}
+	
 }

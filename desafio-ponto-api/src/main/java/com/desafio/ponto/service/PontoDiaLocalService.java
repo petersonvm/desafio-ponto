@@ -16,6 +16,7 @@ package com.desafio.ponto.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.desafio.ponto.exception.PontoDiaExistenteException;
 import com.desafio.ponto.model.PontoDia;
 import com.desafio.ponto.service.persistence.PontoDiaPK;
 
@@ -221,7 +222,8 @@ public interface PontoDiaLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getPontoDiasCount();
 
-	public PontoDia registarPonto(long pis, Date dataPonto);
+	public PontoDia gravarPonto(long pis, Date dataHora)
+		throws PontoDiaExistenteException;
 
 	/**
 	* Updates the ponto dia in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

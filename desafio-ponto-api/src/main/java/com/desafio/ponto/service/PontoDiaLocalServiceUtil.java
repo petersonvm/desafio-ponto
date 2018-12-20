@@ -242,9 +242,10 @@ public class PontoDiaLocalServiceUtil {
 		return getService().getPontoDiasCount();
 	}
 
-	public static com.desafio.ponto.model.PontoDia registarPonto(long pis,
-		java.util.Date dataPonto) {
-		return getService().registarPonto(pis, dataPonto);
+	public static com.desafio.ponto.model.PontoDia gravarPonto(long pis,
+		java.util.Date dataHora)
+		throws com.desafio.ponto.exception.PontoDiaExistenteException {
+		return getService().gravarPonto(pis, dataHora);
 	}
 
 	/**

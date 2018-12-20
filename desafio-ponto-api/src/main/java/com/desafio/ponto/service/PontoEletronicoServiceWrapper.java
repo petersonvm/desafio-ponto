@@ -44,6 +44,11 @@ public class PontoEletronicoServiceWrapper implements PontoEletronicoService,
 	}
 
 	@Override
+	public String gravarMarcacao() {
+		return _pontoEletronicoService.gravarMarcacao();
+	}
+
+	@Override
 	public PontoEletronicoService getWrappedService() {
 		return _pontoEletronicoService;
 	}

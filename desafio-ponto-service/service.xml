@@ -5,18 +5,19 @@
     <author>Peterson Morais</author>
 	<namespace>DesafioPonto</namespace>
 	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
-    <entity name="PontoDia" local-service="true" table="ponto_dia">
+    <entity name="PontoDia" local-service="true" table="ponto_dia" remote-service="false">
         <column name="Pis" type="long" primary="true"></column>
         <column name="Data" type="long" primary="true"></column>
         <column name="Competencia" type="String"></column>
         <column name="Horas_Trabalhadas" type="int"></column>
-        <column name="Horas_Extras" type="int"></column>
-        <column name="Horas_Negativas" type="int"></column>
+        <finder name="FindByCompetencia" return-type="Collection">
+            <finder-column name="Competencia"></finder-column>
+        </finder>
     </entity>
-    <entity name="PontoMarcacoes" local-service="true" table="ponto_marcacao">
+    <entity name="PontoMarcacoes" local-service="true" table="ponto_marcacao" remote-service="false">
         <column name="Pis" primary="true" type="long"></column>
-        <column name="DataHora" primary="true" type="long"></column>
-        <column name="Marcacao_valida" type="boolean"></column>
+        <column name="Data" primary="true" type="long"></column>
+        <column name="DataHora" type="long" primary="true"></column>
     </entity>
     <entity name="PontoEletronico" local-service="true"></entity>
 </service-builder>

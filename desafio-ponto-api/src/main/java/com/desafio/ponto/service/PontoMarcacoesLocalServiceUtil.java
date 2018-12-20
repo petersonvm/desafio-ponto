@@ -242,9 +242,10 @@ public class PontoMarcacoesLocalServiceUtil {
 		return getService().getPontoMarcacoesesCount();
 	}
 
-	public static com.desafio.ponto.model.PontoMarcacoes registrarMarcacao(
-		long pis, java.util.Date dataMarcacao) {
-		return getService().registrarMarcacao(pis, dataMarcacao);
+	public static com.desafio.ponto.model.PontoMarcacoes gravarMarcacao(
+		long pis, java.util.Date dataHora)
+		throws com.desafio.ponto.exception.MarcacaoExistenteException {
+		return getService().gravarMarcacao(pis, dataHora);
 	}
 
 	/**

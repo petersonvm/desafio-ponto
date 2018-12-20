@@ -252,9 +252,10 @@ public class PontoDiaLocalServiceWrapper implements PontoDiaLocalService,
 	}
 
 	@Override
-	public com.desafio.ponto.model.PontoDia registarPonto(long pis,
-		java.util.Date dataPonto) {
-		return _pontoDiaLocalService.registarPonto(pis, dataPonto);
+	public com.desafio.ponto.model.PontoDia gravarPonto(long pis,
+		java.util.Date dataHora)
+		throws com.desafio.ponto.exception.PontoDiaExistenteException {
+		return _pontoDiaLocalService.gravarPonto(pis, dataHora);
 	}
 
 	/**

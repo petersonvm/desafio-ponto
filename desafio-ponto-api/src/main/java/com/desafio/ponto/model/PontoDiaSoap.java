@@ -24,10 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically {@link com.desafio.ponto.service.http.PontoDiaServiceSoap}.
+ * This class is used by SOAP remote services.
  *
  * @author Peterson Morais
- * @see com.desafio.ponto.service.http.PontoDiaServiceSoap
  * @generated
  */
 @ProviderType
@@ -39,8 +38,6 @@ public class PontoDiaSoap implements Serializable {
 		soapModel.setData(model.getData());
 		soapModel.setCompetencia(model.getCompetencia());
 		soapModel.setHoras_Trabalhadas(model.getHoras_Trabalhadas());
-		soapModel.setHoras_Extras(model.getHoras_Extras());
-		soapModel.setHoras_Negativas(model.getHoras_Negativas());
 
 		return soapModel;
 	}
@@ -126,26 +123,8 @@ public class PontoDiaSoap implements Serializable {
 		_Horas_Trabalhadas = Horas_Trabalhadas;
 	}
 
-	public int getHoras_Extras() {
-		return _Horas_Extras;
-	}
-
-	public void setHoras_Extras(int Horas_Extras) {
-		_Horas_Extras = Horas_Extras;
-	}
-
-	public int getHoras_Negativas() {
-		return _Horas_Negativas;
-	}
-
-	public void setHoras_Negativas(int Horas_Negativas) {
-		_Horas_Negativas = Horas_Negativas;
-	}
-
 	private long _Pis;
 	private long _Data;
 	private String _Competencia;
 	private int _Horas_Trabalhadas;
-	private int _Horas_Extras;
-	private int _Horas_Negativas;
 }

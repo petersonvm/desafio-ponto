@@ -1,0 +1,1 @@
+create index IX_C667B497 on ponto_dia (Competencia[$COLUMN_LENGTH:75$]);

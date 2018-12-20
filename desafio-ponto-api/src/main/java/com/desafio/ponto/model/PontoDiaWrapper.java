@@ -60,8 +60,6 @@ public class PontoDiaWrapper implements PontoDia, ModelWrapper<PontoDia> {
 		attributes.put("Data", getData());
 		attributes.put("Competencia", getCompetencia());
 		attributes.put("Horas_Trabalhadas", getHoras_Trabalhadas());
-		attributes.put("Horas_Extras", getHoras_Extras());
-		attributes.put("Horas_Negativas", getHoras_Negativas());
 
 		return attributes;
 	}
@@ -90,18 +88,6 @@ public class PontoDiaWrapper implements PontoDia, ModelWrapper<PontoDia> {
 
 		if (Horas_Trabalhadas != null) {
 			setHoras_Trabalhadas(Horas_Trabalhadas);
-		}
-
-		Integer Horas_Extras = (Integer)attributes.get("Horas_Extras");
-
-		if (Horas_Extras != null) {
-			setHoras_Extras(Horas_Extras);
-		}
-
-		Integer Horas_Negativas = (Integer)attributes.get("Horas_Negativas");
-
-		if (Horas_Negativas != null) {
-			setHoras_Negativas(Horas_Negativas);
 		}
 	}
 
@@ -138,26 +124,6 @@ public class PontoDiaWrapper implements PontoDia, ModelWrapper<PontoDia> {
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return _pontoDia.getExpandoBridge();
-	}
-
-	/**
-	* Returns the horas_ extras of this ponto dia.
-	*
-	* @return the horas_ extras of this ponto dia
-	*/
-	@Override
-	public int getHoras_Extras() {
-		return _pontoDia.getHoras_Extras();
-	}
-
-	/**
-	* Returns the horas_ negativas of this ponto dia.
-	*
-	* @return the horas_ negativas of this ponto dia
-	*/
-	@Override
-	public int getHoras_Negativas() {
-		return _pontoDia.getHoras_Negativas();
 	}
 
 	/**
@@ -259,26 +225,6 @@ public class PontoDiaWrapper implements PontoDia, ModelWrapper<PontoDia> {
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		_pontoDia.setExpandoBridgeAttributes(serviceContext);
-	}
-
-	/**
-	* Sets the horas_ extras of this ponto dia.
-	*
-	* @param Horas_Extras the horas_ extras of this ponto dia
-	*/
-	@Override
-	public void setHoras_Extras(int Horas_Extras) {
-		_pontoDia.setHoras_Extras(Horas_Extras);
-	}
-
-	/**
-	* Sets the horas_ negativas of this ponto dia.
-	*
-	* @param Horas_Negativas the horas_ negativas of this ponto dia
-	*/
-	@Override
-	public void setHoras_Negativas(int Horas_Negativas) {
-		_pontoDia.setHoras_Negativas(Horas_Negativas);
 	}
 
 	/**

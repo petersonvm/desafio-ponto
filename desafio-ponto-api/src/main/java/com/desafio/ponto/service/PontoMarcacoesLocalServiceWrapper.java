@@ -254,9 +254,10 @@ public class PontoMarcacoesLocalServiceWrapper
 	}
 
 	@Override
-	public com.desafio.ponto.model.PontoMarcacoes registrarMarcacao(long pis,
-		java.util.Date dataMarcacao) {
-		return _pontoMarcacoesLocalService.registrarMarcacao(pis, dataMarcacao);
+	public com.desafio.ponto.model.PontoMarcacoes gravarMarcacao(long pis,
+		java.util.Date dataHora)
+		throws com.desafio.ponto.exception.MarcacaoExistenteException {
+		return _pontoMarcacoesLocalService.gravarMarcacao(pis, dataHora);
 	}
 
 	/**

@@ -68,10 +68,10 @@ public class PontoMarcacoesCacheModel implements CacheModel<PontoMarcacoes>,
 
 		sb.append("{Pis=");
 		sb.append(Pis);
+		sb.append(", Data=");
+		sb.append(Data);
 		sb.append(", DataHora=");
 		sb.append(DataHora);
-		sb.append(", Marcacao_valida=");
-		sb.append(Marcacao_valida);
 		sb.append("}");
 
 		return sb.toString();
@@ -82,8 +82,8 @@ public class PontoMarcacoesCacheModel implements CacheModel<PontoMarcacoes>,
 		PontoMarcacoesImpl pontoMarcacoesImpl = new PontoMarcacoesImpl();
 
 		pontoMarcacoesImpl.setPis(Pis);
+		pontoMarcacoesImpl.setData(Data);
 		pontoMarcacoesImpl.setDataHora(DataHora);
-		pontoMarcacoesImpl.setMarcacao_valida(Marcacao_valida);
 
 		pontoMarcacoesImpl.resetOriginalValues();
 
@@ -94,11 +94,11 @@ public class PontoMarcacoesCacheModel implements CacheModel<PontoMarcacoes>,
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		Pis = objectInput.readLong();
 
+		Data = objectInput.readLong();
+
 		DataHora = objectInput.readLong();
 
-		Marcacao_valida = objectInput.readBoolean();
-
-		pontoMarcacoesPK = new PontoMarcacoesPK(Pis, DataHora);
+		pontoMarcacoesPK = new PontoMarcacoesPK(Pis, Data, DataHora);
 	}
 
 	@Override
@@ -106,13 +106,13 @@ public class PontoMarcacoesCacheModel implements CacheModel<PontoMarcacoes>,
 		throws IOException {
 		objectOutput.writeLong(Pis);
 
-		objectOutput.writeLong(DataHora);
+		objectOutput.writeLong(Data);
 
-		objectOutput.writeBoolean(Marcacao_valida);
+		objectOutput.writeLong(DataHora);
 	}
 
 	public long Pis;
+	public long Data;
 	public long DataHora;
-	public boolean Marcacao_valida;
 	public transient PontoMarcacoesPK pontoMarcacoesPK;
 }

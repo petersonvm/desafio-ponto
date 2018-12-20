@@ -14,10 +14,14 @@
 
 package com.desafio.ponto.service.impl;
 
+import com.desafio.ponto.exception.MarcacaoExistenteException;
 import com.desafio.ponto.model.PontoMarcacoes;
 import com.desafio.ponto.model.impl.PontoMarcacoesImpl;
 import com.desafio.ponto.service.PontoMarcacoesLocalServiceUtil;
 import com.desafio.ponto.service.base.PontoMarcacoesLocalServiceBaseImpl;
+import com.desafio.ponto.service.persistence.PontoMarcacoesPK;
+import com.desafio.ponto.service.util.DateUtils;
+import com.liferay.portal.kernel.exception.PortalException;
 
 import java.util.Date;
 
@@ -36,24 +40,30 @@ import java.util.Date;
  * @see com.desafio.ponto.service.PontoMarcacoesLocalServiceUtil
  */
 public class PontoMarcacoesLocalServiceImpl
-	extends PontoMarcacoesLocalServiceBaseImpl {
+extends PontoMarcacoesLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. Always use {@link com.desafio.ponto.service.PontoMarcacoesLocalServiceUtil} to access the ponto marcacoes local service.
 	 */
-	
-	
-	public PontoMarcacoes registrarMarcacao(long pis, Date dataMarcacao) {
-		PontoMarcacoes pMarcacao = new PontoMarcacoesImpl();
+
+	public PontoMarcacoes gravarMarcacao(long pis, Date dataHora) throws MarcacaoExistenteException {
+
+		long data = DateUtils.atStartOfDay(dataHora).getTime();
+		PontoMarcacoesPK pontoMarcacoesPK = new PontoMarcacoesPK(pis, data, dataHora.getTime());
 		
-		pMarcacao.setPis(pis);
-		pMarcacao.setDataHora(dataMarcacao.getTime());
-		pMarcacao.setMarcacao_valida(true);
-		
-		PontoMarcacoesLocalServiceUtil.addPontoMarcacoes(pMarcacao);
-		
-		return pMarcacao;
-		
+		try {
+			PontoMarcacoesLocalServiceUtil.getPontoMarcacoes(pontoMarcacoesPK);
+			throw new MarcacaoExistenteException();
+		} catch (PortalException e) {
+			PontoMarcacoes marcacao = new PontoMarcacoesImpl();
+			marcacao.setPis(pis);
+			marcacao.setData(data);
+			marcacao.setDataHora(dataHora.getTime());
+			PontoMarcacoesLocalServiceUtil.addPontoMarcacoes(marcacao);
+			return marcacao;
+		}
+
 	}
+
 }

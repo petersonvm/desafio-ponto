@@ -4,43 +4,39 @@ import java.util.List;
 
 public class RegistroPonto {
 	
-	private String competencia;
-	private List<Marcacao> marcacoes;
-	private int horasTrabalhadas;
-	private int horasExtras;
-	private int horasNegativas;
+	private long pis;
+	private String nome;
+	private List<Marcacoes> marcacoes;
+	private int totalHorasTrabalhadas;
 	
 	
-	public String getCompetencia() {
-		return competencia;
+	public long getPis() {
+		return pis;
 	}
-	public void setCompetencia(String competencia) {
-		this.competencia = competencia;
+	public void setPis(long pis) {
+		this.pis = pis;
 	}
-	public List<Marcacao> getMarcacoes() {
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public List<Marcacoes> getMarcacoes() {
 		return marcacoes;
 	}
-	public void setMarcacoes(List<Marcacao> marcacoes) {
+	public void setMarcacoes(List<Marcacoes> marcacoes) {
 		this.marcacoes = marcacoes;
 	}
-	public int getHorasTrabalhadas() {
-		return horasTrabalhadas;
+	public int getTotalHorasTrabalhadas() {
+		return totalHorasTrabalhadas;
 	}
-	public void setHorasTrabalhadas(int horasTrabalhadas) {
-		this.horasTrabalhadas = horasTrabalhadas;
-	}
-	public int getHorasExtras() {
-		return horasExtras;
-	}
-	public void setHorasExtras(int horasExtras) {
-		this.horasExtras = horasExtras;
-	}
-	public int getHorasNegativas() {
-		return horasNegativas;
-	}
-	public void setHorasNegativas(int horasNegativas) {
-		this.horasNegativas = horasNegativas;
+	public void setTotalHorasTrabalhadas(int totalHorasTrabalhadas) {
+		this.totalHorasTrabalhadas = totalHorasTrabalhadas;
 	}
 	
+
 	
+
+
 }

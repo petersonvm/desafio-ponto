@@ -24,10 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically {@link com.desafio.ponto.service.http.PontoMarcacoesServiceSoap}.
+ * This class is used by SOAP remote services.
  *
  * @author Peterson Morais
- * @see com.desafio.ponto.service.http.PontoMarcacoesServiceSoap
  * @generated
  */
 @ProviderType
@@ -36,8 +35,8 @@ public class PontoMarcacoesSoap implements Serializable {
 		PontoMarcacoesSoap soapModel = new PontoMarcacoesSoap();
 
 		soapModel.setPis(model.getPis());
+		soapModel.setData(model.getData());
 		soapModel.setDataHora(model.getDataHora());
-		soapModel.setMarcacao_valida(model.isMarcacao_valida());
 
 		return soapModel;
 	}
@@ -83,11 +82,12 @@ public class PontoMarcacoesSoap implements Serializable {
 	}
 
 	public PontoMarcacoesPK getPrimaryKey() {
-		return new PontoMarcacoesPK(_Pis, _DataHora);
+		return new PontoMarcacoesPK(_Pis, _Data, _DataHora);
 	}
 
 	public void setPrimaryKey(PontoMarcacoesPK pk) {
 		setPis(pk.Pis);
+		setData(pk.Data);
 		setDataHora(pk.DataHora);
 	}
 
@@ -99,6 +99,14 @@ public class PontoMarcacoesSoap implements Serializable {
 		_Pis = Pis;
 	}
 
+	public long getData() {
+		return _Data;
+	}
+
+	public void setData(long Data) {
+		_Data = Data;
+	}
+
 	public long getDataHora() {
 		return _DataHora;
 	}
@@ -107,19 +115,7 @@ public class PontoMarcacoesSoap implements Serializable {
 		_DataHora = DataHora;
 	}
 
-	public boolean getMarcacao_valida() {
-		return _Marcacao_valida;
-	}
-
-	public boolean isMarcacao_valida() {
-		return _Marcacao_valida;
-	}
-
-	public void setMarcacao_valida(boolean Marcacao_valida) {
-		_Marcacao_valida = Marcacao_valida;
-	}
-
 	private long _Pis;
+	private long _Data;
 	private long _DataHora;
-	private boolean _Marcacao_valida;
 }

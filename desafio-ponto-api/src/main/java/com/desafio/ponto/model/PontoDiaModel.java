@@ -119,34 +119,6 @@ public interface PontoDiaModel extends BaseModel<PontoDia> {
 	 */
 	public void setHoras_Trabalhadas(int Horas_Trabalhadas);
 
-	/**
-	 * Returns the horas_ extras of this ponto dia.
-	 *
-	 * @return the horas_ extras of this ponto dia
-	 */
-	public int getHoras_Extras();
-
-	/**
-	 * Sets the horas_ extras of this ponto dia.
-	 *
-	 * @param Horas_Extras the horas_ extras of this ponto dia
-	 */
-	public void setHoras_Extras(int Horas_Extras);
-
-	/**
-	 * Returns the horas_ negativas of this ponto dia.
-	 *
-	 * @return the horas_ negativas of this ponto dia
-	 */
-	public int getHoras_Negativas();
-
-	/**
-	 * Sets the horas_ negativas of this ponto dia.
-	 *
-	 * @param Horas_Negativas the horas_ negativas of this ponto dia
-	 */
-	public void setHoras_Negativas(int Horas_Negativas);
-
 	@Override
 	public boolean isNew();
 

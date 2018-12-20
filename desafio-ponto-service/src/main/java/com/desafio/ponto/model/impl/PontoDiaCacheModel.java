@@ -63,7 +63,7 @@ public class PontoDiaCacheModel implements CacheModel<PontoDia>, Externalizable 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("{Pis=");
 		sb.append(Pis);
@@ -73,10 +73,6 @@ public class PontoDiaCacheModel implements CacheModel<PontoDia>, Externalizable 
 		sb.append(Competencia);
 		sb.append(", Horas_Trabalhadas=");
 		sb.append(Horas_Trabalhadas);
-		sb.append(", Horas_Extras=");
-		sb.append(Horas_Extras);
-		sb.append(", Horas_Negativas=");
-		sb.append(Horas_Negativas);
 		sb.append("}");
 
 		return sb.toString();
@@ -97,8 +93,6 @@ public class PontoDiaCacheModel implements CacheModel<PontoDia>, Externalizable 
 		}
 
 		pontoDiaImpl.setHoras_Trabalhadas(Horas_Trabalhadas);
-		pontoDiaImpl.setHoras_Extras(Horas_Extras);
-		pontoDiaImpl.setHoras_Negativas(Horas_Negativas);
 
 		pontoDiaImpl.resetOriginalValues();
 
@@ -113,10 +107,6 @@ public class PontoDiaCacheModel implements CacheModel<PontoDia>, Externalizable 
 		Competencia = objectInput.readUTF();
 
 		Horas_Trabalhadas = objectInput.readInt();
-
-		Horas_Extras = objectInput.readInt();
-
-		Horas_Negativas = objectInput.readInt();
 
 		pontoDiaPK = new PontoDiaPK(Pis, Data);
 	}
@@ -136,17 +126,11 @@ public class PontoDiaCacheModel implements CacheModel<PontoDia>, Externalizable 
 		}
 
 		objectOutput.writeInt(Horas_Trabalhadas);
-
-		objectOutput.writeInt(Horas_Extras);
-
-		objectOutput.writeInt(Horas_Negativas);
 	}
 
 	public long Pis;
 	public long Data;
 	public String Competencia;
 	public int Horas_Trabalhadas;
-	public int Horas_Extras;
-	public int Horas_Negativas;
 	public transient PontoDiaPK pontoDiaPK;
 }

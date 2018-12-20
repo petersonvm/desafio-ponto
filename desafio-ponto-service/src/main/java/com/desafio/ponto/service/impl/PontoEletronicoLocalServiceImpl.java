@@ -37,4 +37,5 @@ public class PontoEletronicoLocalServiceImpl
 	 *
 	 * Never reference this class directly. Always use {@link com.desafio.ponto.service.PontoEletronicoLocalServiceUtil} to access the ponto eletronico local service.
 	 */
+	
 }

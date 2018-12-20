@@ -56,4 +56,6 @@ public interface PontoEletronicoService extends BaseService {
 	* @return the OSGi service identifier
 	*/
 	public String getOSGiServiceIdentifier();
+
+	public String gravarMarcacao();
 }

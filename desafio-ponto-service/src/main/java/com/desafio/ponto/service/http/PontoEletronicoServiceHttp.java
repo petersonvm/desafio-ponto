@@ -16,12 +16,21 @@ package com.desafio.ponto.service.http;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.desafio.ponto.service.PontoEletronicoServiceUtil;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.security.auth.HttpPrincipal;
+import com.liferay.portal.kernel.service.http.TunnelUtil;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
+
 /**
  * Provides the HTTP utility for the
- * {@link com.desafio.ponto.service.PontoEletronicoServiceUtil} service utility. The
+ * {@link PontoEletronicoServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it requires an additional
- * {@link com.liferay.portal.kernel.security.auth.HttpPrincipal} parameter.
+ * {@link HttpPrincipal} parameter.
  *
  * <p>
  * The benefits of using the HTTP utility is that it is fast and allows for
@@ -40,10 +49,39 @@ import aQute.bnd.annotation.ProviderType;
  *
  * @author Peterson Morais
  * @see PontoEletronicoServiceSoap
- * @see com.liferay.portal.kernel.security.auth.HttpPrincipal
- * @see com.desafio.ponto.service.PontoEletronicoServiceUtil
+ * @see HttpPrincipal
+ * @see PontoEletronicoServiceUtil
  * @generated
  */
 @ProviderType
 public class PontoEletronicoServiceHttp {
+	public static String gravarMarcacao(HttpPrincipal httpPrincipal) {
+		try {
+			MethodKey methodKey = new MethodKey(PontoEletronicoServiceUtil.class,
+					"gravarMarcacao", _gravarMarcacaoParameterTypes0);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+
+			return (String)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(PontoEletronicoServiceHttp.class);
+	private static final Class<?>[] _gravarMarcacaoParameterTypes0 = new Class[] {
+			
+		};
 }

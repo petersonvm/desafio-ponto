@@ -52,6 +52,10 @@ public class PontoEletronicoServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static String gravarMarcacao() {
+		return getService().gravarMarcacao();
+	}
+
 	public static PontoEletronicoService getService() {
 		return _serviceTracker.getService();
 	}

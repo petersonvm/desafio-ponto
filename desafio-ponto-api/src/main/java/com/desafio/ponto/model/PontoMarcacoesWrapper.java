@@ -58,8 +58,8 @@ public class PontoMarcacoesWrapper implements PontoMarcacoes,
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("Pis", getPis());
+		attributes.put("Data", getData());
 		attributes.put("DataHora", getDataHora());
-		attributes.put("Marcacao_valida", isMarcacao_valida());
 
 		return attributes;
 	}
@@ -72,16 +72,16 @@ public class PontoMarcacoesWrapper implements PontoMarcacoes,
 			setPis(Pis);
 		}
 
+		Long Data = (Long)attributes.get("Data");
+
+		if (Data != null) {
+			setData(Data);
+		}
+
 		Long DataHora = (Long)attributes.get("DataHora");
 
 		if (DataHora != null) {
 			setDataHora(DataHora);
-		}
-
-		Boolean Marcacao_valida = (Boolean)attributes.get("Marcacao_valida");
-
-		if (Marcacao_valida != null) {
-			setMarcacao_valida(Marcacao_valida);
 		}
 	}
 
@@ -93,6 +93,16 @@ public class PontoMarcacoesWrapper implements PontoMarcacoes,
 	@Override
 	public int compareTo(PontoMarcacoes pontoMarcacoes) {
 		return _pontoMarcacoes.compareTo(pontoMarcacoes);
+	}
+
+	/**
+	* Returns the data of this ponto marcacoes.
+	*
+	* @return the data of this ponto marcacoes
+	*/
+	@Override
+	public long getData() {
+		return _pontoMarcacoes.getData();
 	}
 
 	/**
@@ -108,16 +118,6 @@ public class PontoMarcacoesWrapper implements PontoMarcacoes,
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return _pontoMarcacoes.getExpandoBridge();
-	}
-
-	/**
-	* Returns the marcacao_valida of this ponto marcacoes.
-	*
-	* @return the marcacao_valida of this ponto marcacoes
-	*/
-	@Override
-	public boolean getMarcacao_valida() {
-		return _pontoMarcacoes.getMarcacao_valida();
 	}
 
 	/**
@@ -160,16 +160,6 @@ public class PontoMarcacoesWrapper implements PontoMarcacoes,
 		return _pontoMarcacoes.isEscapedModel();
 	}
 
-	/**
-	* Returns <code>true</code> if this ponto marcacoes is marcacao_valida.
-	*
-	* @return <code>true</code> if this ponto marcacoes is marcacao_valida; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isMarcacao_valida() {
-		return _pontoMarcacoes.isMarcacao_valida();
-	}
-
 	@Override
 	public boolean isNew() {
 		return _pontoMarcacoes.isNew();
@@ -183,6 +173,16 @@ public class PontoMarcacoesWrapper implements PontoMarcacoes,
 	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_pontoMarcacoes.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the data of this ponto marcacoes.
+	*
+	* @param Data the data of this ponto marcacoes
+	*/
+	@Override
+	public void setData(long Data) {
+		_pontoMarcacoes.setData(Data);
 	}
 
 	/**
@@ -209,16 +209,6 @@ public class PontoMarcacoesWrapper implements PontoMarcacoes,
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		_pontoMarcacoes.setExpandoBridgeAttributes(serviceContext);
-	}
-
-	/**
-	* Sets whether this ponto marcacoes is marcacao_valida.
-	*
-	* @param Marcacao_valida the marcacao_valida of this ponto marcacoes
-	*/
-	@Override
-	public void setMarcacao_valida(boolean Marcacao_valida) {
-		_pontoMarcacoes.setMarcacao_valida(Marcacao_valida);
 	}
 
 	@Override

@@ -14,11 +14,16 @@
 
 package com.desafio.ponto.service.impl;
 
+import com.desafio.ponto.exception.PontoDiaExistenteException;
 import com.desafio.ponto.model.PontoDia;
 import com.desafio.ponto.model.impl.PontoDiaImpl;
 import com.desafio.ponto.service.PontoDiaLocalServiceUtil;
 import com.desafio.ponto.service.base.PontoDiaLocalServiceBaseImpl;
+import com.desafio.ponto.service.persistence.PontoDiaPK;
+import com.desafio.ponto.service.util.DateUtils;
+import com.liferay.portal.kernel.exception.PortalException;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -42,32 +47,28 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 	 * Never reference this class directly. Always use {@link com.desafio.ponto.service.PontoDiaLocalServiceUtil} to access the ponto dia local service.
 	 */
 	
-	public PontoDia registarPonto(long pis, Date dataPonto) {
-		PontoDia pontoDia = new PontoDiaImpl();
-		pontoDia.setPis(pis);
-		pontoDia.setData(dataPonto.getTime());
-		pontoDia.setHoras_Extras(this.calcularHorasExtras(pis, dataPonto));
-		pontoDia.setHoras_Trabalhadas(this.calcularHorasTrabalhadas(pis, dataPonto));
-		pontoDia.setHoras_Negativas(this.calcularHorasNegativas(pis, dataPonto));
+	public PontoDia gravarPonto(long pis, Date dataHora) throws PontoDiaExistenteException {
+		long data = DateUtils.atStartOfDay(dataHora).getTime();
+		PontoDiaPK pontoDiaPK = new PontoDiaPK(pis, data);
 		
-		PontoDiaLocalServiceUtil.updatePontoDia(pontoDia);
+		try {
+			PontoDiaLocalServiceUtil.getPontoDia(pontoDiaPK);
+			throw new PontoDiaExistenteException();
+		} catch (PortalException e) {
+			PontoDia pontoDia = new PontoDiaImpl();
+			pontoDia.setPis(pis);
+			pontoDia.setData(data);
+			pontoDia.setHoras_Trabalhadas(0);
+			SimpleDateFormat fmt = new SimpleDateFormat("MM/yyyy");			
+			String competencia = fmt.format(dataHora);			
+			pontoDia.setCompetencia(competencia );
+			
+			
+			PontoDiaLocalServiceUtil.addPontoDia(pontoDia);
+			return pontoDia;
+		}
 		
-		return pontoDia;
 		
-	}
-
-	private int calcularHorasNegativas(long pis, Date dataPonto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	private int calcularHorasTrabalhadas(long pis, Date dataPonto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	private int calcularHorasExtras(long pis, Date dataPonto) {
-		// TODO Auto-generated method stub
-		return 0;
+		
 	}
 }

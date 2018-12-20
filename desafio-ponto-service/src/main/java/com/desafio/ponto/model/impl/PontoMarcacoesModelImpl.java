@@ -18,11 +18,9 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.desafio.ponto.model.PontoMarcacoes;
 import com.desafio.ponto.model.PontoMarcacoesModel;
-import com.desafio.ponto.model.PontoMarcacoesSoap;
 import com.desafio.ponto.service.persistence.PontoMarcacoesPK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
-import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -34,9 +32,7 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,7 +48,6 @@ import java.util.Map;
  * @see PontoMarcacoesModel
  * @generated
  */
-@JSON(strict = true)
 @ProviderType
 public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 	implements PontoMarcacoesModel {
@@ -64,21 +59,21 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 	public static final String TABLE_NAME = "ponto_marcacao";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "Pis", Types.BIGINT },
-			{ "DataHora", Types.BIGINT },
-			{ "Marcacao_valida", Types.BOOLEAN }
+			{ "Data", Types.BIGINT },
+			{ "DataHora", Types.BIGINT }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("Pis", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("Data", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("DataHora", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("Marcacao_valida", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table ponto_marcacao (Pis LONG not null,DataHora LONG not null,Marcacao_valida BOOLEAN,primary key (Pis, DataHora))";
+	public static final String TABLE_SQL_CREATE = "create table ponto_marcacao (Pis LONG not null,Data LONG not null,DataHora LONG not null,primary key (Pis, Data, DataHora))";
 	public static final String TABLE_SQL_DROP = "drop table ponto_marcacao";
-	public static final String ORDER_BY_JPQL = " ORDER BY pontoMarcacoes.id.Pis ASC, pontoMarcacoes.id.DataHora ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY ponto_marcacao.Pis ASC, ponto_marcacao.DataHora ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY pontoMarcacoes.id.Pis ASC, pontoMarcacoes.id.Data ASC, pontoMarcacoes.id.DataHora ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY ponto_marcacao.Pis ASC, ponto_marcacao.Data ASC, ponto_marcacao.DataHora ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -89,47 +84,6 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 				"value.object.finder.cache.enabled.com.desafio.ponto.model.PontoMarcacoes"),
 			true);
 	public static final boolean COLUMN_BITMASK_ENABLED = false;
-
-	/**
-	 * Converts the soap model instance into a normal model instance.
-	 *
-	 * @param soapModel the soap model instance to convert
-	 * @return the normal model instance
-	 */
-	public static PontoMarcacoes toModel(PontoMarcacoesSoap soapModel) {
-		if (soapModel == null) {
-			return null;
-		}
-
-		PontoMarcacoes model = new PontoMarcacoesImpl();
-
-		model.setPis(soapModel.getPis());
-		model.setDataHora(soapModel.getDataHora());
-		model.setMarcacao_valida(soapModel.isMarcacao_valida());
-
-		return model;
-	}
-
-	/**
-	 * Converts the soap model instances into normal model instances.
-	 *
-	 * @param soapModels the soap model instances to convert
-	 * @return the normal model instances
-	 */
-	public static List<PontoMarcacoes> toModels(PontoMarcacoesSoap[] soapModels) {
-		if (soapModels == null) {
-			return null;
-		}
-
-		List<PontoMarcacoes> models = new ArrayList<PontoMarcacoes>(soapModels.length);
-
-		for (PontoMarcacoesSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.desafio.ponto.service.util.ServiceProps.get(
 				"lock.expiration.time.com.desafio.ponto.model.PontoMarcacoes"));
 
@@ -138,18 +92,19 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 
 	@Override
 	public PontoMarcacoesPK getPrimaryKey() {
-		return new PontoMarcacoesPK(_Pis, _DataHora);
+		return new PontoMarcacoesPK(_Pis, _Data, _DataHora);
 	}
 
 	@Override
 	public void setPrimaryKey(PontoMarcacoesPK primaryKey) {
 		setPis(primaryKey.Pis);
+		setData(primaryKey.Data);
 		setDataHora(primaryKey.DataHora);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return new PontoMarcacoesPK(_Pis, _DataHora);
+		return new PontoMarcacoesPK(_Pis, _Data, _DataHora);
 	}
 
 	@Override
@@ -172,8 +127,8 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("Pis", getPis());
+		attributes.put("Data", getData());
 		attributes.put("DataHora", getDataHora());
-		attributes.put("Marcacao_valida", isMarcacao_valida());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -189,20 +144,19 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 			setPis(Pis);
 		}
 
+		Long Data = (Long)attributes.get("Data");
+
+		if (Data != null) {
+			setData(Data);
+		}
+
 		Long DataHora = (Long)attributes.get("DataHora");
 
 		if (DataHora != null) {
 			setDataHora(DataHora);
 		}
-
-		Boolean Marcacao_valida = (Boolean)attributes.get("Marcacao_valida");
-
-		if (Marcacao_valida != null) {
-			setMarcacao_valida(Marcacao_valida);
-		}
 	}
 
-	@JSON
 	@Override
 	public long getPis() {
 		return _Pis;
@@ -213,7 +167,16 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 		_Pis = Pis;
 	}
 
-	@JSON
+	@Override
+	public long getData() {
+		return _Data;
+	}
+
+	@Override
+	public void setData(long Data) {
+		_Data = Data;
+	}
+
 	@Override
 	public long getDataHora() {
 		return _DataHora;
@@ -222,23 +185,6 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 	@Override
 	public void setDataHora(long DataHora) {
 		_DataHora = DataHora;
-	}
-
-	@JSON
-	@Override
-	public boolean getMarcacao_valida() {
-		return _Marcacao_valida;
-	}
-
-	@JSON
-	@Override
-	public boolean isMarcacao_valida() {
-		return _Marcacao_valida;
-	}
-
-	@Override
-	public void setMarcacao_valida(boolean Marcacao_valida) {
-		_Marcacao_valida = Marcacao_valida;
 	}
 
 	@Override
@@ -256,8 +202,8 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 		PontoMarcacoesImpl pontoMarcacoesImpl = new PontoMarcacoesImpl();
 
 		pontoMarcacoesImpl.setPis(getPis());
+		pontoMarcacoesImpl.setData(getData());
 		pontoMarcacoesImpl.setDataHora(getDataHora());
-		pontoMarcacoesImpl.setMarcacao_valida(isMarcacao_valida());
 
 		pontoMarcacoesImpl.resetOriginalValues();
 
@@ -320,9 +266,9 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 
 		pontoMarcacoesCacheModel.Pis = getPis();
 
-		pontoMarcacoesCacheModel.DataHora = getDataHora();
+		pontoMarcacoesCacheModel.Data = getData();
 
-		pontoMarcacoesCacheModel.Marcacao_valida = isMarcacao_valida();
+		pontoMarcacoesCacheModel.DataHora = getDataHora();
 
 		return pontoMarcacoesCacheModel;
 	}
@@ -333,10 +279,10 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 
 		sb.append("{Pis=");
 		sb.append(getPis());
+		sb.append(", Data=");
+		sb.append(getData());
 		sb.append(", DataHora=");
 		sb.append(getDataHora());
-		sb.append(", Marcacao_valida=");
-		sb.append(isMarcacao_valida());
 		sb.append("}");
 
 		return sb.toString();
@@ -355,12 +301,12 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 		sb.append(getPis());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>DataHora</column-name><column-value><![CDATA[");
-		sb.append(getDataHora());
+			"<column><column-name>Data</column-name><column-value><![CDATA[");
+		sb.append(getData());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>Marcacao_valida</column-name><column-value><![CDATA[");
-		sb.append(isMarcacao_valida());
+			"<column><column-name>DataHora</column-name><column-value><![CDATA[");
+		sb.append(getDataHora());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -373,7 +319,7 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 			PontoMarcacoes.class, ModelWrapper.class
 		};
 	private long _Pis;
+	private long _Data;
 	private long _DataHora;
-	private boolean _Marcacao_valida;
 	private PontoMarcacoes _escapedModel;
 }

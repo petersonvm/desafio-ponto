@@ -643,6 +643,6 @@ public class PontoMarcacoesPersistenceImpl extends BasePersistenceImpl<PontoMarc
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No PontoMarcacoes exists with the primary key ";
 	private static final Log _log = LogFactoryUtil.getLog(PontoMarcacoesPersistenceImpl.class);
 	private static final Set<String> _compoundPKColumnNames = SetUtil.fromArray(new String[] {
-				"Pis", "DataHora"
+				"Pis", "Data", "DataHora"
 			});
 }

@@ -74,25 +74,6 @@ public abstract class PontoEletronicoServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
-	 * Returns the ponto dia remote service.
-	 *
-	 * @return the ponto dia remote service
-	 */
-	public com.desafio.ponto.service.PontoDiaService getPontoDiaService() {
-		return pontoDiaService;
-	}
-
-	/**
-	 * Sets the ponto dia remote service.
-	 *
-	 * @param pontoDiaService the ponto dia remote service
-	 */
-	public void setPontoDiaService(
-		com.desafio.ponto.service.PontoDiaService pontoDiaService) {
-		this.pontoDiaService = pontoDiaService;
-	}
-
-	/**
 	 * Returns the ponto dia persistence.
 	 *
 	 * @return the ponto dia persistence
@@ -165,25 +146,6 @@ public abstract class PontoEletronicoServiceBaseImpl extends BaseServiceImpl
 	public void setPontoMarcacoesLocalService(
 		com.desafio.ponto.service.PontoMarcacoesLocalService pontoMarcacoesLocalService) {
 		this.pontoMarcacoesLocalService = pontoMarcacoesLocalService;
-	}
-
-	/**
-	 * Returns the ponto marcacoes remote service.
-	 *
-	 * @return the ponto marcacoes remote service
-	 */
-	public com.desafio.ponto.service.PontoMarcacoesService getPontoMarcacoesService() {
-		return pontoMarcacoesService;
-	}
-
-	/**
-	 * Sets the ponto marcacoes remote service.
-	 *
-	 * @param pontoMarcacoesService the ponto marcacoes remote service
-	 */
-	public void setPontoMarcacoesService(
-		com.desafio.ponto.service.PontoMarcacoesService pontoMarcacoesService) {
-		this.pontoMarcacoesService = pontoMarcacoesService;
 	}
 
 	/**
@@ -398,8 +360,6 @@ public abstract class PontoEletronicoServiceBaseImpl extends BaseServiceImpl
 
 	@BeanReference(type = com.desafio.ponto.service.PontoDiaLocalService.class)
 	protected com.desafio.ponto.service.PontoDiaLocalService pontoDiaLocalService;
-	@BeanReference(type = com.desafio.ponto.service.PontoDiaService.class)
-	protected com.desafio.ponto.service.PontoDiaService pontoDiaService;
 	@BeanReference(type = PontoDiaPersistence.class)
 	protected PontoDiaPersistence pontoDiaPersistence;
 	@BeanReference(type = com.desafio.ponto.service.PontoEletronicoLocalService.class)
@@ -408,8 +368,6 @@ public abstract class PontoEletronicoServiceBaseImpl extends BaseServiceImpl
 	protected PontoEletronicoService pontoEletronicoService;
 	@BeanReference(type = com.desafio.ponto.service.PontoMarcacoesLocalService.class)
 	protected com.desafio.ponto.service.PontoMarcacoesLocalService pontoMarcacoesLocalService;
-	@BeanReference(type = com.desafio.ponto.service.PontoMarcacoesService.class)
-	protected com.desafio.ponto.service.PontoMarcacoesService pontoMarcacoesService;
 	@BeanReference(type = PontoMarcacoesPersistence.class)
 	protected PontoMarcacoesPersistence pontoMarcacoesPersistence;
 	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
