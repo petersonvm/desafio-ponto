@@ -54,6 +54,11 @@ public class PontoDiaLocalServiceUtil {
 		return getService().addPontoDia(pontoDia);
 	}
 
+	public static com.desafio.ponto.model.PontoDia calcularHorasTrabalhadas(
+		com.desafio.ponto.model.PontoDia pontoDia) {
+		return getService().calcularHorasTrabalhadas(pontoDia);
+	}
+
 	/**
 	* Creates a new ponto dia with the primary key. Does not add the ponto dia to the database.
 	*
@@ -202,6 +207,12 @@ public class PontoDiaLocalServiceUtil {
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static com.desafio.ponto.model.PontoDia getPontoDia(long pis,
+		java.util.Date dataHora)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPontoDia(pis, dataHora);
 	}
 
 	/**

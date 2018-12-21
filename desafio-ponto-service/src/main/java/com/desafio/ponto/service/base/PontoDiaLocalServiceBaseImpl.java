@@ -354,25 +354,6 @@ public abstract class PontoDiaLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the ponto eletronico local service.
-	 *
-	 * @return the ponto eletronico local service
-	 */
-	public com.desafio.ponto.service.PontoEletronicoLocalService getPontoEletronicoLocalService() {
-		return pontoEletronicoLocalService;
-	}
-
-	/**
-	 * Sets the ponto eletronico local service.
-	 *
-	 * @param pontoEletronicoLocalService the ponto eletronico local service
-	 */
-	public void setPontoEletronicoLocalService(
-		com.desafio.ponto.service.PontoEletronicoLocalService pontoEletronicoLocalService) {
-		this.pontoEletronicoLocalService = pontoEletronicoLocalService;
-	}
-
-	/**
 	 * Returns the ponto marcacoes local service.
 	 *
 	 * @return the ponto marcacoes local service
@@ -408,6 +389,25 @@ public abstract class PontoDiaLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public void setPontoMarcacoesPersistence(
 		PontoMarcacoesPersistence pontoMarcacoesPersistence) {
 		this.pontoMarcacoesPersistence = pontoMarcacoesPersistence;
+	}
+
+	/**
+	 * Returns the registro ponto local service.
+	 *
+	 * @return the registro ponto local service
+	 */
+	public com.desafio.ponto.service.RegistroPontoLocalService getRegistroPontoLocalService() {
+		return registroPontoLocalService;
+	}
+
+	/**
+	 * Sets the registro ponto local service.
+	 *
+	 * @param registroPontoLocalService the registro ponto local service
+	 */
+	public void setRegistroPontoLocalService(
+		com.desafio.ponto.service.RegistroPontoLocalService registroPontoLocalService) {
+		this.registroPontoLocalService = registroPontoLocalService;
 	}
 
 	/**
@@ -579,12 +579,12 @@ public abstract class PontoDiaLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected PontoDiaLocalService pontoDiaLocalService;
 	@BeanReference(type = PontoDiaPersistence.class)
 	protected PontoDiaPersistence pontoDiaPersistence;
-	@BeanReference(type = com.desafio.ponto.service.PontoEletronicoLocalService.class)
-	protected com.desafio.ponto.service.PontoEletronicoLocalService pontoEletronicoLocalService;
 	@BeanReference(type = com.desafio.ponto.service.PontoMarcacoesLocalService.class)
 	protected com.desafio.ponto.service.PontoMarcacoesLocalService pontoMarcacoesLocalService;
 	@BeanReference(type = PontoMarcacoesPersistence.class)
 	protected PontoMarcacoesPersistence pontoMarcacoesPersistence;
+	@BeanReference(type = com.desafio.ponto.service.RegistroPontoLocalService.class)
+	protected com.desafio.ponto.service.RegistroPontoLocalService registroPontoLocalService;
 	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
 	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
 	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)

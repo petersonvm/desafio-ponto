@@ -172,6 +172,10 @@ public interface PontoMarcacoesLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PontoMarcacoes fetchPontoMarcacoes(PontoMarcacoesPK pontoMarcacoesPK);
 
+	public List<PontoMarcacoes> findByPisDia(long pis, Date dataHora);
+
+	public List<PontoMarcacoes> findByPisDia(long pis, long dataHora);
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
@@ -188,6 +192,10 @@ public interface PontoMarcacoesLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PontoMarcacoes getPontoMarcacoes(long pis, Date dataHora)
 		throws PortalException;
 
 	/**

@@ -37,6 +37,7 @@ public class PontoMarcacoesSoap implements Serializable {
 		soapModel.setPis(model.getPis());
 		soapModel.setData(model.getData());
 		soapModel.setDataHora(model.getDataHora());
+		soapModel.setDataReferencia(model.getDataReferencia());
 
 		return soapModel;
 	}
@@ -115,7 +116,16 @@ public class PontoMarcacoesSoap implements Serializable {
 		_DataHora = DataHora;
 	}
 
+	public long getDataReferencia() {
+		return _DataReferencia;
+	}
+
+	public void setDataReferencia(long DataReferencia) {
+		_DataReferencia = DataReferencia;
+	}
+
 	private long _Pis;
 	private long _Data;
 	private long _DataHora;
+	private long _DataReferencia;
 }

@@ -16,8 +16,10 @@ package com.desafio.ponto.service.impl;
 
 import com.desafio.ponto.exception.PontoDiaExistenteException;
 import com.desafio.ponto.model.PontoDia;
+import com.desafio.ponto.model.PontoMarcacoes;
 import com.desafio.ponto.model.impl.PontoDiaImpl;
 import com.desafio.ponto.service.PontoDiaLocalServiceUtil;
+import com.desafio.ponto.service.PontoMarcacoesLocalServiceUtil;
 import com.desafio.ponto.service.base.PontoDiaLocalServiceBaseImpl;
 import com.desafio.ponto.service.persistence.PontoDiaPK;
 import com.desafio.ponto.service.util.DateUtils;
@@ -25,6 +27,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * The implementation of the ponto dia local service.
@@ -46,29 +50,90 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use {@link com.desafio.ponto.service.PontoDiaLocalServiceUtil} to access the ponto dia local service.
 	 */
-	
+
 	public PontoDia gravarPonto(long pis, Date dataHora) throws PontoDiaExistenteException {
-		long data = DateUtils.atStartOfDay(dataHora).getTime();
-		PontoDiaPK pontoDiaPK = new PontoDiaPK(pis, data);
-		
+
 		try {
-			PontoDiaLocalServiceUtil.getPontoDia(pontoDiaPK);
+			getPontoDia(pis, dataHora);
 			throw new PontoDiaExistenteException();
 		} catch (PortalException e) {
 			PontoDia pontoDia = new PontoDiaImpl();
 			pontoDia.setPis(pis);
-			pontoDia.setData(data);
+			pontoDia.setData(DateUtils.atStartOfDay(dataHora).getTime());
 			pontoDia.setHoras_Trabalhadas(0);
 			SimpleDateFormat fmt = new SimpleDateFormat("MM/yyyy");			
 			String competencia = fmt.format(dataHora);			
 			pontoDia.setCompetencia(competencia );
-			
-			
+			pontoDia.setStatus(0);
+
 			PontoDiaLocalServiceUtil.addPontoDia(pontoDia);
 			return pontoDia;
 		}
-		
-		
-		
+
 	}
+
+	public PontoDia getPontoDia(long pis, Date dataHora) throws PortalException {
+
+		long data = DateUtils.atStartOfDay(dataHora).getTime();
+		PontoDiaPK pontoDiaPK = new PontoDiaPK(pis, data);
+		return PontoDiaLocalServiceUtil.getPontoDia(pontoDiaPK);
+	}
+	
+	
+	public PontoDia calcularHorasTrabalhadas(PontoDia pontoDia) {	
+
+		List<PontoMarcacoes> marcacoesDia = PontoMarcacoesLocalServiceUtil.findByPisDia(pontoDia.getPis(), pontoDia.getData());
+		Stack<PontoMarcacoes> pilha = new Stack<>();
+		
+		double fatorDia = getFatorDia(pontoDia);
+
+		if(marcacoesDia.size() > 0) {
+			for (PontoMarcacoes pontoMarcacoes : marcacoesDia) {
+				System.out.println(DateUtils.readableDate(new Date(pontoMarcacoes.getDataHora())));
+				pilha.push(pontoMarcacoes);
+			}
+			
+			while(!pilha.isEmpty()) {
+				PontoMarcacoes entrada = pilha.pop();
+				PontoMarcacoes saida = null;
+				if(!pilha.isEmpty()) {
+					saida = pilha.pop();
+					double minutos = getMinutosEntradaSaida(saida, entrada);
+
+					System.out.println("Minutos :" +  minutos);
+					System.out.println("Fator :" +  fatorDia);
+
+					double horasTrabalhadas = (pontoDia.getHoras_Trabalhadas() + (minutos*fatorDia));
+					pontoDia.setHoras_Trabalhadas(horasTrabalhadas); 
+					pontoDia.setStatus(1);
+				}else {
+					pontoDia.setStatus(2);
+				}
+			}
+		}
+		
+		return pontoDia;
+	}
+
+	private double getMinutosEntradaSaida(PontoMarcacoes saida, PontoMarcacoes entrada) {
+		double minutos  = (((saida.getDataHora() - entrada.getDataHora())/60000));
+		return minutos;
+	}
+
+	private double getFatorDia(PontoDia pontoDia) {
+		double fator = 1;
+		Date data = new Date(pontoDia.getData());
+		if(DateUtils.isSaturday(data)) {
+			fator = 1.5; 
+		}else {
+			if(DateUtils.isSunday(data)) {
+				fator = 2;
+			}
+		}
+		
+		return fator;
+	}
+	
+
+
 }

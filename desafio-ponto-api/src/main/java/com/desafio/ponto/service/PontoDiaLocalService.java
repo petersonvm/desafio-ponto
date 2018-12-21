@@ -73,6 +73,8 @@ public interface PontoDiaLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public PontoDia addPontoDia(PontoDia pontoDia);
 
+	public PontoDia calcularHorasTrabalhadas(PontoDia pontoDia);
+
 	/**
 	* Creates a new ponto dia with the primary key. Does not add the ponto dia to the database.
 	*
@@ -187,6 +189,10 @@ public interface PontoDiaLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PontoDia getPontoDia(long pis, Date dataHora)
 		throws PortalException;
 
 	/**

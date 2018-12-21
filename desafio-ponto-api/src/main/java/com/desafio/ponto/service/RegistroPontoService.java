@@ -26,28 +26,28 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
 /**
- * Provides the remote service interface for PontoEletronico. Methods of this
+ * Provides the remote service interface for RegistroPonto. Methods of this
  * service are expected to have security checks based on the propagated JAAS
  * credentials because this service can be accessed remotely.
  *
  * @author Peterson Morais
- * @see PontoEletronicoServiceUtil
- * @see com.desafio.ponto.service.base.PontoEletronicoServiceBaseImpl
- * @see com.desafio.ponto.service.impl.PontoEletronicoServiceImpl
+ * @see RegistroPontoServiceUtil
+ * @see com.desafio.ponto.service.base.RegistroPontoServiceBaseImpl
+ * @see com.desafio.ponto.service.impl.RegistroPontoServiceImpl
  * @generated
  */
 @AccessControlled
 @JSONWebService
 @OSGiBeanProperties(property =  {
-	"json.web.service.context.name=desafioponto", "json.web.service.context.path=PontoEletronico"}, service = PontoEletronicoService.class)
+	"json.web.service.context.name=desafioponto", "json.web.service.context.path=RegistroPonto"}, service = RegistroPontoService.class)
 @ProviderType
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface PontoEletronicoService extends BaseService {
+public interface RegistroPontoService extends BaseService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link PontoEletronicoServiceUtil} to access the ponto eletronico remote service. Add custom service methods to {@link com.desafio.ponto.service.impl.PontoEletronicoServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link RegistroPontoServiceUtil} to access the registro ponto remote service. Add custom service methods to {@link com.desafio.ponto.service.impl.RegistroPontoServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -57,5 +57,5 @@ public interface PontoEletronicoService extends BaseService {
 	*/
 	public String getOSGiServiceIdentifier();
 
-	public String gravarMarcacao();
+	public String registraPonto(long pis, String data);
 }

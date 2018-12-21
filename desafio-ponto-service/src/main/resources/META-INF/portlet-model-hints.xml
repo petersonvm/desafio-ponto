@@ -5,11 +5,13 @@
 		<field name="Pis" type="long" />
 		<field name="Data" type="long" />
 		<field name="Competencia" type="String" />
-		<field name="Horas_Trabalhadas" type="int" />
+		<field name="Horas_Trabalhadas" type="double" />
+		<field name="Status" type="int" />
 	</model>
 	<model name="com.desafio.ponto.model.PontoMarcacoes">
 		<field name="Pis" type="long" />
 		<field name="Data" type="long" />
 		<field name="DataHora" type="long" />
+		<field name="DataReferencia" type="long" />
 	</model>
 </model-hints>

@@ -19,19 +19,19 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
- * Provides a wrapper for {@link PontoEletronicoLocalService}.
+ * Provides a wrapper for {@link RegistroPontoLocalService}.
  *
  * @author Peterson Morais
- * @see PontoEletronicoLocalService
+ * @see RegistroPontoLocalService
  * @generated
  */
 @ProviderType
-public class PontoEletronicoLocalServiceWrapper
-	implements PontoEletronicoLocalService,
-		ServiceWrapper<PontoEletronicoLocalService> {
-	public PontoEletronicoLocalServiceWrapper(
-		PontoEletronicoLocalService pontoEletronicoLocalService) {
-		_pontoEletronicoLocalService = pontoEletronicoLocalService;
+public class RegistroPontoLocalServiceWrapper
+	implements RegistroPontoLocalService,
+		ServiceWrapper<RegistroPontoLocalService> {
+	public RegistroPontoLocalServiceWrapper(
+		RegistroPontoLocalService registroPontoLocalService) {
+		_registroPontoLocalService = registroPontoLocalService;
 	}
 
 	/**
@@ -41,19 +41,24 @@ public class PontoEletronicoLocalServiceWrapper
 	*/
 	@Override
 	public String getOSGiServiceIdentifier() {
-		return _pontoEletronicoLocalService.getOSGiServiceIdentifier();
+		return _registroPontoLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
-	public PontoEletronicoLocalService getWrappedService() {
-		return _pontoEletronicoLocalService;
+	public String registraPonto(long pis, String data) {
+		return _registroPontoLocalService.registraPonto(pis, data);
+	}
+
+	@Override
+	public RegistroPontoLocalService getWrappedService() {
+		return _registroPontoLocalService;
 	}
 
 	@Override
 	public void setWrappedService(
-		PontoEletronicoLocalService pontoEletronicoLocalService) {
-		_pontoEletronicoLocalService = pontoEletronicoLocalService;
+		RegistroPontoLocalService registroPontoLocalService) {
+		_registroPontoLocalService = registroPontoLocalService;
 	}
 
-	private PontoEletronicoLocalService _pontoEletronicoLocalService;
+	private RegistroPontoLocalService _registroPontoLocalService;
 }

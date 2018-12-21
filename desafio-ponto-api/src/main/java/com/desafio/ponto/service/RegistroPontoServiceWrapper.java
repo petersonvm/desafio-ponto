@@ -19,18 +19,18 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
- * Provides a wrapper for {@link PontoEletronicoService}.
+ * Provides a wrapper for {@link RegistroPontoService}.
  *
  * @author Peterson Morais
- * @see PontoEletronicoService
+ * @see RegistroPontoService
  * @generated
  */
 @ProviderType
-public class PontoEletronicoServiceWrapper implements PontoEletronicoService,
-	ServiceWrapper<PontoEletronicoService> {
-	public PontoEletronicoServiceWrapper(
-		PontoEletronicoService pontoEletronicoService) {
-		_pontoEletronicoService = pontoEletronicoService;
+public class RegistroPontoServiceWrapper implements RegistroPontoService,
+	ServiceWrapper<RegistroPontoService> {
+	public RegistroPontoServiceWrapper(
+		RegistroPontoService registroPontoService) {
+		_registroPontoService = registroPontoService;
 	}
 
 	/**
@@ -40,23 +40,23 @@ public class PontoEletronicoServiceWrapper implements PontoEletronicoService,
 	*/
 	@Override
 	public String getOSGiServiceIdentifier() {
-		return _pontoEletronicoService.getOSGiServiceIdentifier();
+		return _registroPontoService.getOSGiServiceIdentifier();
 	}
 
 	@Override
-	public String gravarMarcacao() {
-		return _pontoEletronicoService.gravarMarcacao();
+	public String registraPonto(long pis, String data) {
+		return _registroPontoService.registraPonto(pis, data);
 	}
 
 	@Override
-	public PontoEletronicoService getWrappedService() {
-		return _pontoEletronicoService;
+	public RegistroPontoService getWrappedService() {
+		return _registroPontoService;
 	}
 
 	@Override
-	public void setWrappedService(PontoEletronicoService pontoEletronicoService) {
-		_pontoEletronicoService = pontoEletronicoService;
+	public void setWrappedService(RegistroPontoService registroPontoService) {
+		_registroPontoService = registroPontoService;
 	}
 
-	private PontoEletronicoService _pontoEletronicoService;
+	private RegistroPontoService _registroPontoService;
 }

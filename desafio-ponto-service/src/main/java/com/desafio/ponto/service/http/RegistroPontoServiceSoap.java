@@ -16,7 +16,7 @@ package com.desafio.ponto.service.http;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.desafio.ponto.service.PontoEletronicoServiceUtil;
+import com.desafio.ponto.service.RegistroPontoServiceUtil;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -25,7 +25,7 @@ import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link PontoEletronicoServiceUtil} service utility. The
+ * {@link RegistroPontoServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -48,15 +48,17 @@ import java.rmi.RemoteException;
  * </p>
  *
  * @author Peterson Morais
- * @see PontoEletronicoServiceHttp
- * @see PontoEletronicoServiceUtil
+ * @see RegistroPontoServiceHttp
+ * @see RegistroPontoServiceUtil
  * @generated
  */
 @ProviderType
-public class PontoEletronicoServiceSoap {
-	public static String gravarMarcacao() throws RemoteException {
+public class RegistroPontoServiceSoap {
+	public static String registraPonto(long pis, String data)
+		throws RemoteException {
 		try {
-			String returnValue = PontoEletronicoServiceUtil.gravarMarcacao();
+			String returnValue = RegistroPontoServiceUtil.registraPonto(pis,
+					data);
 
 			return returnValue;
 		}
@@ -67,5 +69,5 @@ public class PontoEletronicoServiceSoap {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(PontoEletronicoServiceSoap.class);
+	private static Log _log = LogFactoryUtil.getLog(RegistroPontoServiceSoap.class);
 }

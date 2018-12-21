@@ -16,7 +16,7 @@ package com.desafio.ponto.service.http;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.desafio.ponto.service.PontoEletronicoServiceUtil;
+import com.desafio.ponto.service.RegistroPontoServiceUtil;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * Provides the HTTP utility for the
- * {@link PontoEletronicoServiceUtil} service utility. The
+ * {@link RegistroPontoServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it requires an additional
  * {@link HttpPrincipal} parameter.
@@ -48,19 +48,20 @@ import com.liferay.portal.kernel.util.MethodKey;
  * </p>
  *
  * @author Peterson Morais
- * @see PontoEletronicoServiceSoap
+ * @see RegistroPontoServiceSoap
  * @see HttpPrincipal
- * @see PontoEletronicoServiceUtil
+ * @see RegistroPontoServiceUtil
  * @generated
  */
 @ProviderType
-public class PontoEletronicoServiceHttp {
-	public static String gravarMarcacao(HttpPrincipal httpPrincipal) {
+public class RegistroPontoServiceHttp {
+	public static String registraPonto(HttpPrincipal httpPrincipal, long pis,
+		String data) {
 		try {
-			MethodKey methodKey = new MethodKey(PontoEletronicoServiceUtil.class,
-					"gravarMarcacao", _gravarMarcacaoParameterTypes0);
+			MethodKey methodKey = new MethodKey(RegistroPontoServiceUtil.class,
+					"registraPonto", _registraPontoParameterTypes0);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey);
+			MethodHandler methodHandler = new MethodHandler(methodKey, pis, data);
 
 			Object returnObj = null;
 
@@ -80,8 +81,8 @@ public class PontoEletronicoServiceHttp {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(PontoEletronicoServiceHttp.class);
-	private static final Class<?>[] _gravarMarcacaoParameterTypes0 = new Class[] {
-			
+	private static Log _log = LogFactoryUtil.getLog(RegistroPontoServiceHttp.class);
+	private static final Class<?>[] _registraPontoParameterTypes0 = new Class[] {
+			long.class, String.class
 		};
 }

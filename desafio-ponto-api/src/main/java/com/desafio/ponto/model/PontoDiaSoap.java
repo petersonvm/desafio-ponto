@@ -38,6 +38,7 @@ public class PontoDiaSoap implements Serializable {
 		soapModel.setData(model.getData());
 		soapModel.setCompetencia(model.getCompetencia());
 		soapModel.setHoras_Trabalhadas(model.getHoras_Trabalhadas());
+		soapModel.setStatus(model.getStatus());
 
 		return soapModel;
 	}
@@ -115,16 +116,25 @@ public class PontoDiaSoap implements Serializable {
 		_Competencia = Competencia;
 	}
 
-	public int getHoras_Trabalhadas() {
+	public double getHoras_Trabalhadas() {
 		return _Horas_Trabalhadas;
 	}
 
-	public void setHoras_Trabalhadas(int Horas_Trabalhadas) {
+	public void setHoras_Trabalhadas(double Horas_Trabalhadas) {
 		_Horas_Trabalhadas = Horas_Trabalhadas;
+	}
+
+	public int getStatus() {
+		return _Status;
+	}
+
+	public void setStatus(int Status) {
+		_Status = Status;
 	}
 
 	private long _Pis;
 	private long _Data;
 	private String _Competencia;
-	private int _Horas_Trabalhadas;
+	private double _Horas_Trabalhadas;
+	private int _Status;
 }

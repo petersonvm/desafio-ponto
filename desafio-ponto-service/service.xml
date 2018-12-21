@@ -9,7 +9,8 @@
         <column name="Pis" type="long" primary="true"></column>
         <column name="Data" type="long" primary="true"></column>
         <column name="Competencia" type="String"></column>
-        <column name="Horas_Trabalhadas" type="int"></column>
+        <column name="Horas_Trabalhadas" type="double"></column>
+        <column name="Status" type="int"></column>
         <finder name="FindByCompetencia" return-type="Collection">
             <finder-column name="Competencia"></finder-column>
         </finder>
@@ -18,6 +19,18 @@
         <column name="Pis" primary="true" type="long"></column>
         <column name="Data" primary="true" type="long"></column>
         <column name="DataHora" type="long" primary="true"></column>
+        <column name="DataReferencia" type="long"></column>
+        <order by="asc">
+            <order-column name="DataHora" order-by="desc"></order-column>
+        </order>
+        <finder name="FindByPisData" return-type="Collection">
+            <finder-column name="Pis"></finder-column>
+            <finder-column name="Data"></finder-column>
+        </finder>
+        <finder name="FindByReferencia" return-type="Collection">
+            <finder-column name="Pis"></finder-column>
+            <finder-column name="DataReferencia"></finder-column>
+        </finder>
     </entity>
-    <entity name="PontoEletronico" local-service="true"></entity>
+    <entity name="RegistroPonto" local-service="true"></entity>
 </service-builder>

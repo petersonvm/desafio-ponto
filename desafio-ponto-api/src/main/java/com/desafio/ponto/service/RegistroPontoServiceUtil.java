@@ -22,25 +22,25 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
- * Provides the local service utility for PontoEletronico. This utility wraps
- * {@link com.desafio.ponto.service.impl.PontoEletronicoLocalServiceImpl} and is the
+ * Provides the remote service utility for RegistroPonto. This utility wraps
+ * {@link com.desafio.ponto.service.impl.RegistroPontoServiceImpl} and is the
  * primary access point for service operations in application layer code running
- * on the local server. Methods of this service will not have security checks
- * based on the propagated JAAS credentials because this service can only be
- * accessed from within the same VM.
+ * on a remote server. Methods of this service are expected to have security
+ * checks based on the propagated JAAS credentials because this service can be
+ * accessed remotely.
  *
  * @author Peterson Morais
- * @see PontoEletronicoLocalService
- * @see com.desafio.ponto.service.base.PontoEletronicoLocalServiceBaseImpl
- * @see com.desafio.ponto.service.impl.PontoEletronicoLocalServiceImpl
+ * @see RegistroPontoService
+ * @see com.desafio.ponto.service.base.RegistroPontoServiceBaseImpl
+ * @see com.desafio.ponto.service.impl.RegistroPontoServiceImpl
  * @generated
  */
 @ProviderType
-public class PontoEletronicoLocalServiceUtil {
+public class RegistroPontoServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link com.desafio.ponto.service.impl.PontoEletronicoLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link com.desafio.ponto.service.impl.RegistroPontoServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -52,18 +52,22 @@ public class PontoEletronicoLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static PontoEletronicoLocalService getService() {
+	public static String registraPonto(long pis, String data) {
+		return getService().registraPonto(pis, data);
+	}
+
+	public static RegistroPontoService getService() {
 		return _serviceTracker.getService();
 	}
 
-	private static ServiceTracker<PontoEletronicoLocalService, PontoEletronicoLocalService> _serviceTracker;
+	private static ServiceTracker<RegistroPontoService, RegistroPontoService> _serviceTracker;
 
 	static {
-		Bundle bundle = FrameworkUtil.getBundle(PontoEletronicoLocalService.class);
+		Bundle bundle = FrameworkUtil.getBundle(RegistroPontoService.class);
 
-		ServiceTracker<PontoEletronicoLocalService, PontoEletronicoLocalService> serviceTracker =
-			new ServiceTracker<PontoEletronicoLocalService, PontoEletronicoLocalService>(bundle.getBundleContext(),
-				PontoEletronicoLocalService.class, null);
+		ServiceTracker<RegistroPontoService, RegistroPontoService> serviceTracker =
+			new ServiceTracker<RegistroPontoService, RegistroPontoService>(bundle.getBundleContext(),
+				RegistroPontoService.class, null);
 
 		serviceTracker.open();
 

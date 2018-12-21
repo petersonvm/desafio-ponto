@@ -103,6 +103,20 @@ public interface PontoMarcacoesModel extends BaseModel<PontoMarcacoes> {
 	 */
 	public void setDataHora(long DataHora);
 
+	/**
+	 * Returns the data referencia of this ponto marcacoes.
+	 *
+	 * @return the data referencia of this ponto marcacoes
+	 */
+	public long getDataReferencia();
+
+	/**
+	 * Sets the data referencia of this ponto marcacoes.
+	 *
+	 * @param DataReferencia the data referencia of this ponto marcacoes
+	 */
+	public void setDataReferencia(long DataReferencia);
+
 	@Override
 	public boolean isNew();
 

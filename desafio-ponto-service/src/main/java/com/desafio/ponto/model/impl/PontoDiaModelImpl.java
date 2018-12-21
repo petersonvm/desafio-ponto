@@ -61,7 +61,8 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 			{ "Pis", Types.BIGINT },
 			{ "Data", Types.BIGINT },
 			{ "Competencia", Types.VARCHAR },
-			{ "Horas_Trabalhadas", Types.INTEGER }
+			{ "Horas_Trabalhadas", Types.DOUBLE },
+			{ "Status", Types.INTEGER }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -69,10 +70,11 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 		TABLE_COLUMNS_MAP.put("Pis", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("Data", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("Competencia", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("Horas_Trabalhadas", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("Horas_Trabalhadas", Types.DOUBLE);
+		TABLE_COLUMNS_MAP.put("Status", Types.INTEGER);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table ponto_dia (Pis LONG not null,Data LONG not null,Competencia VARCHAR(75) null,Horas_Trabalhadas INTEGER,primary key (Pis, Data))";
+	public static final String TABLE_SQL_CREATE = "create table ponto_dia (Pis LONG not null,Data LONG not null,Competencia VARCHAR(75) null,Horas_Trabalhadas DOUBLE,Status INTEGER,primary key (Pis, Data))";
 	public static final String TABLE_SQL_DROP = "drop table ponto_dia";
 	public static final String ORDER_BY_JPQL = " ORDER BY pontoDia.id.Pis ASC, pontoDia.id.Data ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY ponto_dia.Pis ASC, ponto_dia.Data ASC";
@@ -136,6 +138,7 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 		attributes.put("Data", getData());
 		attributes.put("Competencia", getCompetencia());
 		attributes.put("Horas_Trabalhadas", getHoras_Trabalhadas());
+		attributes.put("Status", getStatus());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -163,10 +166,16 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 			setCompetencia(Competencia);
 		}
 
-		Integer Horas_Trabalhadas = (Integer)attributes.get("Horas_Trabalhadas");
+		Double Horas_Trabalhadas = (Double)attributes.get("Horas_Trabalhadas");
 
 		if (Horas_Trabalhadas != null) {
 			setHoras_Trabalhadas(Horas_Trabalhadas);
+		}
+
+		Integer Status = (Integer)attributes.get("Status");
+
+		if (Status != null) {
+			setStatus(Status);
 		}
 	}
 
@@ -216,13 +225,23 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 	}
 
 	@Override
-	public int getHoras_Trabalhadas() {
+	public double getHoras_Trabalhadas() {
 		return _Horas_Trabalhadas;
 	}
 
 	@Override
-	public void setHoras_Trabalhadas(int Horas_Trabalhadas) {
+	public void setHoras_Trabalhadas(double Horas_Trabalhadas) {
 		_Horas_Trabalhadas = Horas_Trabalhadas;
+	}
+
+	@Override
+	public int getStatus() {
+		return _Status;
+	}
+
+	@Override
+	public void setStatus(int Status) {
+		_Status = Status;
 	}
 
 	public long getColumnBitmask() {
@@ -247,6 +266,7 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 		pontoDiaImpl.setData(getData());
 		pontoDiaImpl.setCompetencia(getCompetencia());
 		pontoDiaImpl.setHoras_Trabalhadas(getHoras_Trabalhadas());
+		pontoDiaImpl.setStatus(getStatus());
 
 		pontoDiaImpl.resetOriginalValues();
 
@@ -326,12 +346,14 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 
 		pontoDiaCacheModel.Horas_Trabalhadas = getHoras_Trabalhadas();
 
+		pontoDiaCacheModel.Status = getStatus();
+
 		return pontoDiaCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{Pis=");
 		sb.append(getPis());
@@ -341,6 +363,8 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 		sb.append(getCompetencia());
 		sb.append(", Horas_Trabalhadas=");
 		sb.append(getHoras_Trabalhadas());
+		sb.append(", Status=");
+		sb.append(getStatus());
 		sb.append("}");
 
 		return sb.toString();
@@ -348,7 +372,7 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(16);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
 		sb.append("com.desafio.ponto.model.PontoDia");
@@ -370,6 +394,10 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 			"<column><column-name>Horas_Trabalhadas</column-name><column-value><![CDATA[");
 		sb.append(getHoras_Trabalhadas());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>Status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -384,7 +412,8 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 	private long _Data;
 	private String _Competencia;
 	private String _originalCompetencia;
-	private int _Horas_Trabalhadas;
+	private double _Horas_Trabalhadas;
+	private int _Status;
 	private long _columnBitmask;
 	private PontoDia _escapedModel;
 }

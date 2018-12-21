@@ -181,6 +181,16 @@ public class PontoMarcacoesLocalServiceUtil {
 		return getService().fetchPontoMarcacoes(pontoMarcacoesPK);
 	}
 
+	public static java.util.List<com.desafio.ponto.model.PontoMarcacoes> findByPisDia(
+		long pis, java.util.Date dataHora) {
+		return getService().findByPisDia(pis, dataHora);
+	}
+
+	public static java.util.List<com.desafio.ponto.model.PontoMarcacoes> findByPisDia(
+		long pis, long dataHora) {
+		return getService().findByPisDia(pis, dataHora);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}
@@ -202,6 +212,12 @@ public class PontoMarcacoesLocalServiceUtil {
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static com.desafio.ponto.model.PontoMarcacoes getPontoMarcacoes(
+		long pis, java.util.Date dataHora)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPontoMarcacoes(pis, dataHora);
 	}
 
 	/**

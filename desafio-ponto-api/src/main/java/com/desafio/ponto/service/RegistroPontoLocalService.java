@@ -23,25 +23,25 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
 /**
- * Provides the local service interface for PontoEletronico. Methods of this
+ * Provides the local service interface for RegistroPonto. Methods of this
  * service will not have security checks based on the propagated JAAS
  * credentials because this service can only be accessed from within the same
  * VM.
  *
  * @author Peterson Morais
- * @see PontoEletronicoLocalServiceUtil
- * @see com.desafio.ponto.service.base.PontoEletronicoLocalServiceBaseImpl
- * @see com.desafio.ponto.service.impl.PontoEletronicoLocalServiceImpl
+ * @see RegistroPontoLocalServiceUtil
+ * @see com.desafio.ponto.service.base.RegistroPontoLocalServiceBaseImpl
+ * @see com.desafio.ponto.service.impl.RegistroPontoLocalServiceImpl
  * @generated
  */
 @ProviderType
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface PontoEletronicoLocalService extends BaseLocalService {
+public interface RegistroPontoLocalService extends BaseLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link PontoEletronicoLocalServiceUtil} to access the ponto eletronico local service. Add custom service methods to {@link com.desafio.ponto.service.impl.PontoEletronicoLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link RegistroPontoLocalServiceUtil} to access the registro ponto local service. Add custom service methods to {@link com.desafio.ponto.service.impl.RegistroPontoLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -50,4 +50,6 @@ public interface PontoEletronicoLocalService extends BaseLocalService {
 	* @return the OSGi service identifier
 	*/
 	public String getOSGiServiceIdentifier();
+
+	public String registraPonto(long pis, String data);
 }

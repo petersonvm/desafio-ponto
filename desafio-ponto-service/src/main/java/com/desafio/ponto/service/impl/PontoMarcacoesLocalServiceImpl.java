@@ -21,9 +21,11 @@ import com.desafio.ponto.service.PontoMarcacoesLocalServiceUtil;
 import com.desafio.ponto.service.base.PontoMarcacoesLocalServiceBaseImpl;
 import com.desafio.ponto.service.persistence.PontoMarcacoesPK;
 import com.desafio.ponto.service.util.DateUtils;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * The implementation of the ponto marcacoes local service.
@@ -49,21 +51,35 @@ extends PontoMarcacoesLocalServiceBaseImpl {
 
 	public PontoMarcacoes gravarMarcacao(long pis, Date dataHora) throws MarcacaoExistenteException {
 
-		long data = DateUtils.atStartOfDay(dataHora).getTime();
-		PontoMarcacoesPK pontoMarcacoesPK = new PontoMarcacoesPK(pis, data, dataHora.getTime());
-		
 		try {
-			PontoMarcacoesLocalServiceUtil.getPontoMarcacoes(pontoMarcacoesPK);
+			this.getPontoMarcacoes(pis, dataHora);
 			throw new MarcacaoExistenteException();
 		} catch (PortalException e) {
 			PontoMarcacoes marcacao = new PontoMarcacoesImpl();
 			marcacao.setPis(pis);
-			marcacao.setData(data);
+			marcacao.setData(DateUtils.atStartOfDay(dataHora).getTime());
+			marcacao.setDataReferencia(DateUtils.atStartOfDay(dataHora).getTime());
 			marcacao.setDataHora(dataHora.getTime());
 			PontoMarcacoesLocalServiceUtil.addPontoMarcacoes(marcacao);
 			return marcacao;
 		}
 
 	}
+	
+	public PontoMarcacoes getPontoMarcacoes(long pis, Date dataHora) throws PortalException {
+		long data = DateUtils.atStartOfDay(dataHora).getTime();
+		PontoMarcacoesPK pontoMarcacoesPK = new PontoMarcacoesPK(pis, data, dataHora.getTime());		
+		return PontoMarcacoesLocalServiceUtil.getPontoMarcacoes(pontoMarcacoesPK);
+	}
+	
+	
+	public List<PontoMarcacoes> findByPisDia(long pis, Date dataHora){
+		return pontoMarcacoesPersistence.findByFindByPisData(pis, dataHora.getTime(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+	}
+	
+	public List<PontoMarcacoes> findByPisDia(long pis, long dataHora){
+		return pontoMarcacoesPersistence.findByFindByPisData(pis, dataHora, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
+	}
 }
+	

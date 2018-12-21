@@ -60,7 +60,8 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "Pis", Types.BIGINT },
 			{ "Data", Types.BIGINT },
-			{ "DataHora", Types.BIGINT }
+			{ "DataHora", Types.BIGINT },
+			{ "DataReferencia", Types.BIGINT }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -68,12 +69,13 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 		TABLE_COLUMNS_MAP.put("Pis", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("Data", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("DataHora", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("DataReferencia", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table ponto_marcacao (Pis LONG not null,Data LONG not null,DataHora LONG not null,primary key (Pis, Data, DataHora))";
+	public static final String TABLE_SQL_CREATE = "create table ponto_marcacao (Pis LONG not null,Data LONG not null,DataHora LONG not null,DataReferencia LONG,primary key (Pis, Data, DataHora))";
 	public static final String TABLE_SQL_DROP = "drop table ponto_marcacao";
-	public static final String ORDER_BY_JPQL = " ORDER BY pontoMarcacoes.id.Pis ASC, pontoMarcacoes.id.Data ASC, pontoMarcacoes.id.DataHora ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY ponto_marcacao.Pis ASC, ponto_marcacao.Data ASC, ponto_marcacao.DataHora ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY pontoMarcacoes.id.DataHora DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY ponto_marcacao.DataHora DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -83,7 +85,13 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.desafio.ponto.service.util.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.desafio.ponto.model.PontoMarcacoes"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.desafio.ponto.service.util.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.desafio.ponto.model.PontoMarcacoes"),
+			true);
+	public static final long DATA_COLUMN_BITMASK = 1L;
+	public static final long DATAREFERENCIA_COLUMN_BITMASK = 2L;
+	public static final long PIS_COLUMN_BITMASK = 4L;
+	public static final long DATAHORA_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.desafio.ponto.service.util.ServiceProps.get(
 				"lock.expiration.time.com.desafio.ponto.model.PontoMarcacoes"));
 
@@ -129,6 +137,7 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 		attributes.put("Pis", getPis());
 		attributes.put("Data", getData());
 		attributes.put("DataHora", getDataHora());
+		attributes.put("DataReferencia", getDataReferencia());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -155,6 +164,12 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 		if (DataHora != null) {
 			setDataHora(DataHora);
 		}
+
+		Long DataReferencia = (Long)attributes.get("DataReferencia");
+
+		if (DataReferencia != null) {
+			setDataReferencia(DataReferencia);
+		}
 	}
 
 	@Override
@@ -164,7 +179,19 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 
 	@Override
 	public void setPis(long Pis) {
+		_columnBitmask |= PIS_COLUMN_BITMASK;
+
+		if (!_setOriginalPis) {
+			_setOriginalPis = true;
+
+			_originalPis = _Pis;
+		}
+
 		_Pis = Pis;
+	}
+
+	public long getOriginalPis() {
+		return _originalPis;
 	}
 
 	@Override
@@ -174,7 +201,19 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 
 	@Override
 	public void setData(long Data) {
+		_columnBitmask |= DATA_COLUMN_BITMASK;
+
+		if (!_setOriginalData) {
+			_setOriginalData = true;
+
+			_originalData = _Data;
+		}
+
 		_Data = Data;
+	}
+
+	public long getOriginalData() {
+		return _originalData;
 	}
 
 	@Override
@@ -184,7 +223,35 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 
 	@Override
 	public void setDataHora(long DataHora) {
+		_columnBitmask = -1L;
+
 		_DataHora = DataHora;
+	}
+
+	@Override
+	public long getDataReferencia() {
+		return _DataReferencia;
+	}
+
+	@Override
+	public void setDataReferencia(long DataReferencia) {
+		_columnBitmask |= DATAREFERENCIA_COLUMN_BITMASK;
+
+		if (!_setOriginalDataReferencia) {
+			_setOriginalDataReferencia = true;
+
+			_originalDataReferencia = _DataReferencia;
+		}
+
+		_DataReferencia = DataReferencia;
+	}
+
+	public long getOriginalDataReferencia() {
+		return _originalDataReferencia;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -204,6 +271,7 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 		pontoMarcacoesImpl.setPis(getPis());
 		pontoMarcacoesImpl.setData(getData());
 		pontoMarcacoesImpl.setDataHora(getDataHora());
+		pontoMarcacoesImpl.setDataReferencia(getDataReferencia());
 
 		pontoMarcacoesImpl.resetOriginalValues();
 
@@ -212,9 +280,25 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 
 	@Override
 	public int compareTo(PontoMarcacoes pontoMarcacoes) {
-		PontoMarcacoesPK primaryKey = pontoMarcacoes.getPrimaryKey();
+		int value = 0;
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getDataHora() < pontoMarcacoes.getDataHora()) {
+			value = -1;
+		}
+		else if (getDataHora() > pontoMarcacoes.getDataHora()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
+
+		value = value * -1;
+
+		if (value != 0) {
+			return value;
+		}
+
+		return 0;
 	}
 
 	@Override
@@ -256,6 +340,21 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 
 	@Override
 	public void resetOriginalValues() {
+		PontoMarcacoesModelImpl pontoMarcacoesModelImpl = this;
+
+		pontoMarcacoesModelImpl._originalPis = pontoMarcacoesModelImpl._Pis;
+
+		pontoMarcacoesModelImpl._setOriginalPis = false;
+
+		pontoMarcacoesModelImpl._originalData = pontoMarcacoesModelImpl._Data;
+
+		pontoMarcacoesModelImpl._setOriginalData = false;
+
+		pontoMarcacoesModelImpl._originalDataReferencia = pontoMarcacoesModelImpl._DataReferencia;
+
+		pontoMarcacoesModelImpl._setOriginalDataReferencia = false;
+
+		pontoMarcacoesModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -270,12 +369,14 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 
 		pontoMarcacoesCacheModel.DataHora = getDataHora();
 
+		pontoMarcacoesCacheModel.DataReferencia = getDataReferencia();
+
 		return pontoMarcacoesCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("{Pis=");
 		sb.append(getPis());
@@ -283,6 +384,8 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 		sb.append(getData());
 		sb.append(", DataHora=");
 		sb.append(getDataHora());
+		sb.append(", DataReferencia=");
+		sb.append(getDataReferencia());
 		sb.append("}");
 
 		return sb.toString();
@@ -290,7 +393,7 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(16);
 
 		sb.append("<model><model-name>");
 		sb.append("com.desafio.ponto.model.PontoMarcacoes");
@@ -308,6 +411,10 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 			"<column><column-name>DataHora</column-name><column-value><![CDATA[");
 		sb.append(getDataHora());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>DataReferencia</column-name><column-value><![CDATA[");
+		sb.append(getDataReferencia());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -319,7 +426,15 @@ public class PontoMarcacoesModelImpl extends BaseModelImpl<PontoMarcacoes>
 			PontoMarcacoes.class, ModelWrapper.class
 		};
 	private long _Pis;
+	private long _originalPis;
+	private boolean _setOriginalPis;
 	private long _Data;
+	private long _originalData;
+	private boolean _setOriginalData;
 	private long _DataHora;
+	private long _DataReferencia;
+	private long _originalDataReferencia;
+	private boolean _setOriginalDataReferencia;
+	private long _columnBitmask;
 	private PontoMarcacoes _escapedModel;
 }

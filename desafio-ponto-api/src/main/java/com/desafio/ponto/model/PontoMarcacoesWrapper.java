@@ -60,6 +60,7 @@ public class PontoMarcacoesWrapper implements PontoMarcacoes,
 		attributes.put("Pis", getPis());
 		attributes.put("Data", getData());
 		attributes.put("DataHora", getDataHora());
+		attributes.put("DataReferencia", getDataReferencia());
 
 		return attributes;
 	}
@@ -82,6 +83,12 @@ public class PontoMarcacoesWrapper implements PontoMarcacoes,
 
 		if (DataHora != null) {
 			setDataHora(DataHora);
+		}
+
+		Long DataReferencia = (Long)attributes.get("DataReferencia");
+
+		if (DataReferencia != null) {
+			setDataReferencia(DataReferencia);
 		}
 	}
 
@@ -113,6 +120,16 @@ public class PontoMarcacoesWrapper implements PontoMarcacoes,
 	@Override
 	public long getDataHora() {
 		return _pontoMarcacoes.getDataHora();
+	}
+
+	/**
+	* Returns the data referencia of this ponto marcacoes.
+	*
+	* @return the data referencia of this ponto marcacoes
+	*/
+	@Override
+	public long getDataReferencia() {
+		return _pontoMarcacoes.getDataReferencia();
 	}
 
 	@Override
@@ -193,6 +210,16 @@ public class PontoMarcacoesWrapper implements PontoMarcacoes,
 	@Override
 	public void setDataHora(long DataHora) {
 		_pontoMarcacoes.setDataHora(DataHora);
+	}
+
+	/**
+	* Sets the data referencia of this ponto marcacoes.
+	*
+	* @param DataReferencia the data referencia of this ponto marcacoes
+	*/
+	@Override
+	public void setDataReferencia(long DataReferencia) {
+		_pontoMarcacoes.setDataReferencia(DataReferencia);
 	}
 
 	@Override
