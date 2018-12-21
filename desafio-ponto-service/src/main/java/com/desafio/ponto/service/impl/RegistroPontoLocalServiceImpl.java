@@ -59,7 +59,7 @@ extends RegistroPontoLocalServiceBaseImpl {
 
 			PontoDia pontoDia = getOrCreatePontoDia(pis, dataHora);	 
 
-			//registrarMarcacao(pis, dataHora);
+//			registrarMarcacao(pis, dataHora);
 			pontoDia.setHoras_Trabalhadas(0);
 			atualizarPontoDia(pontoDia);
 
