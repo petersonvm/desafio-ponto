@@ -23,11 +23,12 @@ import com.desafio.ponto.service.PontoMarcacoesLocalServiceUtil;
 import com.desafio.ponto.service.base.PontoDiaLocalServiceBaseImpl;
 import com.desafio.ponto.service.persistence.PontoDiaPK;
 import com.desafio.ponto.service.util.DateUtils;
+import com.desafio.ponto.service.util.StatusPonto;
 import com.liferay.portal.kernel.exception.PortalException;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.EmptyStackException;
 import java.util.List;
 import java.util.Stack;
 
@@ -51,7 +52,7 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use {@link com.desafio.ponto.service.PontoDiaLocalServiceUtil} to access the ponto dia local service.
 	 */
-	
+
 	private static long VAL_DIV_MIN = 60000; 
 
 	public PontoDia gravarPonto(long pis, Date dataHora) throws PontoDiaExistenteException {
@@ -67,7 +68,7 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 			SimpleDateFormat fmt = new SimpleDateFormat("MM/yyyy");			
 			String competencia = fmt.format(dataHora);			
 			pontoDia.setCompetencia(competencia );
-			pontoDia.setStatus(0);
+			pontoDia.setStatus(StatusPonto.NOVO);
 
 			PontoDiaLocalServiceUtil.addPontoDia(pontoDia);
 			return pontoDia;
@@ -81,23 +82,22 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 		PontoDiaPK pontoDiaPK = new PontoDiaPK(pis, data);
 		return PontoDiaLocalServiceUtil.getPontoDia(pontoDiaPK);
 	}
-	
-	
+
+
 	public PontoDia calcularHorasTrabalhadas(PontoDia pontoDia) {	
 
 		List<PontoMarcacoes> marcacoesDia = PontoMarcacoesLocalServiceUtil.findByPisDia(pontoDia.getPis(), pontoDia.getData());
 		Stack<PontoMarcacoes> pilha = new Stack<>();
-		
+
 		double fatorDia = getFatorDia(pontoDia);
-		
-		
+
+
 
 		if(marcacoesDia.size() > 0) {
 			for (PontoMarcacoes pontoMarcacoes : marcacoesDia) {
-				System.out.println(DateUtils.readableDate(new Date(pontoMarcacoes.getDataHora())));
 				pilha.push(pontoMarcacoes);
 			}
-			
+
 			while(!pilha.isEmpty()) {
 				PontoMarcacoes entrada = pilha.pop();
 				PontoMarcacoes saida = null;
@@ -105,29 +105,88 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 					saida = pilha.pop();
 
 					double minutos = 0;
-					
+
 					if(checkHorarioDiferenciado(entrada, saida)) {
 						minutos  = getMinutosEntradaSaidaDiferenciado(saida, entrada);
 					}else {
 						minutos = getMinutosEntradaSaida(saida, entrada);
 					}
 
-					System.out.println("Minutos :" +  minutos);
-					System.out.println("Fator :" +  fatorDia);
-
 					double horasTrabalhadas = (pontoDia.getHoras_Trabalhadas() + (minutos*fatorDia));
-					
-					System.out.println("Horas Trabalhadas :" +  horasTrabalhadas);
-					
+
 					pontoDia.setHoras_Trabalhadas(horasTrabalhadas); 
-					pontoDia.setStatus(1);
+					pontoDia.setStatus(StatusPonto.OK);
 				}else {
-					pontoDia.setStatus(2);
-					
+					pontoDia.setStatus(StatusPonto.MARCACOES_INCOMPLETA);
+
 				}
 			}
 		}
-		
+
+		return pontoDia;
+	}
+
+
+	public PontoDia calcularIntervalos(PontoDia pontoDia) {
+
+		boolean intervaloOk = true;
+
+		if(pontoDia.getHoras_Trabalhadas() == 0) {
+			pontoDia = calcularHorasTrabalhadas(pontoDia);
+		}
+
+		List<PontoMarcacoes> marcacoesDia = PontoMarcacoesLocalServiceUtil.findByPisDia(pontoDia.getPis(), pontoDia.getData());
+		Stack<PontoMarcacoes> pilha = new Stack<>();
+
+		if(marcacoesDia.size() > 0) {
+			for (PontoMarcacoes pontoMarcacoes : marcacoesDia) {
+				pilha.push(pontoMarcacoes);
+			}
+
+			while(!pilha.isEmpty()) {
+				PontoMarcacoes entrada = pilha.pop();
+				PontoMarcacoes saida = null;
+				if(!pilha.isEmpty()) {
+					saida = pilha.pop();
+					double minutos = getMinutosEntradaSaida(saida, entrada);
+					try {
+
+						if(minutos > 240 && minutos < 360) {
+							PontoMarcacoes novaEntrada = pilha.pop();
+							double difMinutos  =  getMinutosEntradaSaida(novaEntrada, saida);
+							pilha.push(novaEntrada);
+							if(difMinutos < 15) {
+								intervaloOk = false;
+								break;
+							}
+
+						}
+
+						if(minutos >= 360) {
+							PontoMarcacoes novaEntrada = pilha.pop();
+							double difMinutos  =  getMinutosEntradaSaida(novaEntrada, saida);
+							pilha.push(novaEntrada);
+							if(difMinutos < 60) {
+								intervaloOk = false;
+								break;
+							}
+
+						}
+
+					}catch (EmptyStackException e) {
+						intervaloOk = false;
+						break;
+					}
+				}
+			}
+
+			if(!intervaloOk) {
+				pontoDia.setStatus(StatusPonto.INTERVALO_NAO_RESPEITADO);
+			}
+		}
+
+
+
 		return pontoDia;
 	}
 
@@ -148,15 +207,15 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 				minutos = ((dtSaida.getTime() - (dtTenPM.getTime() )/VAL_DIV_MIN)*1.2);
 				minutos += ((dtTenPM.getTime() - dtEntrada.getTime())/VAL_DIV_MIN);
 			}
-			
+
 			if(!DateUtils.isBeforeSixAM(dtSaida)) {
 				Date dtSixAm = DateUtils.getCalendarTenPM(dtSaida).getTime();
 				minutos += ((dtSixAm.getTime() - dtSaida.getTime())/VAL_DIV_MIN);
 				minutos = ((dtSaida.getTime() - (dtSixAm.getTime() )/VAL_DIV_MIN)*1.2);
 			}
-			
+
 		}
-		
+
 		return minutos;
 	}
 
@@ -164,12 +223,12 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 		boolean  diferenciado = false;
 		Date dtEntrada = new Date(entrada.getDataHora());
 		Date dtSaida = new Date(saida.getDataHora());
-		
+
 		diferenciado = (DateUtils.isBetweenTenAndMidnight(dtEntrada) || DateUtils.isBetweenMidnightAndSix(dtEntrada));
 		if(!diferenciado) {
 			diferenciado = (DateUtils.isBetweenTenAndMidnight(dtSaida) || DateUtils.isBetweenMidnightAndSix(dtSaida));
 		}
-		
+
 		return diferenciado;
 	}
 
@@ -191,7 +250,7 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 				fator = 2;
 			}
 		}
-		
+
 		return fator;
 	}
 }

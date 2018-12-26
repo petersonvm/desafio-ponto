@@ -76,6 +76,7 @@ extends RegistroPontoLocalServiceBaseImpl {
 	private void atualizarPontoDia(PontoDia pontoDia) {
 
 		PontoDiaLocalServiceUtil.calcularHorasTrabalhadas(pontoDia);
+		PontoDiaLocalServiceUtil.calcularIntervalos(pontoDia);
 		PontoDiaLocalServiceUtil.updatePontoDia(pontoDia);
 	}
 
@@ -86,7 +87,6 @@ extends RegistroPontoLocalServiceBaseImpl {
 		try {
 			pontoDia = PontoDiaLocalServiceUtil.gravarPonto(pis, dataHora);
 		} catch (PontoDiaExistenteException e) {
-			// TODO Auto-generated catch block
 			try {
 				pontoDia = PontoDiaLocalServiceUtil.getPontoDia(pis, dataHora);
 			} catch (PortalException e1) {}

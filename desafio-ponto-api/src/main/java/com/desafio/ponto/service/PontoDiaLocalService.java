@@ -75,6 +75,8 @@ public interface PontoDiaLocalService extends BaseLocalService,
 
 	public PontoDia calcularHorasTrabalhadas(PontoDia pontoDia);
 
+	public PontoDia calcularIntervalos(PontoDia pontoDia);
+
 	/**
 	* Creates a new ponto dia with the primary key. Does not add the ponto dia to the database.
 	*

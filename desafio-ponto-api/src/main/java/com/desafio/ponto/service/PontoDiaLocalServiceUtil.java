@@ -59,6 +59,11 @@ public class PontoDiaLocalServiceUtil {
 		return getService().calcularHorasTrabalhadas(pontoDia);
 	}
 
+	public static com.desafio.ponto.model.PontoDia calcularIntervalos(
+		com.desafio.ponto.model.PontoDia pontoDia) {
+		return getService().calcularIntervalos(pontoDia);
+	}
+
 	/**
 	* Creates a new ponto dia with the primary key. Does not add the ponto dia to the database.
 	*

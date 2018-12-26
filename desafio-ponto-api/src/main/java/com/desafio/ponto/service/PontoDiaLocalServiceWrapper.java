@@ -51,6 +51,12 @@ public class PontoDiaLocalServiceWrapper implements PontoDiaLocalService,
 		return _pontoDiaLocalService.calcularHorasTrabalhadas(pontoDia);
 	}
 
+	@Override
+	public com.desafio.ponto.model.PontoDia calcularIntervalos(
+		com.desafio.ponto.model.PontoDia pontoDia) {
+		return _pontoDiaLocalService.calcularIntervalos(pontoDia);
+	}
+
 	/**
 	* Creates a new ponto dia with the primary key. Does not add the ponto dia to the database.
 	*
