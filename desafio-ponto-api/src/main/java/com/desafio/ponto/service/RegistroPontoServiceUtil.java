@@ -42,6 +42,10 @@ public class RegistroPontoServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.desafio.ponto.service.impl.RegistroPontoServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.desafio.ponto.model.custom.RegistroPonto consultarPonto(
+		long companyId, long pis, String competencia) {
+		return getService().consultarPonto(companyId, pis, competencia);
+	}
 
 	/**
 	* Returns the OSGi service identifier.
@@ -52,8 +56,12 @@ public class RegistroPontoServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static String registraPonto(long pis, String data) {
-		return getService().registraPonto(pis, data);
+	public static String importarPontos(long companyId, long pis, String batidas) {
+		return getService().importarPontos(companyId, pis, batidas);
+	}
+
+	public static String registraPonto(long companyId, long pis, String data) {
+		return getService().registraPonto(companyId, pis, data);
 	}
 
 	public static RegistroPontoService getService() {

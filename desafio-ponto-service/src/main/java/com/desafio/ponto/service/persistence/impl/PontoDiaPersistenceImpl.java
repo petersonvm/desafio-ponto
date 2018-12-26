@@ -89,7 +89,7 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 			PontoDiaModelImpl.FINDER_CACHE_ENABLED, PontoDiaImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByFindByCompetencia",
 			new String[] {
-				String.class.getName(),
+				Long.class.getName(), String.class.getName(),
 				
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
@@ -98,50 +98,56 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 		new FinderPath(PontoDiaModelImpl.ENTITY_CACHE_ENABLED,
 			PontoDiaModelImpl.FINDER_CACHE_ENABLED, PontoDiaImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"findByFindByCompetencia", new String[] { String.class.getName() },
+			"findByFindByCompetencia",
+			new String[] { Long.class.getName(), String.class.getName() },
+			PontoDiaModelImpl.PIS_COLUMN_BITMASK |
 			PontoDiaModelImpl.COMPETENCIA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_FINDBYCOMPETENCIA = new FinderPath(PontoDiaModelImpl.ENTITY_CACHE_ENABLED,
 			PontoDiaModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"countByFindByCompetencia", new String[] { String.class.getName() });
+			"countByFindByCompetencia",
+			new String[] { Long.class.getName(), String.class.getName() });
 
 	/**
-	 * Returns all the ponto dias where Competencia = &#63;.
+	 * Returns all the ponto dias where Pis = &#63; and Competencia = &#63;.
 	 *
+	 * @param Pis the pis
 	 * @param Competencia the competencia
 	 * @return the matching ponto dias
 	 */
 	@Override
-	public List<PontoDia> findByFindByCompetencia(String Competencia) {
-		return findByFindByCompetencia(Competencia, QueryUtil.ALL_POS,
+	public List<PontoDia> findByFindByCompetencia(long Pis, String Competencia) {
+		return findByFindByCompetencia(Pis, Competencia, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the ponto dias where Competencia = &#63;.
+	 * Returns a range of all the ponto dias where Pis = &#63; and Competencia = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PontoDiaModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @param Pis the pis
 	 * @param Competencia the competencia
 	 * @param start the lower bound of the range of ponto dias
 	 * @param end the upper bound of the range of ponto dias (not inclusive)
 	 * @return the range of matching ponto dias
 	 */
 	@Override
-	public List<PontoDia> findByFindByCompetencia(String Competencia,
+	public List<PontoDia> findByFindByCompetencia(long Pis, String Competencia,
 		int start, int end) {
-		return findByFindByCompetencia(Competencia, start, end, null);
+		return findByFindByCompetencia(Pis, Competencia, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the ponto dias where Competencia = &#63;.
+	 * Returns an ordered range of all the ponto dias where Pis = &#63; and Competencia = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PontoDiaModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @param Pis the pis
 	 * @param Competencia the competencia
 	 * @param start the lower bound of the range of ponto dias
 	 * @param end the upper bound of the range of ponto dias (not inclusive)
@@ -149,19 +155,20 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 	 * @return the ordered range of matching ponto dias
 	 */
 	@Override
-	public List<PontoDia> findByFindByCompetencia(String Competencia,
+	public List<PontoDia> findByFindByCompetencia(long Pis, String Competencia,
 		int start, int end, OrderByComparator<PontoDia> orderByComparator) {
-		return findByFindByCompetencia(Competencia, start, end,
+		return findByFindByCompetencia(Pis, Competencia, start, end,
 			orderByComparator, true);
 	}
 
 	/**
-	 * Returns an ordered range of all the ponto dias where Competencia = &#63;.
+	 * Returns an ordered range of all the ponto dias where Pis = &#63; and Competencia = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PontoDiaModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
+	 * @param Pis the pis
 	 * @param Competencia the competencia
 	 * @param start the lower bound of the range of ponto dias
 	 * @param end the upper bound of the range of ponto dias (not inclusive)
@@ -170,7 +177,7 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 	 * @return the ordered range of matching ponto dias
 	 */
 	@Override
-	public List<PontoDia> findByFindByCompetencia(String Competencia,
+	public List<PontoDia> findByFindByCompetencia(long Pis, String Competencia,
 		int start, int end, OrderByComparator<PontoDia> orderByComparator,
 		boolean retrieveFromCache) {
 		boolean pagination = true;
@@ -181,11 +188,15 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 				(orderByComparator == null)) {
 			pagination = false;
 			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FINDBYCOMPETENCIA;
-			finderArgs = new Object[] { Competencia };
+			finderArgs = new Object[] { Pis, Competencia };
 		}
 		else {
 			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_FINDBYCOMPETENCIA;
-			finderArgs = new Object[] { Competencia, start, end, orderByComparator };
+			finderArgs = new Object[] {
+					Pis, Competencia,
+					
+					start, end, orderByComparator
+				};
 		}
 
 		List<PontoDia> list = null;
@@ -196,7 +207,9 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (PontoDia pontoDia : list) {
-					if (!Objects.equals(Competencia, pontoDia.getCompetencia())) {
+					if ((Pis != pontoDia.getPis()) ||
+							!Objects.equals(Competencia,
+								pontoDia.getCompetencia())) {
 						list = null;
 
 						break;
@@ -209,14 +222,16 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
+				query = new StringBundler(4 +
 						(orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
-				query = new StringBundler(3);
+				query = new StringBundler(4);
 			}
 
 			query.append(_SQL_SELECT_PONTODIA_WHERE);
+
+			query.append(_FINDER_COLUMN_FINDBYCOMPETENCIA_PIS_2);
 
 			boolean bindCompetencia = false;
 
@@ -251,6 +266,8 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(Pis);
 
 				if (bindCompetencia) {
 					qPos.add(Competencia);
@@ -287,29 +304,33 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 	}
 
 	/**
-	 * Returns the first ponto dia in the ordered set where Competencia = &#63;.
+	 * Returns the first ponto dia in the ordered set where Pis = &#63; and Competencia = &#63;.
 	 *
+	 * @param Pis the pis
 	 * @param Competencia the competencia
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching ponto dia
 	 * @throws NoSuchPontoDiaException if a matching ponto dia could not be found
 	 */
 	@Override
-	public PontoDia findByFindByCompetencia_First(String Competencia,
+	public PontoDia findByFindByCompetencia_First(long Pis, String Competencia,
 		OrderByComparator<PontoDia> orderByComparator)
 		throws NoSuchPontoDiaException {
-		PontoDia pontoDia = fetchByFindByCompetencia_First(Competencia,
+		PontoDia pontoDia = fetchByFindByCompetencia_First(Pis, Competencia,
 				orderByComparator);
 
 		if (pontoDia != null) {
 			return pontoDia;
 		}
 
-		StringBundler msg = new StringBundler(4);
+		StringBundler msg = new StringBundler(6);
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("Competencia=");
+		msg.append("Pis=");
+		msg.append(Pis);
+
+		msg.append(", Competencia=");
 		msg.append(Competencia);
 
 		msg.append("}");
@@ -318,16 +339,17 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 	}
 
 	/**
-	 * Returns the first ponto dia in the ordered set where Competencia = &#63;.
+	 * Returns the first ponto dia in the ordered set where Pis = &#63; and Competencia = &#63;.
 	 *
+	 * @param Pis the pis
 	 * @param Competencia the competencia
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching ponto dia, or <code>null</code> if a matching ponto dia could not be found
 	 */
 	@Override
-	public PontoDia fetchByFindByCompetencia_First(String Competencia,
-		OrderByComparator<PontoDia> orderByComparator) {
-		List<PontoDia> list = findByFindByCompetencia(Competencia, 0, 1,
+	public PontoDia fetchByFindByCompetencia_First(long Pis,
+		String Competencia, OrderByComparator<PontoDia> orderByComparator) {
+		List<PontoDia> list = findByFindByCompetencia(Pis, Competencia, 0, 1,
 				orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -338,29 +360,33 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 	}
 
 	/**
-	 * Returns the last ponto dia in the ordered set where Competencia = &#63;.
+	 * Returns the last ponto dia in the ordered set where Pis = &#63; and Competencia = &#63;.
 	 *
+	 * @param Pis the pis
 	 * @param Competencia the competencia
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching ponto dia
 	 * @throws NoSuchPontoDiaException if a matching ponto dia could not be found
 	 */
 	@Override
-	public PontoDia findByFindByCompetencia_Last(String Competencia,
+	public PontoDia findByFindByCompetencia_Last(long Pis, String Competencia,
 		OrderByComparator<PontoDia> orderByComparator)
 		throws NoSuchPontoDiaException {
-		PontoDia pontoDia = fetchByFindByCompetencia_Last(Competencia,
+		PontoDia pontoDia = fetchByFindByCompetencia_Last(Pis, Competencia,
 				orderByComparator);
 
 		if (pontoDia != null) {
 			return pontoDia;
 		}
 
-		StringBundler msg = new StringBundler(4);
+		StringBundler msg = new StringBundler(6);
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("Competencia=");
+		msg.append("Pis=");
+		msg.append(Pis);
+
+		msg.append(", Competencia=");
 		msg.append(Competencia);
 
 		msg.append("}");
@@ -369,23 +395,24 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 	}
 
 	/**
-	 * Returns the last ponto dia in the ordered set where Competencia = &#63;.
+	 * Returns the last ponto dia in the ordered set where Pis = &#63; and Competencia = &#63;.
 	 *
+	 * @param Pis the pis
 	 * @param Competencia the competencia
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching ponto dia, or <code>null</code> if a matching ponto dia could not be found
 	 */
 	@Override
-	public PontoDia fetchByFindByCompetencia_Last(String Competencia,
+	public PontoDia fetchByFindByCompetencia_Last(long Pis, String Competencia,
 		OrderByComparator<PontoDia> orderByComparator) {
-		int count = countByFindByCompetencia(Competencia);
+		int count = countByFindByCompetencia(Pis, Competencia);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<PontoDia> list = findByFindByCompetencia(Competencia, count - 1,
-				count, orderByComparator);
+		List<PontoDia> list = findByFindByCompetencia(Pis, Competencia,
+				count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -395,9 +422,10 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 	}
 
 	/**
-	 * Returns the ponto dias before and after the current ponto dia in the ordered set where Competencia = &#63;.
+	 * Returns the ponto dias before and after the current ponto dia in the ordered set where Pis = &#63; and Competencia = &#63;.
 	 *
 	 * @param pontoDiaPK the primary key of the current ponto dia
+	 * @param Pis the pis
 	 * @param Competencia the competencia
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next ponto dia
@@ -405,7 +433,7 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 	 */
 	@Override
 	public PontoDia[] findByFindByCompetencia_PrevAndNext(
-		PontoDiaPK pontoDiaPK, String Competencia,
+		PontoDiaPK pontoDiaPK, long Pis, String Competencia,
 		OrderByComparator<PontoDia> orderByComparator)
 		throws NoSuchPontoDiaException {
 		PontoDia pontoDia = findByPrimaryKey(pontoDiaPK);
@@ -418,12 +446,12 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 			PontoDia[] array = new PontoDiaImpl[3];
 
 			array[0] = getByFindByCompetencia_PrevAndNext(session, pontoDia,
-					Competencia, orderByComparator, true);
+					Pis, Competencia, orderByComparator, true);
 
 			array[1] = pontoDia;
 
 			array[2] = getByFindByCompetencia_PrevAndNext(session, pontoDia,
-					Competencia, orderByComparator, false);
+					Pis, Competencia, orderByComparator, false);
 
 			return array;
 		}
@@ -436,20 +464,22 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 	}
 
 	protected PontoDia getByFindByCompetencia_PrevAndNext(Session session,
-		PontoDia pontoDia, String Competencia,
+		PontoDia pontoDia, long Pis, String Competencia,
 		OrderByComparator<PontoDia> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
+			query = new StringBundler(5 +
 					(orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
-			query = new StringBundler(3);
+			query = new StringBundler(4);
 		}
 
 		query.append(_SQL_SELECT_PONTODIA_WHERE);
+
+		query.append(_FINDER_COLUMN_FINDBYCOMPETENCIA_PIS_2);
 
 		boolean bindCompetencia = false;
 
@@ -533,6 +563,8 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
+		qPos.add(Pis);
+
 		if (bindCompetencia) {
 			qPos.add(Competencia);
 		}
@@ -556,36 +588,40 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 	}
 
 	/**
-	 * Removes all the ponto dias where Competencia = &#63; from the database.
+	 * Removes all the ponto dias where Pis = &#63; and Competencia = &#63; from the database.
 	 *
+	 * @param Pis the pis
 	 * @param Competencia the competencia
 	 */
 	@Override
-	public void removeByFindByCompetencia(String Competencia) {
-		for (PontoDia pontoDia : findByFindByCompetencia(Competencia,
+	public void removeByFindByCompetencia(long Pis, String Competencia) {
+		for (PontoDia pontoDia : findByFindByCompetencia(Pis, Competencia,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(pontoDia);
 		}
 	}
 
 	/**
-	 * Returns the number of ponto dias where Competencia = &#63;.
+	 * Returns the number of ponto dias where Pis = &#63; and Competencia = &#63;.
 	 *
+	 * @param Pis the pis
 	 * @param Competencia the competencia
 	 * @return the number of matching ponto dias
 	 */
 	@Override
-	public int countByFindByCompetencia(String Competencia) {
+	public int countByFindByCompetencia(long Pis, String Competencia) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_FINDBYCOMPETENCIA;
 
-		Object[] finderArgs = new Object[] { Competencia };
+		Object[] finderArgs = new Object[] { Pis, Competencia };
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
-			StringBundler query = new StringBundler(2);
+			StringBundler query = new StringBundler(3);
 
 			query.append(_SQL_COUNT_PONTODIA_WHERE);
+
+			query.append(_FINDER_COLUMN_FINDBYCOMPETENCIA_PIS_2);
 
 			boolean bindCompetencia = false;
 
@@ -612,6 +648,8 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
+				qPos.add(Pis);
+
 				if (bindCompetencia) {
 					qPos.add(Competencia);
 				}
@@ -633,6 +671,7 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 		return count.intValue();
 	}
 
+	private static final String _FINDER_COLUMN_FINDBYCOMPETENCIA_PIS_2 = "pontoDia.id.Pis = ? AND ";
 	private static final String _FINDER_COLUMN_FINDBYCOMPETENCIA_COMPETENCIA_1 = "pontoDia.Competencia IS NULL";
 	private static final String _FINDER_COLUMN_FINDBYCOMPETENCIA_COMPETENCIA_2 = "pontoDia.Competencia = ?";
 	private static final String _FINDER_COLUMN_FINDBYCOMPETENCIA_COMPETENCIA_3 = "(pontoDia.Competencia IS NULL OR pontoDia.Competencia = '')";
@@ -864,7 +903,10 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 		}
 		else
 		 if (isNew) {
-			Object[] args = new Object[] { pontoDiaModelImpl.getCompetencia() };
+			Object[] args = new Object[] {
+					pontoDiaModelImpl.getPis(),
+					pontoDiaModelImpl.getCompetencia()
+				};
 
 			finderCache.removeResult(FINDER_PATH_COUNT_BY_FINDBYCOMPETENCIA,
 				args);
@@ -880,6 +922,7 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 			if ((pontoDiaModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FINDBYCOMPETENCIA.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
+						pontoDiaModelImpl.getOriginalPis(),
 						pontoDiaModelImpl.getOriginalCompetencia()
 					};
 
@@ -888,7 +931,10 @@ public class PontoDiaPersistenceImpl extends BasePersistenceImpl<PontoDia>
 				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FINDBYCOMPETENCIA,
 					args);
 
-				args = new Object[] { pontoDiaModelImpl.getCompetencia() };
+				args = new Object[] {
+						pontoDiaModelImpl.getPis(),
+						pontoDiaModelImpl.getCompetencia()
+					};
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_FINDBYCOMPETENCIA,
 					args);

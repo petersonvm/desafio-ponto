@@ -191,6 +191,11 @@ public class PontoDiaLocalServiceUtil {
 		return getService().fetchPontoDia(pontoDiaPK);
 	}
 
+	public static java.util.List<com.desafio.ponto.model.PontoDia> findByPisCompetencia(
+		long pis, String competencia) {
+		return getService().findByPisCompetencia(pis, competencia);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}

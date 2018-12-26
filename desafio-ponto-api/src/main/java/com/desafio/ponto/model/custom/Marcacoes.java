@@ -1,35 +1,44 @@
 package com.desafio.ponto.model.custom;
 
-import java.util.Date;
+import com.liferay.portal.kernel.json.JSON;
+
 import java.util.List;
 
 public class Marcacoes {
 	
-	private Date data;
+	private String data;
 	private List<String> batidas;
-	private int horasTrabalhadas;
+	private double horasTrabalhadas;
+	private String status; 
 	
-	public Date getData() {
+	@JSON(name="Data")
+	public String getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
+	@JSON(name="Batidas")
 	public List<String> getBatidas() {
 		return batidas;
 	}
 	public void setBatidas(List<String> batidas) {
 		this.batidas = batidas;
 	}
-	public int getHorasTrabalhadas() {
+	@JSON(name="Horas Trabalhadas")
+	public double getHorasTrabalhadas() {
 		return horasTrabalhadas;
 	}
-	public void setHorasTrabalhadas(int horasTrabalhadas) {
-		this.horasTrabalhadas = horasTrabalhadas;
+	public void setHorasTrabalhadas(double horasTrabalhadas) {
+		this.horasTrabalhadas = (horasTrabalhadas/60);
 	}
-	
-
-	
+	@JSON(name="Status")
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	
 
 }

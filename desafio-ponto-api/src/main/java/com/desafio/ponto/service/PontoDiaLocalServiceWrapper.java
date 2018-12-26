@@ -196,6 +196,12 @@ public class PontoDiaLocalServiceWrapper implements PontoDiaLocalService,
 	}
 
 	@Override
+	public java.util.List<com.desafio.ponto.model.PontoDia> findByPisCompetencia(
+		long pis, String competencia) {
+		return _pontoDiaLocalService.findByPisCompetencia(pis, competencia);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _pontoDiaLocalService.getActionableDynamicQuery();
 	}

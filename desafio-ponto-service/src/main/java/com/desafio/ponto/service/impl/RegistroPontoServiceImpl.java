@@ -14,6 +14,7 @@
 
 package com.desafio.ponto.service.impl;
 
+import com.desafio.ponto.model.custom.RegistroPonto;
 import com.desafio.ponto.service.RegistroPontoLocalServiceUtil;
 import com.desafio.ponto.service.base.RegistroPontoServiceBaseImpl;
 
@@ -38,7 +39,18 @@ public class RegistroPontoServiceImpl extends RegistroPontoServiceBaseImpl {
 	 * Never reference this class directly. Always use {@link com.desafio.ponto.service.RegistroPontoServiceUtil} to access the registro ponto remote service.
 	 */
 	
-	public String registraPonto(long pis , String data) {
-		return RegistroPontoLocalServiceUtil.registraPonto(pis, data);
+	public String registraPonto(long companyId,long pis , String data) {
+		return RegistroPontoLocalServiceUtil.registraPonto(companyId,pis, data);
 	}
+	
+	
+	public RegistroPonto consultarPonto(long companyId, long pis, String competencia) {
+		return RegistroPontoLocalServiceUtil.consultarPonto(companyId, pis, competencia);
+	}
+	
+	
+	public String importarPontos(long companyId, long pis , String batidas) {
+		return RegistroPontoLocalServiceUtil.importarPontos(companyId, pis, batidas);
+	}
+
 }

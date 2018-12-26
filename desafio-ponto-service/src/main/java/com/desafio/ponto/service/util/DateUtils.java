@@ -10,9 +10,6 @@ import java.util.Date;
 
 public class DateUtils {
 	
-	private static String DATE_PATTERN =  "dd/MM/yyyy HH:mm";
-	
-	
 	public static Date atStartOfDay(Date date) {
 	    LocalDateTime localDateTime = dateToLocalDateTime(date);
 	    LocalDateTime startOfDay = localDateTime.with(LocalTime.MIN);
@@ -26,7 +23,17 @@ public class DateUtils {
 	}
 	
 	public static String readableDate(Date date) {
-		SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(date);
+	}
+	
+	public static String readableDateHour(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		return sdf.format(date);
+	}	
+	
+	public static String readableHour(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 		return sdf.format(date);
 	}
 	

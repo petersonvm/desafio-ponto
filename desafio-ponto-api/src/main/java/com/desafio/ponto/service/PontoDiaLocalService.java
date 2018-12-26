@@ -175,6 +175,8 @@ public interface PontoDiaLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PontoDia fetchPontoDia(PontoDiaPK pontoDiaPK);
 
+	public List<PontoDia> findByPisCompetencia(long pis, String competencia);
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 

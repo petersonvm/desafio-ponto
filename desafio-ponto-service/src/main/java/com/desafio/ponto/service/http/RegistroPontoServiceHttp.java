@@ -55,13 +55,69 @@ import com.liferay.portal.kernel.util.MethodKey;
  */
 @ProviderType
 public class RegistroPontoServiceHttp {
-	public static String registraPonto(HttpPrincipal httpPrincipal, long pis,
-		String data) {
+	public static String registraPonto(HttpPrincipal httpPrincipal,
+		long companyId, long pis, String data) {
 		try {
 			MethodKey methodKey = new MethodKey(RegistroPontoServiceUtil.class,
 					"registraPonto", _registraPontoParameterTypes0);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, pis, data);
+			MethodHandler methodHandler = new MethodHandler(methodKey,
+					companyId, pis, data);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+
+			return (String)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static com.desafio.ponto.model.custom.RegistroPonto consultarPonto(
+		HttpPrincipal httpPrincipal, long companyId, long pis,
+		String competencia) {
+		try {
+			MethodKey methodKey = new MethodKey(RegistroPontoServiceUtil.class,
+					"consultarPonto", _consultarPontoParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey,
+					companyId, pis, competencia);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+
+			return (com.desafio.ponto.model.custom.RegistroPonto)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static String importarPontos(HttpPrincipal httpPrincipal,
+		long companyId, long pis, String batidas) {
+		try {
+			MethodKey methodKey = new MethodKey(RegistroPontoServiceUtil.class,
+					"importarPontos", _importarPontosParameterTypes2);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey,
+					companyId, pis, batidas);
 
 			Object returnObj = null;
 
@@ -83,6 +139,12 @@ public class RegistroPontoServiceHttp {
 
 	private static Log _log = LogFactoryUtil.getLog(RegistroPontoServiceHttp.class);
 	private static final Class<?>[] _registraPontoParameterTypes0 = new Class[] {
-			long.class, String.class
+			long.class, long.class, String.class
+		};
+	private static final Class<?>[] _consultarPontoParameterTypes1 = new Class[] {
+			long.class, long.class, String.class
+		};
+	private static final Class<?>[] _importarPontosParameterTypes2 = new Class[] {
+			long.class, long.class, String.class
 		};
 }

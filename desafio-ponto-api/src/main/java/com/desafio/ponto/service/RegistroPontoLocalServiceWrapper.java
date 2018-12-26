@@ -34,6 +34,13 @@ public class RegistroPontoLocalServiceWrapper
 		_registroPontoLocalService = registroPontoLocalService;
 	}
 
+	@Override
+	public com.desafio.ponto.model.custom.RegistroPonto consultarPonto(
+		long companyId, long pis, String competencia) {
+		return _registroPontoLocalService.consultarPonto(companyId, pis,
+			competencia);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -45,8 +52,13 @@ public class RegistroPontoLocalServiceWrapper
 	}
 
 	@Override
-	public String registraPonto(long pis, String data) {
-		return _registroPontoLocalService.registraPonto(pis, data);
+	public String importarPontos(long companyId, long pis, String batidas) {
+		return _registroPontoLocalService.importarPontos(companyId, pis, batidas);
+	}
+
+	@Override
+	public String registraPonto(long companyId, long pis, String data) {
+		return _registroPontoLocalService.registraPonto(companyId, pis, data);
 	}
 
 	@Override

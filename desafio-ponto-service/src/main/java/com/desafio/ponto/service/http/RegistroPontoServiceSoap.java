@@ -54,11 +54,41 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class RegistroPontoServiceSoap {
-	public static String registraPonto(long pis, String data)
+	public static String registraPonto(long companyId, long pis, String data)
 		throws RemoteException {
 		try {
-			String returnValue = RegistroPontoServiceUtil.registraPonto(pis,
-					data);
+			String returnValue = RegistroPontoServiceUtil.registraPonto(companyId,
+					pis, data);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.desafio.ponto.model.custom.RegistroPonto consultarPonto(
+		long companyId, long pis, String competencia) throws RemoteException {
+		try {
+			com.desafio.ponto.model.custom.RegistroPonto returnValue = RegistroPontoServiceUtil.consultarPonto(companyId,
+					pis, competencia);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static String importarPontos(long companyId, long pis, String batidas)
+		throws RemoteException {
+		try {
+			String returnValue = RegistroPontoServiceUtil.importarPontos(companyId,
+					pis, batidas);
 
 			return returnValue;
 		}

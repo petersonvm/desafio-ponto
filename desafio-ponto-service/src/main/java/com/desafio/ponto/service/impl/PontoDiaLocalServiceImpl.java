@@ -184,10 +184,11 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 				pontoDia.setStatus(StatusPonto.INTERVALO_NAO_RESPEITADO);
 			}
 		}
-
-
-
 		return pontoDia;
+	}
+	
+	public List<PontoDia> findByPisCompetencia(long pis, String competencia){
+		return pontoDiaPersistence.findByFindByCompetencia(pis, competencia);
 	}
 
 

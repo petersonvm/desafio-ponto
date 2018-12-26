@@ -16,6 +16,8 @@ package com.desafio.ponto.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.desafio.ponto.model.custom.RegistroPonto;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.service.BaseLocalService;
@@ -43,6 +45,8 @@ public interface RegistroPontoLocalService extends BaseLocalService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link RegistroPontoLocalServiceUtil} to access the registro ponto local service. Add custom service methods to {@link com.desafio.ponto.service.impl.RegistroPontoLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public RegistroPonto consultarPonto(long companyId, long pis,
+		String competencia);
 
 	/**
 	* Returns the OSGi service identifier.
@@ -51,5 +55,7 @@ public interface RegistroPontoLocalService extends BaseLocalService {
 	*/
 	public String getOSGiServiceIdentifier();
 
-	public String registraPonto(long pis, String data);
+	public String importarPontos(long companyId, long pis, String batidas);
+
+	public String registraPonto(long companyId, long pis, String data);
 }

@@ -1,8 +1,9 @@
 Bundle-Name: desafio-ponto-api
 Bundle-SymbolicName: com.desafio.ponto.api
 Bundle-Version: 1.0.0
-Export-Package:\
+Export-Package: \
 	com.desafio.ponto.exception,\
+	com.desafio.ponto.model.custom,\
 	com.desafio.ponto.model,\
 	com.desafio.ponto.service,\
 	com.desafio.ponto.service.persistence

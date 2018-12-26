@@ -12,6 +12,7 @@
         <column name="Horas_Trabalhadas" type="double"></column>
         <column name="Status" type="int"></column>
         <finder name="FindByCompetencia" return-type="Collection">
+            <finder-column name="Pis"></finder-column>
             <finder-column name="Competencia"></finder-column>
         </finder>
     </entity>

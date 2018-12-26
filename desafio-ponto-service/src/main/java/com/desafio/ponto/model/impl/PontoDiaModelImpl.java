@@ -186,7 +186,19 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 
 	@Override
 	public void setPis(long Pis) {
+		_columnBitmask |= PIS_COLUMN_BITMASK;
+
+		if (!_setOriginalPis) {
+			_setOriginalPis = true;
+
+			_originalPis = _Pis;
+		}
+
 		_Pis = Pis;
+	}
+
+	public long getOriginalPis() {
+		return _originalPis;
 	}
 
 	@Override
@@ -321,6 +333,10 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 	public void resetOriginalValues() {
 		PontoDiaModelImpl pontoDiaModelImpl = this;
 
+		pontoDiaModelImpl._originalPis = pontoDiaModelImpl._Pis;
+
+		pontoDiaModelImpl._setOriginalPis = false;
+
 		pontoDiaModelImpl._originalCompetencia = pontoDiaModelImpl._Competencia;
 
 		pontoDiaModelImpl._columnBitmask = 0;
@@ -409,6 +425,8 @@ public class PontoDiaModelImpl extends BaseModelImpl<PontoDia>
 			PontoDia.class, ModelWrapper.class
 		};
 	private long _Pis;
+	private long _originalPis;
+	private boolean _setOriginalPis;
 	private long _Data;
 	private String _Competencia;
 	private String _originalCompetencia;
