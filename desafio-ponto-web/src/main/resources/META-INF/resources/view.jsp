@@ -2,8 +2,14 @@
 <%@ include file="/init.jsp"%>
 
 <%
-// To set today's date as default for the calendar.
 	Calendar today = Calendar.getInstance();
+	String pis = null;
+	try{
+		pis = String.valueOf(user.getExpandoBridge().getAttribute("Pis"));
+	}catch(Exception e){
+		pis = "";
+	}
+		
 %>
 
 <portlet:actionURL name="doRegistrarPonto" var="doRegistrarPontoURL" />
@@ -11,14 +17,15 @@
 <p>
 	<b><liferay-ui:message key="desafiopontoweb.caption" /></b>
 </p>
-
+<liferay-ui:error exception="<%= NullPointerException.class %>" message="desafiopontoweb.sempis" />
 
 
 <c:choose>
 	<c:when test="<%= themeDisplay.isSignedIn()%>">
+	
 
-		<aui:form action="<%=doRegistrarPontoURL%>" method="post"
-			name="pontoform">
+		<% if(!pis.equals("")) { %>
+		<aui:form action="<%=doRegistrarPontoURL%>" method="post" name="pontoform">
 			<aui:fieldset-group markupView="lexicon">
 				<aui:fieldset>
 
@@ -27,7 +34,7 @@
 								<liferay-ui:message key="desafiopontoweb.funcionario" /><%=user.getFullName()%>
 							</aui:row>
 							<aui:row> 
-								<liferay-ui:message key="desafiopontoweb.pis" /><%=user.getExpandoBridge().getAttribute("Pis")%>
+								<liferay-ui:message key="desafiopontoweb.pis" /><%=pis%>
 							</aui:row>
 					</aui:col>
 					<br>
@@ -54,10 +61,21 @@
 		<br>
 		<div class="resultado">
 		</div>
+		
+		<%}else{%>
 			
+			<p>
+				<b><liferay-ui:message key="desafiopontoweb.sempis" /></b>
+			</p>
+		
+		<%}%>
+
 	</c:when>
 	<c:otherwise>
-		Voce precisa estar logado.
+		<p>
+			<b><liferay-ui:message key="desafiopontoweb.logado" /></b>
+		</p>
+
 	</c:otherwise>
 </c:choose>
 
@@ -70,7 +88,7 @@
 				  {
 				    companyId: themeDisplay.getCompanyId(),
 				    pis: pis,
-				    competencia: data
+				    dia: data
 				  },
 				  function(obj) {
 					  popularGrid(obj);
@@ -106,9 +124,9 @@
         var dtVal = dt.split("/");
         var dateSwitched;
         if (Liferay.ThemeDisplay.getLanguageId() === 'en_US'){
-          dateSwitched = dtVal[0] + "/" + dtVal[2];
+          dateSwitched = dtVal[1] + "/"+dtVal[0] + "/" + dtVal[2];
         }else{
-          dateSwitched = dtVal[1] + "/" + dtVal[2];
+          dateSwitched = dtVal[0] + "/"+dtVal[1] + "/" + dtVal[2];
         }
 
 

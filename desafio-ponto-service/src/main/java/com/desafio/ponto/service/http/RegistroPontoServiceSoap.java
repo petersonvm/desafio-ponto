@@ -69,11 +69,26 @@ public class RegistroPontoServiceSoap {
 		}
 	}
 
-	public static com.desafio.ponto.model.custom.RegistroPonto consultarPonto(
+	public static com.desafio.ponto.model.custom.RegistroPonto consultarPontoCompetencia(
 		long companyId, long pis, String competencia) throws RemoteException {
 		try {
-			com.desafio.ponto.model.custom.RegistroPonto returnValue = RegistroPontoServiceUtil.consultarPonto(companyId,
+			com.desafio.ponto.model.custom.RegistroPonto returnValue = RegistroPontoServiceUtil.consultarPontoCompetencia(companyId,
 					pis, competencia);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.desafio.ponto.model.custom.RegistroPonto consultarPonto(
+		long companyId, long pis, String dia) throws RemoteException {
+		try {
+			com.desafio.ponto.model.custom.RegistroPonto returnValue = RegistroPontoServiceUtil.consultarPonto(companyId,
+					pis, dia);
 
 			return returnValue;
 		}

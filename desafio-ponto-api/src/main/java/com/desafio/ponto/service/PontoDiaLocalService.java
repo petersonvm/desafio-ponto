@@ -196,8 +196,7 @@ public interface PontoDiaLocalService extends BaseLocalService,
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PontoDia getPontoDia(long pis, Date dataHora)
-		throws PortalException;
+	public PontoDia getPontoDia(long pis, Date data) throws PortalException;
 
 	/**
 	* Returns the ponto dia with the primary key.

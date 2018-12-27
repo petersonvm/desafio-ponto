@@ -36,9 +36,15 @@ public class RegistroPontoLocalServiceWrapper
 
 	@Override
 	public com.desafio.ponto.model.custom.RegistroPonto consultarPonto(
+		long companyId, long pis, String dia) {
+		return _registroPontoLocalService.consultarPonto(companyId, pis, dia);
+	}
+
+	@Override
+	public com.desafio.ponto.model.custom.RegistroPonto consultarPontoCompetencia(
 		long companyId, long pis, String competencia) {
-		return _registroPontoLocalService.consultarPonto(companyId, pis,
-			competencia);
+		return _registroPontoLocalService.consultarPontoCompetencia(companyId,
+			pis, competencia);
 	}
 
 	/**

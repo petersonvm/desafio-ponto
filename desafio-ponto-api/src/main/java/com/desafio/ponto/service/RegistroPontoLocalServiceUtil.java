@@ -43,8 +43,14 @@ public class RegistroPontoLocalServiceUtil {
 	 * Never modify this class directly. Add custom service methods to {@link com.desafio.ponto.service.impl.RegistroPontoLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.desafio.ponto.model.custom.RegistroPonto consultarPonto(
+		long companyId, long pis, String dia) {
+		return getService().consultarPonto(companyId, pis, dia);
+	}
+
+	public static com.desafio.ponto.model.custom.RegistroPonto consultarPontoCompetencia(
 		long companyId, long pis, String competencia) {
-		return getService().consultarPonto(companyId, pis, competencia);
+		return getService()
+				   .consultarPontoCompetencia(companyId, pis, competencia);
 	}
 
 	/**

@@ -44,8 +44,12 @@ public class RegistroPontoServiceImpl extends RegistroPontoServiceBaseImpl {
 	}
 	
 	
-	public RegistroPonto consultarPonto(long companyId, long pis, String competencia) {
-		return RegistroPontoLocalServiceUtil.consultarPonto(companyId, pis, competencia);
+	public RegistroPonto consultarPontoCompetencia(long companyId, long pis, String competencia) {
+		return RegistroPontoLocalServiceUtil.consultarPontoCompetencia(companyId, pis, competencia);
+	}
+	
+	public RegistroPonto consultarPonto(long companyId, long pis, String dia) {
+		return RegistroPontoLocalServiceUtil.consultarPonto(companyId, pis, dia);
 	}
 	
 	

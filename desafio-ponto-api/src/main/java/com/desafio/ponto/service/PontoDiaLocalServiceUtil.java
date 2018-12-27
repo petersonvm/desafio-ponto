@@ -220,9 +220,9 @@ public class PontoDiaLocalServiceUtil {
 	}
 
 	public static com.desafio.ponto.model.PontoDia getPontoDia(long pis,
-		java.util.Date dataHora)
+		java.util.Date data)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPontoDia(pis, dataHora);
+		return getService().getPontoDia(pis, data);
 	}
 
 	/**

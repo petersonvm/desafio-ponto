@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
@@ -105,18 +104,30 @@ extends RegistroPontoLocalServiceBaseImpl {
 		return "sucessful";
 	}
 	
-	public RegistroPonto consultarPonto(long companyId, long pis, String competencia) {
+	private RegistroPonto consultarPonto(long companyId, long pis, String paramData, boolean isDia) {
 		RegistroPonto ponto  = new RegistroPonto();
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
+		SimpleDateFormat sdf;
 		double totalHorasTrabalhadas = 0;
+		List<PontoDia> pontoDiaList = new ArrayList<>();
 		try {
 			User user = this.getUserByPis(companyId, pis);
+			if(isDia) {
+				sdf = new SimpleDateFormat("dd/MM/yyyy");
+				pontoDiaList = new ArrayList<>();
+				PontoDia pontoDia =  PontoDiaLocalServiceUtil.getPontoDia(pis, sdf.parse(paramData));
+				ponto.setCompetencia(pontoDia.getCompetencia());
+				pontoDiaList.add(pontoDia);
+			}else {
+				sdf = new SimpleDateFormat("MM/yyyy");
+				sdf.parse(paramData);
+				ponto.setCompetencia(paramData);
+				pontoDiaList = PontoDiaLocalServiceUtil.findByPisCompetencia(pis, paramData);
+			}
 			ponto.setPis(pis);
-			ponto.setNome(user.getFullName()); 
-			ponto.setCompetencia(competencia);
-		    sdf.parse(competencia);
+			ponto.setNome(user.getFullName()); 		
+		   
 			List<Marcacoes> marcacoes = new ArrayList<>();
-			List<PontoDia> pontoDiaList = PontoDiaLocalServiceUtil.findByPisCompetencia(pis, competencia);
+			
 			for (PontoDia pontoDia : pontoDiaList) {
 				Marcacoes marcacao = new Marcacoes();
 				marcacao.setHorasTrabalhadas(pontoDia.getHoras_Trabalhadas());
@@ -142,6 +153,15 @@ extends RegistroPontoLocalServiceBaseImpl {
 		}	
 		
 		return ponto;
+	}
+	
+	
+	public RegistroPonto consultarPonto(long companyId, long pis, String dia) {
+		return this.consultarPonto(companyId, pis, dia, true);
+	}
+	
+	public RegistroPonto consultarPontoCompetencia(long companyId, long pis, String competencia) {
+		return this.consultarPonto(companyId, pis, competencia, false);
 	}
 	
 	

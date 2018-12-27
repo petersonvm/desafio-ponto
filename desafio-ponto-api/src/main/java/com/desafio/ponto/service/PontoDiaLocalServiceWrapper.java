@@ -230,9 +230,9 @@ public class PontoDiaLocalServiceWrapper implements PontoDiaLocalService,
 
 	@Override
 	public com.desafio.ponto.model.PontoDia getPontoDia(long pis,
-		java.util.Date dataHora)
+		java.util.Date data)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _pontoDiaLocalService.getPontoDia(pis, dataHora);
+		return _pontoDiaLocalService.getPontoDia(pis, data);
 	}
 
 	/**

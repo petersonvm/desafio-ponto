@@ -82,15 +82,43 @@ public class RegistroPontoServiceHttp {
 		}
 	}
 
-	public static com.desafio.ponto.model.custom.RegistroPonto consultarPonto(
+	public static com.desafio.ponto.model.custom.RegistroPonto consultarPontoCompetencia(
 		HttpPrincipal httpPrincipal, long companyId, long pis,
 		String competencia) {
 		try {
 			MethodKey methodKey = new MethodKey(RegistroPontoServiceUtil.class,
-					"consultarPonto", _consultarPontoParameterTypes1);
+					"consultarPontoCompetencia",
+					_consultarPontoCompetenciaParameterTypes1);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
 					companyId, pis, competencia);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+
+			return (com.desafio.ponto.model.custom.RegistroPonto)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static com.desafio.ponto.model.custom.RegistroPonto consultarPonto(
+		HttpPrincipal httpPrincipal, long companyId, long pis, String dia) {
+		try {
+			MethodKey methodKey = new MethodKey(RegistroPontoServiceUtil.class,
+					"consultarPonto", _consultarPontoParameterTypes2);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey,
+					companyId, pis, dia);
 
 			Object returnObj = null;
 
@@ -114,7 +142,7 @@ public class RegistroPontoServiceHttp {
 		long companyId, long pis, String batidas) {
 		try {
 			MethodKey methodKey = new MethodKey(RegistroPontoServiceUtil.class,
-					"importarPontos", _importarPontosParameterTypes2);
+					"importarPontos", _importarPontosParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
 					companyId, pis, batidas);
@@ -141,10 +169,13 @@ public class RegistroPontoServiceHttp {
 	private static final Class<?>[] _registraPontoParameterTypes0 = new Class[] {
 			long.class, long.class, String.class
 		};
-	private static final Class<?>[] _consultarPontoParameterTypes1 = new Class[] {
+	private static final Class<?>[] _consultarPontoCompetenciaParameterTypes1 = new Class[] {
 			long.class, long.class, String.class
 		};
-	private static final Class<?>[] _importarPontosParameterTypes2 = new Class[] {
+	private static final Class<?>[] _consultarPontoParameterTypes2 = new Class[] {
+			long.class, long.class, String.class
+		};
+	private static final Class<?>[] _importarPontosParameterTypes3 = new Class[] {
 			long.class, long.class, String.class
 		};
 }

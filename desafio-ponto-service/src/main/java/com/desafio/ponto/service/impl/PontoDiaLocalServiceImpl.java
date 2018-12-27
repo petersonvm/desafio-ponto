@@ -76,10 +76,10 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 
 	}
 
-	public PontoDia getPontoDia(long pis, Date dataHora) throws PortalException {
+	public PontoDia getPontoDia(long pis, Date data) throws PortalException {
 
-		long data = DateUtils.atStartOfDay(dataHora).getTime();
-		PontoDiaPK pontoDiaPK = new PontoDiaPK(pis, data);
+		long dataPk = DateUtils.atStartOfDay(data).getTime();
+		PontoDiaPK pontoDiaPK = new PontoDiaPK(pis, dataPk);
 		return PontoDiaLocalServiceUtil.getPontoDia(pontoDiaPK);
 	}
 

@@ -51,7 +51,9 @@ public interface RegistroPontoService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link RegistroPontoServiceUtil} to access the registro ponto remote service. Add custom service methods to {@link com.desafio.ponto.service.impl.RegistroPontoServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public RegistroPonto consultarPonto(long companyId, long pis,
+	public RegistroPonto consultarPonto(long companyId, long pis, String dia);
+
+	public RegistroPonto consultarPontoCompetencia(long companyId, long pis,
 		String competencia);
 
 	/**

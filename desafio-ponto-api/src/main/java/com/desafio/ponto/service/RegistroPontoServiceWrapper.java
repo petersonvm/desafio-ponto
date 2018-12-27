@@ -35,8 +35,15 @@ public class RegistroPontoServiceWrapper implements RegistroPontoService,
 
 	@Override
 	public com.desafio.ponto.model.custom.RegistroPonto consultarPonto(
+		long companyId, long pis, String dia) {
+		return _registroPontoService.consultarPonto(companyId, pis, dia);
+	}
+
+	@Override
+	public com.desafio.ponto.model.custom.RegistroPonto consultarPontoCompetencia(
 		long companyId, long pis, String competencia) {
-		return _registroPontoService.consultarPonto(companyId, pis, competencia);
+		return _registroPontoService.consultarPontoCompetencia(companyId, pis,
+			competencia);
 	}
 
 	/**
