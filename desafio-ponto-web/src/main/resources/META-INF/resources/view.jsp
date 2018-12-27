@@ -99,23 +99,28 @@
 	
 	function popularGrid(result){
 		$('.resultado').empty();
-		$('.resultado').append('<p><b><liferay-ui:message key="desafiopontoweb.lista.competencia" /></b>'+result.Competencia+'</p>');
-		$('.resultado').append('<b><liferay-ui:message key="desafiopontoweb.lista.marcacoes" /></b><br/>');
-		for (var mc in result.Marcacoes) {
-		     var marcacao = result.Marcacoes[mc];
-		     $('.resultado').append('<b><liferay-ui:message key="desafiopontoweb.lista.data" /></b>'+marcacao.Data+'<br/>');
-		     $('.resultado').append('<b><liferay-ui:message key="desafiopontoweb.lista.status" /></b>'+marcacao.Status+'<br/>');
-		     $('.resultado').append('<b><liferay-ui:message key="desafiopontoweb.lista.batidas" /></b><br/>');
-		     var batidas = result.Marcacoes[mc].Batidas;
-		     $('.resultado').append('<p>');
-		     for (var bt in batidas) {
-		    	 var batida = batidas[bt];
-		    	 $('.resultado').append('<li>'+batida+'</li>');
-		     }
-		     $('.resultado').append('</p>');
-		     $('.resultado').append('<b><liferay-ui:message key="desafiopontoweb.lista.horas"/></b>'+Math.round(marcacao.HorasTrabalhadas)+'<br/>');
+		if(result.Competencia != null){
+			$('.resultado').append('<p><b><liferay-ui:message key="desafiopontoweb.lista.competencia" /></b>'+result.Competencia+'</p>');
+			$('.resultado').append('<b><liferay-ui:message key="desafiopontoweb.lista.marcacoes" /></b><br/>');
+			for (var mc in result.Marcacoes) {
+			     var marcacao = result.Marcacoes[mc];
+			     $('.resultado').append('<b><liferay-ui:message key="desafiopontoweb.lista.data" /></b>'+marcacao.Data+'<br/>');
+			     $('.resultado').append('<b><liferay-ui:message key="desafiopontoweb.lista.status" /></b>'+marcacao.Status+'<br/>');
+			     $('.resultado').append('<b><liferay-ui:message key="desafiopontoweb.lista.batidas" /></b><br/>');
+			     var batidas = result.Marcacoes[mc].Batidas;
+			     $('.resultado').append('<p>');
+			     for (var bt in batidas) {
+			    	 var batida = batidas[bt];
+			    	 $('.resultado').append('<li>'+batida+'</li>');
+			     }
+			     $('.resultado').append('</p>');
+			     $('.resultado').append('<b><liferay-ui:message key="desafiopontoweb.lista.horas"/></b>'+Math.round(marcacao.HorasTrabalhadas)+'<br/>');
+			}
+		 /*	$('.resultado').append('<p><b><liferay-ui:message key="desafiopontoweb.lista.horastrabalhadas"/></b>'+Math.round(result.TotalHorasTrabalhadas)+'</p><br><br>'); */
+
+		}else{
+			$('.resultado').append('<p><b><liferay-ui:message key="desafiopontoweb.lista.naoencontrado"/></b></p>');
 		}
-		$('.resultado').append('<p><b><liferay-ui:message key="desafiopontoweb.lista.horastrabalhadas"/></b>'+Math.round(result.TotalHorasTrabalhadas)+'</p><br><br>');
 
 	}
 	
