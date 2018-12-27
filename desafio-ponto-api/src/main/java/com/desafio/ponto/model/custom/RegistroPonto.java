@@ -26,14 +26,14 @@ public class RegistroPonto {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	@JSON(name="Competência")
+	@JSON(name="Competencia")
 	public String getCompetencia() {
 		return competencia;
 	}
 	public void setCompetencia(String competencia) {
 		this.competencia = competencia;
 	}
-	@JSON(name="Marcações")
+	@JSON(name="Marcacoes")
 	public List<Marcacoes> getMarcacoes() {
 		return marcacoes;
 	}
@@ -41,7 +41,7 @@ public class RegistroPonto {
 		this.marcacoes = marcacoes;
 	}
 	
-	@JSON(name="Total Horas Trabalhadas")
+	@JSON(name="TotalHorasTrabalhadas")
 	public double getTotalHorasTrabalhadas() {
 		return totalHorasTrabalhadas;
 	}

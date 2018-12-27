@@ -25,7 +25,7 @@ public class Marcacoes {
 	public void setBatidas(List<String> batidas) {
 		this.batidas = batidas;
 	}
-	@JSON(name="Horas Trabalhadas")
+	@JSON(name="HorasTrabalhadas")
 	public double getHorasTrabalhadas() {
 		return horasTrabalhadas;
 	}
