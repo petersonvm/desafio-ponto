@@ -53,7 +53,18 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 	 * Never reference this class directly. Always use {@link com.desafio.ponto.service.PontoDiaLocalServiceUtil} to access the ponto dia local service.
 	 */
 
-	private static long VAL_DIV_MIN = 60000; 
+	private static long VAL_DIV_MIN = 60000;
+	
+	
+	
+	/**
+	 *  Persiste no SGBD um objeto referente a entidade PontoDia. 
+	 *
+	 * @param  pis  	Numero PIS do funcionario
+	 * @param  dataHora Objeto Date que representa a data e hora do registro do ponto.
+	 * @return      	Um objeto da entidade PontoDia
+	 * @throws com.desafio.ponto.exception.PontoDiaExistenteException		
+	 */
 
 	public PontoDia gravarPonto(long pis, Date dataHora) throws PontoDiaExistenteException {
 
@@ -75,7 +86,15 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 		}
 
 	}
-
+	
+	/**
+	 *  Retorna um objeto referente a entidade PontoDia. 
+	 *
+	 * @param  pis  	Numero PIS do funcionario
+	 * @param  dataHora Objeto Date que representa a data e hora do registro do ponto.
+	 * @return      	Um objeto da entidade PontoDia
+	 * @throws com.liferay.portal.kernel.exception.PortalException
+	 */
 	public PontoDia getPontoDia(long pis, Date data) throws PortalException {
 
 		long dataPk = DateUtils.atStartOfDay(data).getTime();
@@ -84,6 +103,12 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 	}
 
 
+	/**
+	 *  Realiza o calculo de horas trabalhadas por um funcionário em um dia, com base nas suas marcações. 
+	 *
+	 * @param  pontoDia  Objeto referente a entidade que será atualizado com as horas trabalhadas 
+	 * @return Um objeto da entidade PontoDia atualizado com as horas trabalhadas
+	 */
 	public PontoDia calcularHorasTrabalhadas(PontoDia pontoDia) {	
 
 		List<PontoMarcacoes> marcacoesDia = PontoMarcacoesLocalServiceUtil.findByPisDia(pontoDia.getPis(), pontoDia.getData());
@@ -125,8 +150,16 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 
 		return pontoDia;
 	}
-
-
+	
+	
+	/**
+	 *  Realiza o calculo e validação de intervalos com base nas horas trabalhadas por um funcionário. Caso intervalo não seja corretamente
+	 *  respeitado o status será atualizado com {@link com.desafio.ponto.service.util.StatusPonto} "StatusPonto.INTERVALO_NAO_RESPEITADO" 
+	 *
+	 * @param  pontoDia  Objeto referente a entidade PontoDia que será validado.
+	 * @see    com.desafio.ponto.service.util.StatusPonto	
+	 * @return Um objeto da entidade PontoDia com o status atualizado.
+	 */
 	public PontoDia calcularIntervalos(PontoDia pontoDia) {
 
 		boolean intervaloOk = true;
@@ -187,6 +220,14 @@ public class PontoDiaLocalServiceImpl extends PontoDiaLocalServiceBaseImpl {
 		return pontoDia;
 	}
 	
+	
+	/**
+	 *  Retorna uma lista de objetos referente a entidade PontoDia. 
+	 *
+	 * @param  pis  	Numero PIS do funcionario
+	 * @param  competencia String  que representa a competencia("MM/YYYY").
+	 * @return      	Lista de objetos da entidade PontoDia.
+	 */
 	public List<PontoDia> findByPisCompetencia(long pis, String competencia){
 		return pontoDiaPersistence.findByFindByCompetencia(pis, competencia);
 	}

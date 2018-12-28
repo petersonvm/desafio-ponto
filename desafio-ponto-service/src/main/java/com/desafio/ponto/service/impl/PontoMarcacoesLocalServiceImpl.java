@@ -49,6 +49,14 @@ extends PontoMarcacoesLocalServiceBaseImpl {
 	 * Never reference this class directly. Always use {@link com.desafio.ponto.service.PontoMarcacoesLocalServiceUtil} to access the ponto marcacoes local service.
 	 */
 
+	/**
+	 *  Persiste no SGBD um objeto referente a entidade PontoMarcacoes. 
+	 *
+	 * @param  pis  	Numero PIS do funcionario
+	 * @param  dataHora Objeto Date que representa a data e hora do registro do ponto.
+	 * @return      	Um objeto da entidade PontoMarcacoes
+	 * @throws com.desafio.ponto.exception.MarcacaoExistenteException		
+	 */
 	public PontoMarcacoes gravarMarcacao(long pis, Date dataHora) throws MarcacaoExistenteException {
 
 		try {
@@ -66,17 +74,38 @@ extends PontoMarcacoesLocalServiceBaseImpl {
 
 	}
 	
+	/**
+	 *  Retorna um objeto referente a entidade PontoMarcacoes. 
+	 *
+	 * @param  pis  	Numero PIS do funcionario
+	 * @param  dataHora Objeto Date que representa a data e hora do registro do ponto.
+	 * @return      	Um objeto da entidade PontoMarcacoes
+	 * @throws com.liferay.portal.kernel.exception.PortalException
+	 */
 	public PontoMarcacoes getPontoMarcacoes(long pis, Date dataHora) throws PortalException {
 		long data = DateUtils.atStartOfDay(dataHora).getTime();
 		PontoMarcacoesPK pontoMarcacoesPK = new PontoMarcacoesPK(pis, data, dataHora.getTime());		
 		return PontoMarcacoesLocalServiceUtil.getPontoMarcacoes(pontoMarcacoesPK);
 	}
 	
-	
+	/**
+	 *  Retorna uma Lista de objetos referente a entidade PontoMarcacoes. 
+	 *
+	 * @param  pis  	Numero PIS do funcionario
+	 * @param  dataHora Objeto Date que representa a data e hora do registro do ponto.
+	 * @return      	Lista de objetos da entidade PontoMarcacoes
+	 */	
 	public List<PontoMarcacoes> findByPisDia(long pis, Date dataHora){
 		return pontoMarcacoesPersistence.findByFindByPisData(pis, dataHora.getTime(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 	
+	/**
+	 *  Retorna uma Lista de objetos referente a entidade PontoMarcacoes. 
+	 *
+	 * @param  pis  	Numero PIS do funcionario
+	 * @param  dataHora long que representa a data e hora do registro do ponto.
+	 * @return      	Lista de objetos da entidade PontoMarcacoes
+	 */		
 	public List<PontoMarcacoes> findByPisDia(long pis, long dataHora){
 		return pontoMarcacoesPersistence.findByFindByPisData(pis, dataHora, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 

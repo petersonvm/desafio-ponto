@@ -20,7 +20,8 @@ import javax.portlet.ProcessAction;
 
 import org.osgi.service.component.annotations.Component;
 
-/**
+/**Portlet que realiza o registro de ponto pelo funcionario logado.
+ * 
  * @author peterson.v.de.morais
  */
 @Component(
@@ -38,9 +39,15 @@ import org.osgi.service.component.annotations.Component;
 )
 public class DesafioPontoWebPortlet extends MVCPortlet {
 	
-	
+	/**
+	 *   Metodo chmado pela view para realizar o registro de Registro de Ponto. 
+	 *
+	 * @param  actionRequest 	actionRequest
+	 * @param  actionResponse 	actionResponse
+	 * @see com.desafio.ponto.service.RegistroPontoLocalServiceUtil
+	 */
 	@ProcessAction(name="doRegistrarPonto")
-	public void doLogin(ActionRequest actionRequest,ActionResponse actionResponse) throws IOException, PortletException {
+	public void doRegistrarPonto(ActionRequest actionRequest,ActionResponse actionResponse) throws IOException, PortletException {
 		ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 		long companyId = themeDisplay.getCompanyId();
 		long pis = ParamUtil.getLong(actionRequest, "pis");

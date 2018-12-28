@@ -6,3 +6,4 @@ Liferay-Service: true
 Export-Package: \
 	com.desafio.ponto.service.impl,\
 	com.desafio.ponto.service.util
+Test-Cases: com.desafio.ponto.test.RegistroPontoServiceTest
