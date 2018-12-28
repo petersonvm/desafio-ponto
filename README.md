@@ -83,3 +83,18 @@ Também pode ser executado atráves do */api/jsonws/*
     * Portlet
     * Service Builder - Webservices e persistencia
     * Campos personalizados (Custom fields)
+
+## Informações do aambiente de desenvolivmento
+
+Liferay
+* Product information:
+  * installation type: binary
+  * build number: 7110
+  * service pack version:
+    - available SP version: Not available
+    - installable SP version: Not available
+  * patching-tool version: 2.0.7
+  * time: 2018-12-28 17:01Z
+  * plugins: no plugins detected
+
+SGBD - MySQL 5.7
