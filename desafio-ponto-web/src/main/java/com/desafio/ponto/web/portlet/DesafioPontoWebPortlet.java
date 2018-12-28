@@ -45,6 +45,8 @@ public class DesafioPontoWebPortlet extends MVCPortlet {
 	 * @param  actionRequest 	actionRequest
 	 * @param  actionResponse 	actionResponse
 	 * @see com.desafio.ponto.service.RegistroPontoLocalServiceUtil
+	 * @throws java.io.IOException  IOException
+	 * @throws javax.portlet.PortletException PortletException
 	 */
 	@ProcessAction(name="doRegistrarPonto")
 	public void doRegistrarPonto(ActionRequest actionRequest,ActionResponse actionResponse) throws IOException, PortletException {
