@@ -16,12 +16,12 @@ public class StatusPonto {
 	 */
 	public static int OK = 1;
 	/**
-	 * Representa um registro de ponto inclompleto, quando esta faltando uma saida para um entrada ou vice-versa. 
+	 * Representa um registro de ponto incompleto, quando esta faltando uma saida para um entrada ou vice-versa. 
 	 */
 	public static int MARCACOES_INCOMPLETA = 2;
 	
 	/**
-	 * Representa um registro de ponto inclompleto, quando o intervalo minimo não foi respeitado. 
+	 * Representa um registro de ponto incompleto, quando o intervalo minimo não foi respeitado. 
 	 */
 	public static int INTERVALO_NAO_RESPEITADO = 3;
 
