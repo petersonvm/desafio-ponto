@@ -54,6 +54,23 @@ public interface PontoMarcacoes extends PontoMarcacoesModel, PersistedModel {
 			}
 		};
 
+	public static final Accessor<PontoMarcacoes, Long> DATA_ACCESSOR = new Accessor<PontoMarcacoes, Long>() {
+			@Override
+			public Long get(PontoMarcacoes pontoMarcacoes) {
+				return pontoMarcacoes.getData();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<PontoMarcacoes> getTypeClass() {
+				return PontoMarcacoes.class;
+			}
+		};
+
 	public static final Accessor<PontoMarcacoes, Long> DATA_HORA_ACCESSOR = new Accessor<PontoMarcacoes, Long>() {
 			@Override
 			public Long get(PontoMarcacoes pontoMarcacoes) {

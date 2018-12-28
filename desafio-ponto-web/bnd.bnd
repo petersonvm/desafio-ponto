@@ -1,0 +1,4 @@
+Bundle-Name: desafio-ponto-web
+Bundle-SymbolicName: com.desafio.ponto.web
+Bundle-Version: 1.0.0
+Export-Package: com.desafio.ponto.web.constants

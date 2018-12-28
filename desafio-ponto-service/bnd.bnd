@@ -3,3 +3,7 @@ Bundle-SymbolicName: com.desafio.ponto.service
 Bundle-Version: 1.0.0
 Liferay-Require-SchemaVersion: 1.0.0
 Liferay-Service: true
+Export-Package: \
+	com.desafio.ponto.service.impl,\
+	com.desafio.ponto.service.util
+Test-Cases: com.desafio.ponto.test.RegistroPontoServiceTest

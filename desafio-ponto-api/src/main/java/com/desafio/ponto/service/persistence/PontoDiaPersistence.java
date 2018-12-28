@@ -42,6 +42,151 @@ public interface PontoDiaPersistence extends BasePersistence<PontoDia> {
 	 */
 
 	/**
+	* Returns all the ponto dias where Pis = &#63; and Competencia = &#63;.
+	*
+	* @param Pis the pis
+	* @param Competencia the competencia
+	* @return the matching ponto dias
+	*/
+	public java.util.List<PontoDia> findByFindByCompetencia(long Pis,
+		String Competencia);
+
+	/**
+	* Returns a range of all the ponto dias where Pis = &#63; and Competencia = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PontoDiaModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param Pis the pis
+	* @param Competencia the competencia
+	* @param start the lower bound of the range of ponto dias
+	* @param end the upper bound of the range of ponto dias (not inclusive)
+	* @return the range of matching ponto dias
+	*/
+	public java.util.List<PontoDia> findByFindByCompetencia(long Pis,
+		String Competencia, int start, int end);
+
+	/**
+	* Returns an ordered range of all the ponto dias where Pis = &#63; and Competencia = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PontoDiaModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param Pis the pis
+	* @param Competencia the competencia
+	* @param start the lower bound of the range of ponto dias
+	* @param end the upper bound of the range of ponto dias (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching ponto dias
+	*/
+	public java.util.List<PontoDia> findByFindByCompetencia(long Pis,
+		String Competencia, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<PontoDia> orderByComparator);
+
+	/**
+	* Returns an ordered range of all the ponto dias where Pis = &#63; and Competencia = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PontoDiaModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param Pis the pis
+	* @param Competencia the competencia
+	* @param start the lower bound of the range of ponto dias
+	* @param end the upper bound of the range of ponto dias (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching ponto dias
+	*/
+	public java.util.List<PontoDia> findByFindByCompetencia(long Pis,
+		String Competencia, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<PontoDia> orderByComparator,
+		boolean retrieveFromCache);
+
+	/**
+	* Returns the first ponto dia in the ordered set where Pis = &#63; and Competencia = &#63;.
+	*
+	* @param Pis the pis
+	* @param Competencia the competencia
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching ponto dia
+	* @throws NoSuchPontoDiaException if a matching ponto dia could not be found
+	*/
+	public PontoDia findByFindByCompetencia_First(long Pis, String Competencia,
+		com.liferay.portal.kernel.util.OrderByComparator<PontoDia> orderByComparator)
+		throws NoSuchPontoDiaException;
+
+	/**
+	* Returns the first ponto dia in the ordered set where Pis = &#63; and Competencia = &#63;.
+	*
+	* @param Pis the pis
+	* @param Competencia the competencia
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching ponto dia, or <code>null</code> if a matching ponto dia could not be found
+	*/
+	public PontoDia fetchByFindByCompetencia_First(long Pis,
+		String Competencia,
+		com.liferay.portal.kernel.util.OrderByComparator<PontoDia> orderByComparator);
+
+	/**
+	* Returns the last ponto dia in the ordered set where Pis = &#63; and Competencia = &#63;.
+	*
+	* @param Pis the pis
+	* @param Competencia the competencia
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching ponto dia
+	* @throws NoSuchPontoDiaException if a matching ponto dia could not be found
+	*/
+	public PontoDia findByFindByCompetencia_Last(long Pis, String Competencia,
+		com.liferay.portal.kernel.util.OrderByComparator<PontoDia> orderByComparator)
+		throws NoSuchPontoDiaException;
+
+	/**
+	* Returns the last ponto dia in the ordered set where Pis = &#63; and Competencia = &#63;.
+	*
+	* @param Pis the pis
+	* @param Competencia the competencia
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching ponto dia, or <code>null</code> if a matching ponto dia could not be found
+	*/
+	public PontoDia fetchByFindByCompetencia_Last(long Pis, String Competencia,
+		com.liferay.portal.kernel.util.OrderByComparator<PontoDia> orderByComparator);
+
+	/**
+	* Returns the ponto dias before and after the current ponto dia in the ordered set where Pis = &#63; and Competencia = &#63;.
+	*
+	* @param pontoDiaPK the primary key of the current ponto dia
+	* @param Pis the pis
+	* @param Competencia the competencia
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next ponto dia
+	* @throws NoSuchPontoDiaException if a ponto dia with the primary key could not be found
+	*/
+	public PontoDia[] findByFindByCompetencia_PrevAndNext(
+		PontoDiaPK pontoDiaPK, long Pis, String Competencia,
+		com.liferay.portal.kernel.util.OrderByComparator<PontoDia> orderByComparator)
+		throws NoSuchPontoDiaException;
+
+	/**
+	* Removes all the ponto dias where Pis = &#63; and Competencia = &#63; from the database.
+	*
+	* @param Pis the pis
+	* @param Competencia the competencia
+	*/
+	public void removeByFindByCompetencia(long Pis, String Competencia);
+
+	/**
+	* Returns the number of ponto dias where Pis = &#63; and Competencia = &#63;.
+	*
+	* @param Pis the pis
+	* @param Competencia the competencia
+	* @return the number of matching ponto dias
+	*/
+	public int countByFindByCompetencia(long Pis, String Competencia);
+
+	/**
 	* Caches the ponto dia in the entity cache if it is enabled.
 	*
 	* @param pontoDia the ponto dia

@@ -14,12 +14,18 @@
 
 package com.desafio.ponto.service.impl;
 
+import com.desafio.ponto.exception.MarcacaoExistenteException;
 import com.desafio.ponto.model.PontoMarcacoes;
 import com.desafio.ponto.model.impl.PontoMarcacoesImpl;
 import com.desafio.ponto.service.PontoMarcacoesLocalServiceUtil;
 import com.desafio.ponto.service.base.PontoMarcacoesLocalServiceBaseImpl;
+import com.desafio.ponto.service.persistence.PontoMarcacoesPK;
+import com.desafio.ponto.service.util.DateUtils;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * The implementation of the ponto marcacoes local service.
@@ -36,24 +42,73 @@ import java.util.Date;
  * @see com.desafio.ponto.service.PontoMarcacoesLocalServiceUtil
  */
 public class PontoMarcacoesLocalServiceImpl
-	extends PontoMarcacoesLocalServiceBaseImpl {
+extends PontoMarcacoesLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. Always use {@link com.desafio.ponto.service.PontoMarcacoesLocalServiceUtil} to access the ponto marcacoes local service.
 	 */
+
+	/**
+	 *  Persiste no SGBD um objeto referente a entidade PontoMarcacoes. 
+	 *
+	 * @param  pis  	Numero PIS do funcionario
+	 * @param  dataHora Objeto Date que representa a data e hora do registro do ponto.
+	 * @return      	Um objeto da entidade PontoMarcacoes
+	 * @throws com.desafio.ponto.exception.MarcacaoExistenteException		
+	 */
+	public PontoMarcacoes gravarMarcacao(long pis, Date dataHora) throws MarcacaoExistenteException {
+
+		try {
+			this.getPontoMarcacoes(pis, dataHora);
+			throw new MarcacaoExistenteException();
+		} catch (PortalException e) {
+			PontoMarcacoes marcacao = new PontoMarcacoesImpl();
+			marcacao.setPis(pis);
+			marcacao.setData(DateUtils.atStartOfDay(dataHora).getTime());
+			marcacao.setDataReferencia(DateUtils.atStartOfDay(dataHora).getTime());
+			marcacao.setDataHora(dataHora.getTime());
+			PontoMarcacoesLocalServiceUtil.addPontoMarcacoes(marcacao);
+			return marcacao;
+		}
+
+	}
 	
+	/**
+	 *  Retorna um objeto referente a entidade PontoMarcacoes. 
+	 *
+	 * @param  pis  	Numero PIS do funcionario
+	 * @param  dataHora Objeto Date que representa a data e hora do registro do ponto.
+	 * @return      	Um objeto da entidade PontoMarcacoes
+	 * @throws com.liferay.portal.kernel.exception.PortalException
+	 */
+	public PontoMarcacoes getPontoMarcacoes(long pis, Date dataHora) throws PortalException {
+		long data = DateUtils.atStartOfDay(dataHora).getTime();
+		PontoMarcacoesPK pontoMarcacoesPK = new PontoMarcacoesPK(pis, data, dataHora.getTime());		
+		return PontoMarcacoesLocalServiceUtil.getPontoMarcacoes(pontoMarcacoesPK);
+	}
 	
-	public PontoMarcacoes registrarMarcacao(long pis, Date dataMarcacao) {
-		PontoMarcacoes pMarcacao = new PontoMarcacoesImpl();
-		
-		pMarcacao.setPis(pis);
-		pMarcacao.setDataHora(dataMarcacao.getTime());
-		pMarcacao.setMarcacao_valida(true);
-		
-		PontoMarcacoesLocalServiceUtil.addPontoMarcacoes(pMarcacao);
-		
-		return pMarcacao;
-		
+	/**
+	 *  Retorna uma Lista de objetos referente a entidade PontoMarcacoes. 
+	 *
+	 * @param  pis  	Numero PIS do funcionario
+	 * @param  dataHora Objeto Date que representa a data e hora do registro do ponto.
+	 * @return      	Lista de objetos da entidade PontoMarcacoes
+	 */	
+	public List<PontoMarcacoes> findByPisDia(long pis, Date dataHora){
+		return pontoMarcacoesPersistence.findByFindByPisData(pis, dataHora.getTime(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+	}
+	
+	/**
+	 *  Retorna uma Lista de objetos referente a entidade PontoMarcacoes. 
+	 *
+	 * @param  pis  	Numero PIS do funcionario
+	 * @param  dataHora long que representa a data e hora do registro do ponto.
+	 * @return      	Lista de objetos da entidade PontoMarcacoes
+	 */		
+	public List<PontoMarcacoes> findByPisDia(long pis, long dataHora){
+		return pontoMarcacoesPersistence.findByFindByPisData(pis, dataHora, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
 	}
 }
+	

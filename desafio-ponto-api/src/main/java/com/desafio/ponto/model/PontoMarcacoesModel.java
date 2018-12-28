@@ -76,6 +76,20 @@ public interface PontoMarcacoesModel extends BaseModel<PontoMarcacoes> {
 	public void setPis(long Pis);
 
 	/**
+	 * Returns the data of this ponto marcacoes.
+	 *
+	 * @return the data of this ponto marcacoes
+	 */
+	public long getData();
+
+	/**
+	 * Sets the data of this ponto marcacoes.
+	 *
+	 * @param Data the data of this ponto marcacoes
+	 */
+	public void setData(long Data);
+
+	/**
 	 * Returns the data hora of this ponto marcacoes.
 	 *
 	 * @return the data hora of this ponto marcacoes
@@ -90,25 +104,18 @@ public interface PontoMarcacoesModel extends BaseModel<PontoMarcacoes> {
 	public void setDataHora(long DataHora);
 
 	/**
-	 * Returns the marcacao_valida of this ponto marcacoes.
+	 * Returns the data referencia of this ponto marcacoes.
 	 *
-	 * @return the marcacao_valida of this ponto marcacoes
+	 * @return the data referencia of this ponto marcacoes
 	 */
-	public boolean getMarcacao_valida();
+	public long getDataReferencia();
 
 	/**
-	 * Returns <code>true</code> if this ponto marcacoes is marcacao_valida.
+	 * Sets the data referencia of this ponto marcacoes.
 	 *
-	 * @return <code>true</code> if this ponto marcacoes is marcacao_valida; <code>false</code> otherwise
+	 * @param DataReferencia the data referencia of this ponto marcacoes
 	 */
-	public boolean isMarcacao_valida();
-
-	/**
-	 * Sets whether this ponto marcacoes is marcacao_valida.
-	 *
-	 * @param Marcacao_valida the marcacao_valida of this ponto marcacoes
-	 */
-	public void setMarcacao_valida(boolean Marcacao_valida);
+	public void setDataReferencia(long DataReferencia);
 
 	@Override
 	public boolean isNew();

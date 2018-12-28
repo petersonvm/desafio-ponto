@@ -29,13 +29,15 @@ import java.io.Serializable;
 public class PontoMarcacoesPK implements Comparable<PontoMarcacoesPK>,
 	Serializable {
 	public long Pis;
+	public long Data;
 	public long DataHora;
 
 	public PontoMarcacoesPK() {
 	}
 
-	public PontoMarcacoesPK(long Pis, long DataHora) {
+	public PontoMarcacoesPK(long Pis, long Data, long DataHora) {
 		this.Pis = Pis;
+		this.Data = Data;
 		this.DataHora = DataHora;
 	}
 
@@ -45,6 +47,14 @@ public class PontoMarcacoesPK implements Comparable<PontoMarcacoesPK>,
 
 	public void setPis(long Pis) {
 		this.Pis = Pis;
+	}
+
+	public long getData() {
+		return Data;
+	}
+
+	public void setData(long Data) {
+		this.Data = Data;
 	}
 
 	public long getDataHora() {
@@ -67,6 +77,20 @@ public class PontoMarcacoesPK implements Comparable<PontoMarcacoesPK>,
 			value = -1;
 		}
 		else if (Pis > pk.Pis) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
+
+		if (value != 0) {
+			return value;
+		}
+
+		if (Data < pk.Data) {
+			value = -1;
+		}
+		else if (Data > pk.Data) {
 			value = 1;
 		}
 		else {
@@ -106,7 +130,7 @@ public class PontoMarcacoesPK implements Comparable<PontoMarcacoesPK>,
 
 		PontoMarcacoesPK pk = (PontoMarcacoesPK)obj;
 
-		if ((Pis == pk.Pis) && (DataHora == pk.DataHora)) {
+		if ((Pis == pk.Pis) && (Data == pk.Data) && (DataHora == pk.DataHora)) {
 			return true;
 		}
 		else {
@@ -119,6 +143,7 @@ public class PontoMarcacoesPK implements Comparable<PontoMarcacoesPK>,
 		int hashCode = 0;
 
 		hashCode = HashUtil.hash(hashCode, Pis);
+		hashCode = HashUtil.hash(hashCode, Data);
 		hashCode = HashUtil.hash(hashCode, DataHora);
 
 		return hashCode;
@@ -126,13 +151,16 @@ public class PontoMarcacoesPK implements Comparable<PontoMarcacoesPK>,
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(6);
+		StringBundler sb = new StringBundler(8);
 
 		sb.append("{");
 
 		sb.append("Pis=");
 
 		sb.append(Pis);
+		sb.append(", Data=");
+
+		sb.append(Data);
 		sb.append(", DataHora=");
 
 		sb.append(DataHora);

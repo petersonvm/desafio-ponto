@@ -64,14 +64,16 @@ public class PontoMarcacoesCacheModel implements CacheModel<PontoMarcacoes>,
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("{Pis=");
 		sb.append(Pis);
+		sb.append(", Data=");
+		sb.append(Data);
 		sb.append(", DataHora=");
 		sb.append(DataHora);
-		sb.append(", Marcacao_valida=");
-		sb.append(Marcacao_valida);
+		sb.append(", DataReferencia=");
+		sb.append(DataReferencia);
 		sb.append("}");
 
 		return sb.toString();
@@ -82,8 +84,9 @@ public class PontoMarcacoesCacheModel implements CacheModel<PontoMarcacoes>,
 		PontoMarcacoesImpl pontoMarcacoesImpl = new PontoMarcacoesImpl();
 
 		pontoMarcacoesImpl.setPis(Pis);
+		pontoMarcacoesImpl.setData(Data);
 		pontoMarcacoesImpl.setDataHora(DataHora);
-		pontoMarcacoesImpl.setMarcacao_valida(Marcacao_valida);
+		pontoMarcacoesImpl.setDataReferencia(DataReferencia);
 
 		pontoMarcacoesImpl.resetOriginalValues();
 
@@ -94,11 +97,13 @@ public class PontoMarcacoesCacheModel implements CacheModel<PontoMarcacoes>,
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		Pis = objectInput.readLong();
 
+		Data = objectInput.readLong();
+
 		DataHora = objectInput.readLong();
 
-		Marcacao_valida = objectInput.readBoolean();
+		DataReferencia = objectInput.readLong();
 
-		pontoMarcacoesPK = new PontoMarcacoesPK(Pis, DataHora);
+		pontoMarcacoesPK = new PontoMarcacoesPK(Pis, Data, DataHora);
 	}
 
 	@Override
@@ -106,13 +111,16 @@ public class PontoMarcacoesCacheModel implements CacheModel<PontoMarcacoes>,
 		throws IOException {
 		objectOutput.writeLong(Pis);
 
+		objectOutput.writeLong(Data);
+
 		objectOutput.writeLong(DataHora);
 
-		objectOutput.writeBoolean(Marcacao_valida);
+		objectOutput.writeLong(DataReferencia);
 	}
 
 	public long Pis;
+	public long Data;
 	public long DataHora;
-	public boolean Marcacao_valida;
+	public long DataReferencia;
 	public transient PontoMarcacoesPK pontoMarcacoesPK;
 }

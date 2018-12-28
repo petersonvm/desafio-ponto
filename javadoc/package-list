@@ -1,0 +1,14 @@
+com.desafio.ponto.exception
+com.desafio.ponto.model
+com.desafio.ponto.model.custom
+com.desafio.ponto.model.impl
+com.desafio.ponto.service
+com.desafio.ponto.service.base
+com.desafio.ponto.service.http
+com.desafio.ponto.service.impl
+com.desafio.ponto.service.persistence
+com.desafio.ponto.service.persistence.impl
+com.desafio.ponto.service.util
+com.desafio.ponto.test
+com.desafio.ponto.web.constants
+com.desafio.ponto.web.portlet

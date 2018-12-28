@@ -1,0 +1,23 @@
+CREATE TABLE `ponto_dia` (
+  `Pis` bigint(20) NOT NULL,
+  `Data` bigint(20) NOT NULL,
+  `Competencia` varchar(75) DEFAULT NULL,
+  `Horas_Trabalhadas` double DEFAULT NULL,
+  `Status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Pis`,`Data`),
+  KEY `IX_C667B497` (`Competencia`),
+  KEY `IX_8DB5A4E7` (`Pis`,`Competencia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `ponto_marcacao` (
+  `Pis` bigint(20) NOT NULL,
+  `Data` bigint(20) NOT NULL,
+  `DataHora` bigint(20) NOT NULL,
+  `DataReferencia` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`Pis`,`Data`,`DataHora`),
+  KEY `IX_C1A3BFF8` (`Pis`,`Data`),
+  KEY `IX_907E8B0A` (`Pis`,`DataReferencia`),
+  CONSTRAINT `FK_ponto_marcacao` FOREIGN KEY (`Pis`, `Data`) REFERENCES `ponto_dia` (`Pis`, `Data`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

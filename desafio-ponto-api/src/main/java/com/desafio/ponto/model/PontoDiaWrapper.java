@@ -60,8 +60,7 @@ public class PontoDiaWrapper implements PontoDia, ModelWrapper<PontoDia> {
 		attributes.put("Data", getData());
 		attributes.put("Competencia", getCompetencia());
 		attributes.put("Horas_Trabalhadas", getHoras_Trabalhadas());
-		attributes.put("Horas_Extras", getHoras_Extras());
-		attributes.put("Horas_Negativas", getHoras_Negativas());
+		attributes.put("Status", getStatus());
 
 		return attributes;
 	}
@@ -86,22 +85,16 @@ public class PontoDiaWrapper implements PontoDia, ModelWrapper<PontoDia> {
 			setCompetencia(Competencia);
 		}
 
-		Integer Horas_Trabalhadas = (Integer)attributes.get("Horas_Trabalhadas");
+		Double Horas_Trabalhadas = (Double)attributes.get("Horas_Trabalhadas");
 
 		if (Horas_Trabalhadas != null) {
 			setHoras_Trabalhadas(Horas_Trabalhadas);
 		}
 
-		Integer Horas_Extras = (Integer)attributes.get("Horas_Extras");
+		Integer Status = (Integer)attributes.get("Status");
 
-		if (Horas_Extras != null) {
-			setHoras_Extras(Horas_Extras);
-		}
-
-		Integer Horas_Negativas = (Integer)attributes.get("Horas_Negativas");
-
-		if (Horas_Negativas != null) {
-			setHoras_Negativas(Horas_Negativas);
+		if (Status != null) {
+			setStatus(Status);
 		}
 	}
 
@@ -141,32 +134,12 @@ public class PontoDiaWrapper implements PontoDia, ModelWrapper<PontoDia> {
 	}
 
 	/**
-	* Returns the horas_ extras of this ponto dia.
-	*
-	* @return the horas_ extras of this ponto dia
-	*/
-	@Override
-	public int getHoras_Extras() {
-		return _pontoDia.getHoras_Extras();
-	}
-
-	/**
-	* Returns the horas_ negativas of this ponto dia.
-	*
-	* @return the horas_ negativas of this ponto dia
-	*/
-	@Override
-	public int getHoras_Negativas() {
-		return _pontoDia.getHoras_Negativas();
-	}
-
-	/**
 	* Returns the horas_ trabalhadas of this ponto dia.
 	*
 	* @return the horas_ trabalhadas of this ponto dia
 	*/
 	@Override
-	public int getHoras_Trabalhadas() {
+	public double getHoras_Trabalhadas() {
 		return _pontoDia.getHoras_Trabalhadas();
 	}
 
@@ -193,6 +166,16 @@ public class PontoDiaWrapper implements PontoDia, ModelWrapper<PontoDia> {
 	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _pontoDia.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the status of this ponto dia.
+	*
+	* @return the status of this ponto dia
+	*/
+	@Override
+	public int getStatus() {
+		return _pontoDia.getStatus();
 	}
 
 	@Override
@@ -262,32 +245,12 @@ public class PontoDiaWrapper implements PontoDia, ModelWrapper<PontoDia> {
 	}
 
 	/**
-	* Sets the horas_ extras of this ponto dia.
-	*
-	* @param Horas_Extras the horas_ extras of this ponto dia
-	*/
-	@Override
-	public void setHoras_Extras(int Horas_Extras) {
-		_pontoDia.setHoras_Extras(Horas_Extras);
-	}
-
-	/**
-	* Sets the horas_ negativas of this ponto dia.
-	*
-	* @param Horas_Negativas the horas_ negativas of this ponto dia
-	*/
-	@Override
-	public void setHoras_Negativas(int Horas_Negativas) {
-		_pontoDia.setHoras_Negativas(Horas_Negativas);
-	}
-
-	/**
 	* Sets the horas_ trabalhadas of this ponto dia.
 	*
 	* @param Horas_Trabalhadas the horas_ trabalhadas of this ponto dia
 	*/
 	@Override
-	public void setHoras_Trabalhadas(int Horas_Trabalhadas) {
+	public void setHoras_Trabalhadas(double Horas_Trabalhadas) {
 		_pontoDia.setHoras_Trabalhadas(Horas_Trabalhadas);
 	}
 
@@ -320,6 +283,16 @@ public class PontoDiaWrapper implements PontoDia, ModelWrapper<PontoDia> {
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		_pontoDia.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the status of this ponto dia.
+	*
+	* @param Status the status of this ponto dia
+	*/
+	@Override
+	public void setStatus(int Status) {
+		_pontoDia.setStatus(Status);
 	}
 
 	@Override

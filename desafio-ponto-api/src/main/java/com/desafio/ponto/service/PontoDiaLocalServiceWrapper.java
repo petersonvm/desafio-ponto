@@ -45,6 +45,18 @@ public class PontoDiaLocalServiceWrapper implements PontoDiaLocalService,
 		return _pontoDiaLocalService.addPontoDia(pontoDia);
 	}
 
+	@Override
+	public com.desafio.ponto.model.PontoDia calcularHorasTrabalhadas(
+		com.desafio.ponto.model.PontoDia pontoDia) {
+		return _pontoDiaLocalService.calcularHorasTrabalhadas(pontoDia);
+	}
+
+	@Override
+	public com.desafio.ponto.model.PontoDia calcularIntervalos(
+		com.desafio.ponto.model.PontoDia pontoDia) {
+		return _pontoDiaLocalService.calcularIntervalos(pontoDia);
+	}
+
 	/**
 	* Creates a new ponto dia with the primary key. Does not add the ponto dia to the database.
 	*
@@ -184,6 +196,12 @@ public class PontoDiaLocalServiceWrapper implements PontoDiaLocalService,
 	}
 
 	@Override
+	public java.util.List<com.desafio.ponto.model.PontoDia> findByPisCompetencia(
+		long pis, String competencia) {
+		return _pontoDiaLocalService.findByPisCompetencia(pis, competencia);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _pontoDiaLocalService.getActionableDynamicQuery();
 	}
@@ -208,6 +226,13 @@ public class PontoDiaLocalServiceWrapper implements PontoDiaLocalService,
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _pontoDiaLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public com.desafio.ponto.model.PontoDia getPontoDia(long pis,
+		java.util.Date data)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _pontoDiaLocalService.getPontoDia(pis, data);
 	}
 
 	/**
@@ -252,9 +277,10 @@ public class PontoDiaLocalServiceWrapper implements PontoDiaLocalService,
 	}
 
 	@Override
-	public com.desafio.ponto.model.PontoDia registarPonto(long pis,
-		java.util.Date dataPonto) {
-		return _pontoDiaLocalService.registarPonto(pis, dataPonto);
+	public com.desafio.ponto.model.PontoDia gravarPonto(long pis,
+		java.util.Date dataHora)
+		throws com.desafio.ponto.exception.PontoDiaExistenteException {
+		return _pontoDiaLocalService.gravarPonto(pis, dataHora);
 	}
 
 	/**

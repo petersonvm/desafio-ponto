@@ -16,6 +16,7 @@ package com.desafio.ponto.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.desafio.ponto.exception.MarcacaoExistenteException;
 import com.desafio.ponto.model.PontoMarcacoes;
 import com.desafio.ponto.service.persistence.PontoMarcacoesPK;
 
@@ -171,6 +172,10 @@ public interface PontoMarcacoesLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PontoMarcacoes fetchPontoMarcacoes(PontoMarcacoesPK pontoMarcacoesPK);
 
+	public List<PontoMarcacoes> findByPisDia(long pis, Date dataHora);
+
+	public List<PontoMarcacoes> findByPisDia(long pis, long dataHora);
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
@@ -187,6 +192,10 @@ public interface PontoMarcacoesLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PontoMarcacoes getPontoMarcacoes(long pis, Date dataHora)
 		throws PortalException;
 
 	/**
@@ -222,7 +231,8 @@ public interface PontoMarcacoesLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getPontoMarcacoesesCount();
 
-	public PontoMarcacoes registrarMarcacao(long pis, Date dataMarcacao);
+	public PontoMarcacoes gravarMarcacao(long pis, Date dataHora)
+		throws MarcacaoExistenteException;
 
 	/**
 	* Updates the ponto marcacoes in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

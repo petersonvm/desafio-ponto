@@ -113,6 +113,360 @@ public class PontoMarcacoesUtil {
 	}
 
 	/**
+	* Returns all the ponto marcacoeses where Pis = &#63; and Data = &#63;.
+	*
+	* @param Pis the pis
+	* @param Data the data
+	* @return the matching ponto marcacoeses
+	*/
+	public static List<PontoMarcacoes> findByFindByPisData(long Pis, long Data) {
+		return getPersistence().findByFindByPisData(Pis, Data);
+	}
+
+	/**
+	* Returns a range of all the ponto marcacoeses where Pis = &#63; and Data = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PontoMarcacoesModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param Pis the pis
+	* @param Data the data
+	* @param start the lower bound of the range of ponto marcacoeses
+	* @param end the upper bound of the range of ponto marcacoeses (not inclusive)
+	* @return the range of matching ponto marcacoeses
+	*/
+	public static List<PontoMarcacoes> findByFindByPisData(long Pis, long Data,
+		int start, int end) {
+		return getPersistence().findByFindByPisData(Pis, Data, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the ponto marcacoeses where Pis = &#63; and Data = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PontoMarcacoesModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param Pis the pis
+	* @param Data the data
+	* @param start the lower bound of the range of ponto marcacoeses
+	* @param end the upper bound of the range of ponto marcacoeses (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching ponto marcacoeses
+	*/
+	public static List<PontoMarcacoes> findByFindByPisData(long Pis, long Data,
+		int start, int end, OrderByComparator<PontoMarcacoes> orderByComparator) {
+		return getPersistence()
+				   .findByFindByPisData(Pis, Data, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the ponto marcacoeses where Pis = &#63; and Data = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PontoMarcacoesModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param Pis the pis
+	* @param Data the data
+	* @param start the lower bound of the range of ponto marcacoeses
+	* @param end the upper bound of the range of ponto marcacoeses (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching ponto marcacoeses
+	*/
+	public static List<PontoMarcacoes> findByFindByPisData(long Pis, long Data,
+		int start, int end,
+		OrderByComparator<PontoMarcacoes> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByFindByPisData(Pis, Data, start, end,
+			orderByComparator, retrieveFromCache);
+	}
+
+	/**
+	* Returns the first ponto marcacoes in the ordered set where Pis = &#63; and Data = &#63;.
+	*
+	* @param Pis the pis
+	* @param Data the data
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching ponto marcacoes
+	* @throws NoSuchPontoMarcacoesException if a matching ponto marcacoes could not be found
+	*/
+	public static PontoMarcacoes findByFindByPisData_First(long Pis, long Data,
+		OrderByComparator<PontoMarcacoes> orderByComparator)
+		throws com.desafio.ponto.exception.NoSuchPontoMarcacoesException {
+		return getPersistence()
+				   .findByFindByPisData_First(Pis, Data, orderByComparator);
+	}
+
+	/**
+	* Returns the first ponto marcacoes in the ordered set where Pis = &#63; and Data = &#63;.
+	*
+	* @param Pis the pis
+	* @param Data the data
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching ponto marcacoes, or <code>null</code> if a matching ponto marcacoes could not be found
+	*/
+	public static PontoMarcacoes fetchByFindByPisData_First(long Pis,
+		long Data, OrderByComparator<PontoMarcacoes> orderByComparator) {
+		return getPersistence()
+				   .fetchByFindByPisData_First(Pis, Data, orderByComparator);
+	}
+
+	/**
+	* Returns the last ponto marcacoes in the ordered set where Pis = &#63; and Data = &#63;.
+	*
+	* @param Pis the pis
+	* @param Data the data
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching ponto marcacoes
+	* @throws NoSuchPontoMarcacoesException if a matching ponto marcacoes could not be found
+	*/
+	public static PontoMarcacoes findByFindByPisData_Last(long Pis, long Data,
+		OrderByComparator<PontoMarcacoes> orderByComparator)
+		throws com.desafio.ponto.exception.NoSuchPontoMarcacoesException {
+		return getPersistence()
+				   .findByFindByPisData_Last(Pis, Data, orderByComparator);
+	}
+
+	/**
+	* Returns the last ponto marcacoes in the ordered set where Pis = &#63; and Data = &#63;.
+	*
+	* @param Pis the pis
+	* @param Data the data
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching ponto marcacoes, or <code>null</code> if a matching ponto marcacoes could not be found
+	*/
+	public static PontoMarcacoes fetchByFindByPisData_Last(long Pis, long Data,
+		OrderByComparator<PontoMarcacoes> orderByComparator) {
+		return getPersistence()
+				   .fetchByFindByPisData_Last(Pis, Data, orderByComparator);
+	}
+
+	/**
+	* Returns the ponto marcacoeses before and after the current ponto marcacoes in the ordered set where Pis = &#63; and Data = &#63;.
+	*
+	* @param pontoMarcacoesPK the primary key of the current ponto marcacoes
+	* @param Pis the pis
+	* @param Data the data
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next ponto marcacoes
+	* @throws NoSuchPontoMarcacoesException if a ponto marcacoes with the primary key could not be found
+	*/
+	public static PontoMarcacoes[] findByFindByPisData_PrevAndNext(
+		PontoMarcacoesPK pontoMarcacoesPK, long Pis, long Data,
+		OrderByComparator<PontoMarcacoes> orderByComparator)
+		throws com.desafio.ponto.exception.NoSuchPontoMarcacoesException {
+		return getPersistence()
+				   .findByFindByPisData_PrevAndNext(pontoMarcacoesPK, Pis,
+			Data, orderByComparator);
+	}
+
+	/**
+	* Removes all the ponto marcacoeses where Pis = &#63; and Data = &#63; from the database.
+	*
+	* @param Pis the pis
+	* @param Data the data
+	*/
+	public static void removeByFindByPisData(long Pis, long Data) {
+		getPersistence().removeByFindByPisData(Pis, Data);
+	}
+
+	/**
+	* Returns the number of ponto marcacoeses where Pis = &#63; and Data = &#63;.
+	*
+	* @param Pis the pis
+	* @param Data the data
+	* @return the number of matching ponto marcacoeses
+	*/
+	public static int countByFindByPisData(long Pis, long Data) {
+		return getPersistence().countByFindByPisData(Pis, Data);
+	}
+
+	/**
+	* Returns all the ponto marcacoeses where Pis = &#63; and DataReferencia = &#63;.
+	*
+	* @param Pis the pis
+	* @param DataReferencia the data referencia
+	* @return the matching ponto marcacoeses
+	*/
+	public static List<PontoMarcacoes> findByFindByReferencia(long Pis,
+		long DataReferencia) {
+		return getPersistence().findByFindByReferencia(Pis, DataReferencia);
+	}
+
+	/**
+	* Returns a range of all the ponto marcacoeses where Pis = &#63; and DataReferencia = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PontoMarcacoesModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param Pis the pis
+	* @param DataReferencia the data referencia
+	* @param start the lower bound of the range of ponto marcacoeses
+	* @param end the upper bound of the range of ponto marcacoeses (not inclusive)
+	* @return the range of matching ponto marcacoeses
+	*/
+	public static List<PontoMarcacoes> findByFindByReferencia(long Pis,
+		long DataReferencia, int start, int end) {
+		return getPersistence()
+				   .findByFindByReferencia(Pis, DataReferencia, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the ponto marcacoeses where Pis = &#63; and DataReferencia = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PontoMarcacoesModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param Pis the pis
+	* @param DataReferencia the data referencia
+	* @param start the lower bound of the range of ponto marcacoeses
+	* @param end the upper bound of the range of ponto marcacoeses (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching ponto marcacoeses
+	*/
+	public static List<PontoMarcacoes> findByFindByReferencia(long Pis,
+		long DataReferencia, int start, int end,
+		OrderByComparator<PontoMarcacoes> orderByComparator) {
+		return getPersistence()
+				   .findByFindByReferencia(Pis, DataReferencia, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the ponto marcacoeses where Pis = &#63; and DataReferencia = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PontoMarcacoesModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param Pis the pis
+	* @param DataReferencia the data referencia
+	* @param start the lower bound of the range of ponto marcacoeses
+	* @param end the upper bound of the range of ponto marcacoeses (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching ponto marcacoeses
+	*/
+	public static List<PontoMarcacoes> findByFindByReferencia(long Pis,
+		long DataReferencia, int start, int end,
+		OrderByComparator<PontoMarcacoes> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByFindByReferencia(Pis, DataReferencia, start, end,
+			orderByComparator, retrieveFromCache);
+	}
+
+	/**
+	* Returns the first ponto marcacoes in the ordered set where Pis = &#63; and DataReferencia = &#63;.
+	*
+	* @param Pis the pis
+	* @param DataReferencia the data referencia
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching ponto marcacoes
+	* @throws NoSuchPontoMarcacoesException if a matching ponto marcacoes could not be found
+	*/
+	public static PontoMarcacoes findByFindByReferencia_First(long Pis,
+		long DataReferencia, OrderByComparator<PontoMarcacoes> orderByComparator)
+		throws com.desafio.ponto.exception.NoSuchPontoMarcacoesException {
+		return getPersistence()
+				   .findByFindByReferencia_First(Pis, DataReferencia,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first ponto marcacoes in the ordered set where Pis = &#63; and DataReferencia = &#63;.
+	*
+	* @param Pis the pis
+	* @param DataReferencia the data referencia
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching ponto marcacoes, or <code>null</code> if a matching ponto marcacoes could not be found
+	*/
+	public static PontoMarcacoes fetchByFindByReferencia_First(long Pis,
+		long DataReferencia, OrderByComparator<PontoMarcacoes> orderByComparator) {
+		return getPersistence()
+				   .fetchByFindByReferencia_First(Pis, DataReferencia,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last ponto marcacoes in the ordered set where Pis = &#63; and DataReferencia = &#63;.
+	*
+	* @param Pis the pis
+	* @param DataReferencia the data referencia
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching ponto marcacoes
+	* @throws NoSuchPontoMarcacoesException if a matching ponto marcacoes could not be found
+	*/
+	public static PontoMarcacoes findByFindByReferencia_Last(long Pis,
+		long DataReferencia, OrderByComparator<PontoMarcacoes> orderByComparator)
+		throws com.desafio.ponto.exception.NoSuchPontoMarcacoesException {
+		return getPersistence()
+				   .findByFindByReferencia_Last(Pis, DataReferencia,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last ponto marcacoes in the ordered set where Pis = &#63; and DataReferencia = &#63;.
+	*
+	* @param Pis the pis
+	* @param DataReferencia the data referencia
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching ponto marcacoes, or <code>null</code> if a matching ponto marcacoes could not be found
+	*/
+	public static PontoMarcacoes fetchByFindByReferencia_Last(long Pis,
+		long DataReferencia, OrderByComparator<PontoMarcacoes> orderByComparator) {
+		return getPersistence()
+				   .fetchByFindByReferencia_Last(Pis, DataReferencia,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the ponto marcacoeses before and after the current ponto marcacoes in the ordered set where Pis = &#63; and DataReferencia = &#63;.
+	*
+	* @param pontoMarcacoesPK the primary key of the current ponto marcacoes
+	* @param Pis the pis
+	* @param DataReferencia the data referencia
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next ponto marcacoes
+	* @throws NoSuchPontoMarcacoesException if a ponto marcacoes with the primary key could not be found
+	*/
+	public static PontoMarcacoes[] findByFindByReferencia_PrevAndNext(
+		PontoMarcacoesPK pontoMarcacoesPK, long Pis, long DataReferencia,
+		OrderByComparator<PontoMarcacoes> orderByComparator)
+		throws com.desafio.ponto.exception.NoSuchPontoMarcacoesException {
+		return getPersistence()
+				   .findByFindByReferencia_PrevAndNext(pontoMarcacoesPK, Pis,
+			DataReferencia, orderByComparator);
+	}
+
+	/**
+	* Removes all the ponto marcacoeses where Pis = &#63; and DataReferencia = &#63; from the database.
+	*
+	* @param Pis the pis
+	* @param DataReferencia the data referencia
+	*/
+	public static void removeByFindByReferencia(long Pis, long DataReferencia) {
+		getPersistence().removeByFindByReferencia(Pis, DataReferencia);
+	}
+
+	/**
+	* Returns the number of ponto marcacoeses where Pis = &#63; and DataReferencia = &#63;.
+	*
+	* @param Pis the pis
+	* @param DataReferencia the data referencia
+	* @return the number of matching ponto marcacoeses
+	*/
+	public static int countByFindByReferencia(long Pis, long DataReferencia) {
+		return getPersistence().countByFindByReferencia(Pis, DataReferencia);
+	}
+
+	/**
 	* Caches the ponto marcacoes in the entity cache if it is enabled.
 	*
 	* @param pontoMarcacoes the ponto marcacoes

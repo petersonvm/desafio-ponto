@@ -54,6 +54,16 @@ public class PontoDiaLocalServiceUtil {
 		return getService().addPontoDia(pontoDia);
 	}
 
+	public static com.desafio.ponto.model.PontoDia calcularHorasTrabalhadas(
+		com.desafio.ponto.model.PontoDia pontoDia) {
+		return getService().calcularHorasTrabalhadas(pontoDia);
+	}
+
+	public static com.desafio.ponto.model.PontoDia calcularIntervalos(
+		com.desafio.ponto.model.PontoDia pontoDia) {
+		return getService().calcularIntervalos(pontoDia);
+	}
+
 	/**
 	* Creates a new ponto dia with the primary key. Does not add the ponto dia to the database.
 	*
@@ -181,6 +191,11 @@ public class PontoDiaLocalServiceUtil {
 		return getService().fetchPontoDia(pontoDiaPK);
 	}
 
+	public static java.util.List<com.desafio.ponto.model.PontoDia> findByPisCompetencia(
+		long pis, String competencia) {
+		return getService().findByPisCompetencia(pis, competencia);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}
@@ -202,6 +217,12 @@ public class PontoDiaLocalServiceUtil {
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static com.desafio.ponto.model.PontoDia getPontoDia(long pis,
+		java.util.Date data)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPontoDia(pis, data);
 	}
 
 	/**
@@ -242,9 +263,10 @@ public class PontoDiaLocalServiceUtil {
 		return getService().getPontoDiasCount();
 	}
 
-	public static com.desafio.ponto.model.PontoDia registarPonto(long pis,
-		java.util.Date dataPonto) {
-		return getService().registarPonto(pis, dataPonto);
+	public static com.desafio.ponto.model.PontoDia gravarPonto(long pis,
+		java.util.Date dataHora)
+		throws com.desafio.ponto.exception.PontoDiaExistenteException {
+		return getService().gravarPonto(pis, dataHora);
 	}
 
 	/**
