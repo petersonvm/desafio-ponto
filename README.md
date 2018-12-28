@@ -6,7 +6,7 @@
 
 ## Configuração
 
-1. Realizar o deploy dos arquivos (.jar) do serviço e portlet :
+1. Realizar o deploy dos arquivos (.jar) do serviço e portlet, no Liferay :
     * **com.desafio.ponto.api-1.0.0.jar**
     * **com.desafio.ponto.service-1.0.0.jar**
     * **com.desafio.ponto.web-1.0.0.jar**
@@ -84,9 +84,9 @@ Também pode ser executado atráves do */api/jsonws/*
     * Service Builder - Webservices e persistencia
     * Campos personalizados (Custom fields)
 
-## Informações do aambiente de desenvolivmento
+## Informações do ambiente de desenvolivmento
 
-Liferay
+Liferay 7.1
 * Product information:
   * installation type: binary
   * build number: 7110
